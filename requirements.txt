@@ -1,0 +1,6 @@
+kagglehub
+pandas
+mlcroissant
+openpyxl
+pyarrow
+parquet-tools
