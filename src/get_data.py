@@ -108,15 +108,16 @@ if __name__ == "__main__":
 # https://www.kaggle.com/datasets/dhruvildave/spotify-charts
 
 ## Popular Tracks
-# https://www.kaggle.com/datasets/abdulszz/spotify-most-streamed-songs
+# https://www.kaggle.com/datasets/a1bdulszz/spotify-most-streamed-songs
 
 ## Unpopular Tracks
 # https://www.kaggle.com/datasets/estienneggx/spotify-unpopular-songs
 
     # Lista de links dos datasets no Kaggle
     links = [
-        "abdulszz/spotify-most-streamed-songs",
-        "estienneggx/spotify-unpopular-songs"
+        "hedizekri/top-charts-artists-country", # Paises dos artistas
+        "abdulszz/spotify-most-streamed-songs", # Spotify Most Streamed Songs
+        "estienneggx/spotify-unpopular-songs", # Unpopular Songs
     ]
 
     # Executa o processo de download e conversão

@@ -4,3 +4,5 @@ mlcroissant
 openpyxl
 pyarrow
 parquet-tools
+seaborn
+matplotlib
