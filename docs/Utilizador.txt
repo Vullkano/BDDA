@@ -1,0 +1,11 @@
+# Utilizador HUE
+Nome de utilizador: Grupo7
+Palavra-passe: Rebecca
+
+# Utilizador Spotify
+Email: contaprojeto2025@gmail.com
+Password: Projeto2025.
+
+# Api-Spotify
+Client ID: ca14c7679c394052af165d2168f3361f
+Client secret: 8b250ef320964c2a9197f5453f3c449d
