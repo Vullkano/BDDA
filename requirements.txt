@@ -6,3 +6,4 @@ pyarrow
 parquet-tools
 seaborn
 matplotlib
+spotipy

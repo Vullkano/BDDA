@@ -14,6 +14,11 @@ def kaggleDownload(current_directory, links: list[str]):
         current_directory (str): Diretório atual onde os ficheiros serão movidos.
         links (list[str]): Lista de identificadores de datasets no Kaggle.
     """
+    # Garantir que o diretório de destino existe
+    if not os.path.exists(current_directory):
+        os.makedirs(current_directory)
+        print(f"Diretório criado: {current_directory}")
+
     for i in links:
         try:
             # Faz o download do dataset usando kagglehub
@@ -89,35 +94,18 @@ def kaggleDownload(current_directory, links: list[str]):
     print("Ficheiros movidos e convertidos para CSV e Parquet no diretório atual:", current_directory)
 
 
-
 if __name__ == "__main__":
     # Diretório atual onde o script está localizado
     current_directory = Path.cwd()
     data_directory = os.path.join(current_directory.parent, 'data')
     print(current_directory)
 
-## Caracteristicas das músicas ##
-# https://www.kaggle.com/datasets/joebeachcapital/30000-spotify-songs
-# https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset?utm_source
-# https://www.kaggle.com/datasets/nicolasfierro/spotify-1986-2023
-
-## Artistas
-# https://www.kaggle.com/datasets/hedizekri/top-charts-artists-country
-
-## Paises
-# https://www.kaggle.com/datasets/dhruvildave/spotify-charts
-
-## Popular Tracks
-# https://www.kaggle.com/datasets/a1bdulszz/spotify-most-streamed-songs
-
-## Unpopular Tracks
-# https://www.kaggle.com/datasets/estienneggx/spotify-unpopular-songs
-
     # Lista de links dos datasets no Kaggle
     links = [
-        "hedizekri/top-charts-artists-country", # Paises dos artistas
-        "abdulszz/spotify-most-streamed-songs", # Spotify Most Streamed Songs
-        "estienneggx/spotify-unpopular-songs", # Unpopular Songs
+        "hedizekri/top-charts-artists-country",  # Países dos artistas
+        "jackharding/spotify-artist-metadata-top-10k",  # Idade, género dos artistas
+        "rodolfofigueroa/spotify-12m-songs",  # Spotify 12M Songs
+        "estienneggx/spotify-unpopular-songs",  # Unpopular Songs
     ]
 
     # Executa o processo de download e conversão
