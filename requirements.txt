@@ -7,3 +7,4 @@ parquet-tools
 seaborn
 matplotlib
 spotipy
+scikit-learn

@@ -1,20 +1,23 @@
 import pandas as pd
+import os
+from pathlib import Path
 
 """
 /data/ is in .gitignore. Download your CSV dataset from Kaggle or use your own.
 You need to install pandas and pyarrow with pip before you run this script.
 """
 
-def main(ficheiros):
+def parquet(ficheiros):
     for i in ficheiros:
-        # Ler o ficheiro (CSV ou Excel)
+        # Obter o diretório e nome do ficheiro
         input_file = i
-        output_file = input_file[:input_file.find('.')] + '.parquet'
+        input_dir = input_file.parent  # Diretório do ficheiro de entrada
+        output_file = input_dir / (input_file.stem + '.parquet')  # Caminho do ficheiro de saída
 
-        if i[i.find(".") + 1:] == 'csv':
+        if input_file.suffix == '.csv':
             df = pd.read_csv(input_file)
 
-        elif i[i.find(".") + 1:] == 'xlsx':
+        elif input_file.suffix == '.xlsx':
             df = pd.read_excel(input_file)
 
         else:
@@ -42,6 +45,7 @@ def main(ficheiros):
 
 # Executar a função principal
 if __name__ == "__main__":
-    ficheiros = ["datos_merged_1986_2023.xlsx", "spotify_songs.csv"]
-
-    main(ficheiros)
+    base_dir = Path(os.getcwd()).resolve().parent.parent
+    processed_data = base_dir / 'data' / 'processed'
+    ficheiros = [processed_data / 'artist_details.csv']
+    parquet(ficheiros)
