@@ -43,7 +43,7 @@ Neste relatório, vamos contextualizar as seguintes etapas:
 
 
    <div style="text-align: center;">
-       <img src="docs/relatorios/relatorio_pratico_ imgs/drawSQL-BaseDataSets.png" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs/relatorios/relatorio_pratico_imgs/drawSQL-BaseDataSets.png" alt="Texto alternativo" style="width: 550px;"/>
    </div>
 
 - **As metodologias utilizadas e a stack _Hadoop_ empregue para a realização do projeto:**
@@ -221,14 +221,14 @@ WHERE d.country_born = 'United States'; -- != 'United States'
 <details open>
   <summary>Gráfico de dispersão danceability/energy <strong>artistas nascidos nos EUA</strong></summary>
 <div style="text-align: center;">
-       <img src="docs/relatorios/relatorio_pratico_ imgs/EUA-disp-danceability_energy.jpg" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs/relatorios/relatorio_pratico_imgs/EUA-disp-danceability_energy.jpg" alt="Texto alternativo" style="width: 550px;"/>
 </div>
 </details>
 
 <details open>
   <summary>Gráfico de dispersão danceability/energy <strong>artistas nascidos fora dos EUA</strong></summary>
 <div style="text-align: center;">
-       <img src="docs/relatorios/relatorio_pratico_ imgs/noEUA-disp-danceability_energy.jpg" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs/relatorios/relatorio_pratico_imgs/noEUA-disp-danceability_energy.jpg" alt="Texto alternativo" style="width: 550px;"/>
 </div>
 </details>
 
@@ -244,14 +244,14 @@ De realçar também que as músicas com menos "dançabilidade" têm um tempo de 
 <details open>
   <summary>Gráfico de dispersão  <strong>artistas nascidos nos EUA</strong></summary>
 <div style="text-align: center;">
-       <img src="docs/relatorios/relatorio_pratico_ imgs/" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs/relatorios/relatorio_pratico_imgs/" alt="Texto alternativo" style="width: 550px;"/>
 </div>
 </details>
 
 <details open>
   <summary>Gráfico de dispersão  <strong>artistas nascidos fora dos EUA</strong></summary>
 <div style="text-align: center;">
-       <img src="docs/relatorios/relatorio_pratico_ imgs/" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs/relatorios/relatorio_pratico_imgs/" alt="Texto alternativo" style="width: 550px;"/>
 </div>
 </details>
 
