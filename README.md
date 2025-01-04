@@ -7,7 +7,7 @@ _Relatório: Componente Técnica_
 
 ---
 
-### Tempo para entrega do projeto:
+### Tempo para apresentação do projeto:
 
 ![Countdown Timer](https://i.countdownmail.com/3w7q9r.gif)
 
