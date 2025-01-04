@@ -10,7 +10,5 @@ spotipy
 scikit-learn
 pathlib
 datetime
-re
 spotify
-spotipy.oauth2
 bs4

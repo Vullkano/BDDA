@@ -1,0 +1,469 @@
+artist_name,gender,age,country_born,artist_id,followers,popularity,genres,image_url
+Drake,Male,37.0,Canada,3TVXtAsR1Inumwj472S9r4,94924678.0,97.0,canadian hip hop;canadian pop;hip hop;pop rap;rap,https://i.scdn.co/image/ab6761610000e5eb4293385d324db8558179afd9
+Post Malone,Male,29.0,United States,246dkjvS1zLTtiykXe5h60,46205845.0,91.0,dfw rap;melodic rap;pop;rap,https://i.scdn.co/image/ab6761610000e5ebe17c0aa1714a03d62b5ce4e0
+Ed Sheeran,Male,33.0,United Kingdom,6eUKZXaKkcviH0Ku9w2n3V,118303036.0,90.0,pop;singer-songwriter pop;uk pop,https://i.scdn.co/image/ab6761610000e5eb784daff754ecfe0464ddbeb9
+J Balvin,Male,39.0,Colombia,1vyhD5VmyZ7KMfW5gqLgo5,37654788.0,88.0,reggaeton;reggaeton colombiano;trap latino;urbano latino,https://i.scdn.co/image/ab6761610000e5ebdea08796d296a58c5d060439
+Bad Bunny,Male,30.0,Puerto Rico,4q3ewBCX7sLwd24euuV69X,88463237.0,96.0,reggaeton;trap latino;urbano latino,https://i.scdn.co/image/ab6761610000e5eb744a4243fb6cc938011a98f4
+Justin Bieber,Male,30.0,Canada,1uNFoZAHBGtllmzznpCI3s,79912279.0,93.0,canadian pop;pop,https://i.scdn.co/image/ab6761610000e5eb8ae7f2aaa9817a704a87ea36
+Ozuna,Male,32.0,Puerto Rico,1i8SpTcr7yvPOmcqrbnVXY,37926225.0,87.0,puerto rican pop;reggaeton;trap latino;urbano latino,https://i.scdn.co/image/ab6761610000e5ebc80f303b208a480f52e8180b
+Ariana Grande,Female,31.0,United States,66CXWjxzNUsdJxJ2JdwvnR,102593265.0,96.0,pop,https://i.scdn.co/image/ab6761610000e5eb40b5c07ab77b6b1a9075fdc0
+Khalid,Male,26.0,United States,6LuN9FCkKOj5PcnpouEgny,16541940.0,86.0,pop;pop r&b,https://i.scdn.co/image/ab6761610000e5eb24ff450c42d4e36fb34a7631
+Daddy Yankee,Male,47.0,Puerto Rico,4VMYDCV2IEDYJArk749S6m,36037589.0,88.0,latin hip hop;reggaeton;trap latino;urbano latino,https://i.scdn.co/image/ab6761610000e5ebaa534de724c7a565c07bb3f5
+Travis Scott,Male,32.0,United States,0Y5tJX1MQlPlqiwlOH1tJY,35922611.0,94.0,rap;slap house,https://i.scdn.co/image/ab6761610000e5eb19c2790744c792d05570bb71
+The Weeknd,Male,34.0,Canada,1Xyo4u8uXC1ZmMpatF05PJ,97412415.0,97.0,canadian contemporary r&b;canadian pop;pop,https://i.scdn.co/image/ab6761610000e5eb9e528993a2820267b97f6aae
+Xxxtentacion,Male,24.0,United States,15UsOTVnJzReFVN1VCnxy4,48457237.0,90.0,emo rap;miami hip hop;rap,https://i.scdn.co/image/ab6761610000e5ebf0c20db5ef6c6fbe5135d2e4
+Billie Eilish,Female,22.0,United States,6qqNVTkY8uBg9cP3Jd7DAH,105041600.0,96.0,art pop;pop,https://i.scdn.co/image/ab6761610000e5eb4a21b4760d2ecb7b0dcdc8da
+Anuel Aa,Male,31.0,Puerto Rico,2R21vXR83lH98kGeO99Y66,39780673.0,90.0,reggaeton;reggaeton flow;trap boricua;trap latino;urbano latino,https://i.scdn.co/image/ab6761610000e5eba23ceb177745632b517cb7b2
+Nicky Jam,Male,44.0,Puerto Rico,1SupJlEpv7RS2tPNRaHViT,19332502.0,82.0,latin hip hop;reggaeton;trap latino;urbano latino,https://i.scdn.co/image/ab6761610000e5eb4e0f64cf0dab523714a800a7
+Maluma,Male,30.0,Colombia,1r4hJ1h58CWwUQe3MxPuau,35563224.0,88.0,latin pop;reggaeton;reggaeton colombiano;trap latino;urbano latino,https://i.scdn.co/image/ab6761610000e5eba9bc74fbec09e03f06cddf44
+Camila Cabello,Female,27.0,United States,4nDoRrQiYLoBzwC5BhVJzF,34355247.0,83.0,dance pop;pop,https://i.scdn.co/image/ab6761610000e5eb76470faf6330235edbcb90a9
+Dua Lipa,Female,28.0,United Kingdom,6M2wZ9GZgrQXHCFfjv46we,45339266.0,89.0,dance pop;pop;uk pop,https://i.scdn.co/image/ab6761610000e5eb0c68f6c95232e716f0abee8d
+Juice Wrld,Male,25.0,United States,4MCBfE4596Uoi2O4DtmEMz,37650672.0,93.0,chicago rap;melodic rap;rap,https://i.scdn.co/image/ab6761610000e5eb01ab50f1479f24a42804efd8
+Selena Gomez,Female,32.0,United States,0C8ZW7ezQVs4URX5aX7Kqx,51515760.0,83.0,pop;post-teen pop,https://i.scdn.co/image/ab6761610000e5ebc3c753851496854e29abff7a
+Halsey,Female,29.0,United States,26VFTg2z8YR0cCuwLzESi2,21838423.0,83.0,electropop;etherpop;indie poptimism;pop,https://i.scdn.co/image/ab6761610000e5eb7f17140567e7df5799d5c3a9
+Cardi B,Female,31.0,United States,4kYSro6naA4h99UJvo89HB,24899700.0,81.0,pop;rap,https://i.scdn.co/image/ab6761610000e5eb4e8a7e14e2f602eb9af24e31
+Calvin Harris,Male,40.0,United Kingdom,7CajNmpbOovFoOoasH2HaY,23007340.0,87.0,dance pop;edm;electro house;house;pop;progressive house;uk dance,https://i.scdn.co/image/ab6761610000e5eb014a3c1730d960c66396ed63
+Nicki Minaj,Female,41.0,United States,0hCNtLu0JehylgoiP8L4Gh,33113977.0,88.0,hip pop;pop;queens hip hop;rap,https://i.scdn.co/image/ab6761610000e5eb07a50f0a9a8f11e5a1102cbd
+Shawn Mendes,Male,25.0,Canada,7n2wHs1TKAczGzO7Dd2rGr,44085353.0,85.0,canadian pop;pop;viral pop,https://i.scdn.co/image/ab6761610000e5eb58b4b9419486550f6fda0535
+Kendrick Lamar,Male,37.0,United States,2YZyLoL8N0Wb9xBt1NhZWg,35889898.0,97.0,conscious hip hop;hip hop;rap;west coast rap,https://i.scdn.co/image/ab6761610000e5eb39ba6dcd4355c03de0b50918
+Sam Smith,Male,32.0,United Kingdom,2wY79sveU1sp5g7SokKOiI,25020560.0,85.0,pop;uk pop,https://i.scdn.co/image/ab6761610000e5ebf057d1dce23e7f4d5d0f32e5
+Future,Male,40.0,United States,1RyvyyTE3xzB2ZywiAwp0i,19915086.0,93.0,atl hip hop;hip hop;rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5eb7565b356bc9d9394eefa2ccb
+Farruko,Male,33.0,Puerto Rico,329e4yvIujISKGKz1BZZbO,16276604.0,84.0,reggaeton;trap latino;urbano latino,https://i.scdn.co/image/ab6761610000e5eb7d36b670eff30cc4de53f67c
+Rihanna,Female,36.0,United States,5pKCCKE2ajJHZ9KAiaK11H,64678133.0,92.0,barbadian pop;pop;urban contemporary,https://i.scdn.co/image/ab6761610000e5eb99e4fca7c0b7cb166d915789
+Lil Uzi Vert,Male,30.0,United States,4O15NlyKLIASxsJ0PrXPfz,18272469.0,86.0,hip hop;melodic rap;philly rap;rage rap;rap;trap,https://i.scdn.co/image/ab6761610000e5eba8ce348f34f18241d3249fa9
+Kygo,Male,32.0,Norway,23fqKkggKUBHNkbKtXEls4,8527622.0,82.0,edm;pop;pop dance;tropical house,https://i.scdn.co/image/ab6761610000e5ebe5ea1aa1404629c12ad86658
+Marshmello,Male,32.0,United States,64KEffDW9EtZ1y2vBYgq8T,34009326.0,85.0,brostep;edm;pop;progressive electro house,https://i.scdn.co/image/ab6761610000e5eb53ca421f91678c26b4f15512
+21 Savage,Male,31.0,United States,1URnnhqYAYcrqrcwql10ft,21247828.0,89.0,atl hip hop;hip hop;rap,https://i.scdn.co/image/ab6761610000e5eb4f8f76117470957c0e81e5b2
+Dj Snake,Male,38.0,France,540vIaP2JwjQb9dm3aArA4,8980838.0,80.0,dance pop;edm;electronic trap;pop;pop dance,https://i.scdn.co/image/ab6761610000e5ebca97cf089968b569e29d795c
+Young Thug,Male,32.0,United States,50co4Is1HCEo8bhOyUWKpn,11050617.0,86.0,atl hip hop;atl trap;gangster rap;hip hop;melodic rap;rap;trap,https://i.scdn.co/image/ab6761610000e5eb547d2b41c9f2c97318aad0ed
+Sia,Female,48.0,Australia,5WUlDfRSoLAfcVSX1WnrxN,29155453.0,89.0,pop,https://i.scdn.co/image/ab6761610000e5eb911dd6caa410128a05ab99aa
+Sech,Male,30.0,Panama,77ziqFxp5gaInVrF2lj4ht,12105227.0,81.0,panamanian pop;reggaeton;trap latino;urbano latino,https://i.scdn.co/image/ab6761610000e5eb2ef2187023b7df95a70b4587
+David Guetta,Male,56.0,France,1Cs0zKBU1kc0i8ypK3B9ai,26654548.0,90.0,big room;dance pop;edm;pop;pop dance,https://i.scdn.co/image/ab6761610000e5ebf150017ca69c8793503c2d4f
+Bebe Rexha,Female,34.0,United States,64M6ah0SkkRsnPGtGiRAbb,9447260.0,81.0,dance pop;pop,https://i.scdn.co/image/ab6761610000e5ebead1540fa76796266fadba33
+Eminem,Male,51.0,United States,7dGJo4pcD2V6oG8kP0tJRR,95619328.0,93.0,detroit hip hop;hip hop;rap,https://i.scdn.co/image/ab6761610000e5eba00b11c129b27a88fc72f36b
+Bruno Mars,Male,38.0,United States,0du5cEVh5yTK9QJze8zA0C,65452671.0,97.0,dance pop;pop,https://i.scdn.co/image/ab6761610000e5ebc36dd9eb55fb0db4911f25dd
+Avicii,Male,32.0,Sweden,1vCWHaC5f2uS3yhpwWbIA6,23206684.0,82.0,dance pop;edm;pop;pop dance,https://i.scdn.co/image/ab6761610000e5ebae07171f989fb39736674113
+Manuel Turizo,Male,25.0,Colombia,0tmwSHipWxN12fsoLcFU3B,14476115.0,84.0,colombian pop;latin pop;reggaeton;reggaeton colombiano;trap latino;urbano latino,https://i.scdn.co/image/ab6761610000e5ebfb87d42d66722931e826d630
+Taylor Swift,Female,34.0,United States,06HL4z0CvFAxyc27GXpf02,129785206.0,100.0,pop,https://i.scdn.co/image/ab6761610000e5ebe672b5f553298dcdccb0e676
+Karol G,Female,33.0,Colombia,790FomKkXshlbRYZFtlgla,53516147.0,91.0,reggaeton;reggaeton colombiano;urbano latino,https://i.scdn.co/image/ab6761610000e5eb4b0754aefc9db490e02205ec
+Anne-Marie,Female,33.0,France,1zNqDE7qDGCsyzJwohVaoX,12219846.0,78.0,pop,https://i.scdn.co/image/ab6761610000e5eb679c995b0d4a641ba32aa5f0
+Luis Fonsi,Male,46.0,Puerto Rico,4V8Sr092TqfHkfAA5fXXqG,10700090.0,76.0,latin pop;puerto rican pop,https://i.scdn.co/image/ab6761610000e5eb2620d7e19f51d9c4b7e853ce
+Dababy,Male,32.0,United States,4r63FhuTkUYltbVAg5TQnk,12392619.0,80.0,hip hop;north carolina hip hop;pop rap;rap;trap,https://i.scdn.co/image/ab6761610000e5ebbd6918901c1714560669f570
+Kanye West,Male,47.0,United States,5K4W6rqBFWDnAN6FQUkS6x,28672172.0,93.0,chicago rap;hip hop;rap,https://i.scdn.co/image/ab6761610000e5eb6e835a500e791bf9c27a422a
+Lil Baby,Male,29.0,United States,5f7VJjfbwm532GiveGC0ZK,19398209.0,87.0,atl hip hop;atl trap;rap;trap,https://i.scdn.co/image/ab6761610000e5eb514da623c55dc9d2155705dd
+Zara Larsson,Female,26.0,Sweden,1Xylc3o4UrD53lo9CvFvVg,10632731.0,78.0,pop;scandipop;swedish electropop;swedish pop,https://i.scdn.co/image/ab6761610000e5eb7619ca2683b434e139040f70
+Charlie Puth,Male,32.0,United States,6VuMaDnrHyPL1p4EHjYLi7,23850775.0,82.0,pop;viral pop,https://i.scdn.co/image/ab6761610000e5ebd5594e3ae145bbb2c096366d
+J. Cole,Male,39.0,United States,6l3HvQ5sa6mXTsMTB19rO5,25403059.0,87.0,conscious hip hop;hip hop;north carolina hip hop;rap,https://i.scdn.co/image/ab6761610000e5eb4b053c29fd4b317ff825f0dc
+Zedd,Male,34.0,Germany,2qxJFvFYMEDqd7ui6kSAcq,6014238.0,76.0,complextro;edm;german techno;pop;pop dance,https://i.scdn.co/image/ab6761610000e5ebe28762aed82cde1178fb3873
+Jason Derulo,Male,34.0,United States,07YZf4WDAMNwqr4jfgOZ8y,12338259.0,80.0,dance pop;pop,https://i.scdn.co/image/ab6761610000e5eb62fa38af4bdc7322b2103493
+Martin Garrix,Male,28.0,Netherlands,60d24wfXkVzDSfLS6hyCjZ,15125161.0,77.0,dutch edm;edm;pop;pop dance;progressive house,https://i.scdn.co/image/ab6761610000e5eb45c3688488f871aace7a4a57
+Demi Lovato,Female,31.0,United States,6S2OmqARrzebs0tKUEyXyp,26920526.0,79.0,pop;post-teen pop,https://i.scdn.co/image/ab6761610000e5ebe106fea940fcf250f8dd5bfe
+Offset,Male,33.0,United States,4DdkRBBYG6Yk9Ka8tdJ9BW,4791288.0,80.0,atl hip hop;hip hop;pop rap;rap;trap,https://i.scdn.co/image/ab6761610000e5eb628143c3dd14fc995f925d56
+Anitta,Female,31.0,Brazil,7FNnA9vBm6EKceENgCGRMb,12867423.0,84.0,"funk pop, funk rj, pagode baiano, pop, pop nacional",https://i.scdn.co/image/ab6761610000e5eb1681cb494f1011960763744e
+Lady Gaga,Female,38.0,United States,1HY2Jd0NmPuamShAr6KMms,33802594.0,92.0,art pop;dance pop;pop,https://i.scdn.co/image/ab6761610000e5eb4b09cd0839c6129c29d22f79
+Zayn,Male,31.0,United Kingdom,5ZsFI1h6hIdQRw2ti0hz81,23552148.0,79.0,pop;uk pop,https://i.scdn.co/image/ab6761610000e5eb7a1fba1bb3618ef71355f82a
+Roddy Ricch,Male,25.0,United States,757aE44tKEUQEqRuT6GnEB,11108787.0,80.0,melodic rap;rap;trap,https://i.scdn.co/image/ab6761610000e5eb88d7900663b237167c4be332
+Lil Wayne,Male,41.0,United States,55Aa2cqylxrFIXC767Z865,15980132.0,89.0,hip hop;new orleans rap;pop rap;rap;trap,https://i.scdn.co/image/ab6761610000e5ebc1c08e541eae3cc82c6988c4
+Lauv,Male,29.0,United States,5JZ7CnR6gTvEMKX4g70Amv,6450843.0,77.0,pop,https://i.scdn.co/image/ab6761610000e5ebb173d69f77530d77a991984f
+Jonas Blue,Male,34.0,United Kingdom,1HBjj22wzbscIZ9sEb5dyf,3802135.0,75.0,pop;pop dance;tropical house;uk dance,https://i.scdn.co/image/ab6761610000e5ebc2ef6ee256ee38ee35f42df7
+Tyga,Male,34.0,United States,5LHRHt1k9lMyONurDHEdrp,7082414.0,80.0,hip hop;pop rap;rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5ebc0aa5c92c47f7e766074edce
+Ellie Goulding,Female,37.0,United Kingdom,0X2BH1fck6amBIoJhDVmmJ,12779984.0,81.0,indietronica;metropopolis;pop;uk pop,https://i.scdn.co/image/ab6761610000e5ebc3cd7dc428871e8985d62b9a
+Lewis Capaldi,Male,27.0,United Kingdom,4GNC7GD6oZMSxPGyXy4MNB,13135519.0,81.0,pop;uk pop,https://i.scdn.co/image/ab6761610000e5ebea7538654040e553a7b0fc28
+MØ,Female,35.0,Denmark,0bdfiayQAKewqEvaU6rXCv,1461551.0,72.0,dance pop;danish pop;electropop;pop dance,https://i.scdn.co/image/ab6761610000e5ebe8a8d711a54edf74487c2394
+Alessia Cara,Female,28.0,Canada,2wUjUUtkb5lvLKcGKsKqsR,11972061.0,76.0,canadian contemporary r&b;canadian pop;pop,https://i.scdn.co/image/ab6761610000e5eb6cde43f126518af0ef8eddc2
+Chris Brown,Male,35.0,United States,7bXgB6jMjp9ATFy66eO08Z,24744443.0,89.0,r&b;rap,https://i.scdn.co/image/ab6761610000e5eba48397e590a1c70e2cda7728
+Kodak Black,Male,27.0,United States,46SHBwWsqBkxI7EeeBEQG7,11407366.0,83.0,florida drill;florida rap;melodic rap;miami hip hop;rap;trap;trap latino,https://i.scdn.co/image/ab6761610000e5eb70c05cf4dc9a7d3ffd02ba19
+6Ix9Ine,Male,28.0,United States,7gZfnEnfiaHzxARJ2LeXrf,6878960.0,72.0,emo rap,https://i.scdn.co/image/ab6761610000e5ebe496acc0275b2bfd673c21a9
+Becky G,Female,27.0,United States,4obzFoKoKRHIphyHzJ35G3,15629057.0,79.0,latin pop;latin viral pop;rap latina;reggaeton;trap latino;urbano latino,https://i.scdn.co/image/ab6761610000e5eb689f28b643fd40a523e00a96
+Alan Walker,Male,26.0,Norway,7vk5e3vY1uw9plTHJAMwjN,40048276.0,82.0,electro house,https://i.scdn.co/image/ab6761610000e5ebbf753c009fd9c2d53351dd3c
+Paulo Londra,Male,27.0,Argentina,3vQ0GE3mI0dAaxIMYe5g7z,24652558.0,79.0,argentine hip hop;trap argentino;trap latino;urbano latino,https://i.scdn.co/image/ab6761610000e5eb30f2a21119532004bccbe570
+G-Eazy,Male,35.0,United States,02kJSzxNuaWGqwubyUba0Z,5696701.0,79.0,indie pop rap;oakland hip hop;pop rap;rap,https://i.scdn.co/image/ab6761610000e5eb60faff29eca3df2de27aff99
+Katy Perry,Female,39.0,United States,6jJ0s89eD6GaHleKKya26X,35579662.0,87.0,pop,https://i.scdn.co/image/ab6761610000e5eb0988562f78810e47a6e3325f
+Robin Schulz,Male,37.0,Germany,3t5xRXzsuZmMDkQzgOX35S,3158529.0,80.0,deep euro house;deep house;edm;german dance;pop dance;tropical house,https://i.scdn.co/image/ab6761610000e5eb82c0d0d4ef6742997f03d678
+Lil Nas X,Male,25.0,United States,7jVv8c5Fj3E9VhNjxT4snq,12397547.0,76.0,lgbtq+ hip hop,https://i.scdn.co/image/ab6761610000e5eb3758a33e782b46bd7f174e1d
+Logic,Male,34.0,United States,4xRYI6VqpkE3UwrDrAZL8L,6107950.0,75.0,conscious hip hop;hip hop;pop rap;rap,https://i.scdn.co/image/ab6761610000e5eb94678f7d5353a9b680f60d23
+Harry Styles,Male,30.0,United Kingdom,6KImCVD70vtIoJWnq6nGn3,33338336.0,85.0,pop,https://i.scdn.co/image/ab6761610000e5ebf7db7c8ede90a019c54590bb
+Tones And I,Female,32.0,Australia,2NjfBq1NflQcKSeiDooVjY,2959288.0,70.0,australian pop,https://i.scdn.co/image/ab6761610000e5eb8bbb776368161a8258cbca3a
+A Boogie Wit Da Hoodie,Male,28.0,United States,31W5EY0aAly4Qieq6OFu6I,8622864.0,79.0,melodic rap;rap;trap,https://i.scdn.co/image/ab6761610000e5ebebe9d9f649d6ef85497f71af
+James Arthur,Male,36.0,United Kingdom,4IWBUUAFIplrNtaOHcJPRM,19432974.0,82.0,pop;talent show;uk pop,https://i.scdn.co/image/ab6761610000e5eb2a0c6d0343c82be9dd6fce0b
+Big Sean,Male,36.0,United States,0c173mlxpT3dSFRgMO8XPh,11308198.0,78.0,detroit hip hop;hip hop;pop rap;r&b;rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5eb3d5b14b45d4c3d10d23b03ff
+Dj Khaled,Male,48.0,United States,0QHgL1lAIqAw0HtD7YldmP,11830618.0,76.0,hip hop;miami hip hop;pop rap;rap,https://i.scdn.co/image/ab6761610000e5eb084f36c2ae2da4a02494e1e5
+Fetty Wap,Male,34.0,United States,6PXS4YHDkKvl1wkIl4V8DL,4792854.0,72.0,new jersey rap;pop rap;rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5eb8ffb1b02e4435c5176b28ed2
+Myke Towers,Male,30.0,Puerto Rico,7iK8PXO48WeuP03g8YR51W,18062959.0,91.0,reggaeton;trap latino;urbano latino,https://i.scdn.co/image/ab6761610000e5eb8372345609bebaf1e948ef7f
+French Montana,Male,39.0,United States,6vXTefBL93Dj5IqAWq6OTv,5615716.0,76.0,hip hop;pop rap;rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5ebadb2f8e09c3e3171956aafe4
+A$AP Rocky,Male,35.0,United States,13ubrt8QOOCPljQ2FL1Kca,15656342.0,86.0,east coast hip hop;hip hop;rap,https://i.scdn.co/image/ab6761610000e5eb5c58c41a506a0d6b32cc6cad
+Sza,Female,33.0,United States,7tYKF4w9nC0nq9CsPZTHyP,25849405.0,96.0,pop;r&b;rap,https://i.scdn.co/image/ab6761610000e5eb0895066d172e1f51f520bc65
+Shakira,Female,47.0,Colombia,0EmeFodog0BfCgMzAIvKQp,36087475.0,88.0,colombian pop;dance pop;latin pop;pop,https://i.scdn.co/image/ab6761610000e5eb2528c726e5ddb90a7197e527
+Hailee Steinfeld,Female,27.0,United States,5p7f24Rk5HkUZsaS3BLG5F,8829677.0,69.0,pop,https://i.scdn.co/image/ab6761610000e5eba961383967f3a3a54e794a15
+Yandel,Male,47.0,Puerto Rico,0eHQ9o50hj6ZDNBt6Ys1sD,8218176.0,80.0,latin hip hop;reggaeton;trap latino;urbano latino,https://i.scdn.co/image/ab6761610000e5ebb28ff26a8cba0079ec44e84e
+Rauw Alejandro,Male,32.0,Puerto Rico,1mcTU81TzQhprhouKaTkpq,25504486.0,94.0,puerto rican pop;reggaeton;trap latino;urbano latino,https://i.scdn.co/image/ab6761610000e5ebb271c8a0507c4c1ea795d989
+Pharrell Williams,Male,51.0,United States,2RdwBSPQiwcmiDo9kixcl8,4982080.0,83.0,dance pop;pop,https://i.scdn.co/image/ab6761610000e5ebf0789cd783c20985ec3deb4e
+Ava Max,Female,30.0,United States,4npEfmQ6YuiwW1GpUmaq3F,7273119.0,83.0,pop,https://i.scdn.co/image/ab6761610000e5ebdb972b34c76d1f6e643ba616
+Jess Glynne,Female,34.0,United Kingdom,4ScCswdRlyA23odg9thgIO,3088556.0,75.0,dance pop;pop;uk pop,https://i.scdn.co/image/ab6761610000e5eba52d6095be04ca6691ba9a96
+Sean Paul,Male,51.0,Jamaica,3Isy6kedDrgPYoTS1dazA9,4980784.0,83.0,dance pop;dancehall;pop;pop rap,https://i.scdn.co/image/ab6761610000e5eb60c3e9abe7327c0097738f22
+Adele,Female,36.0,United Kingdom,4dpARuHxo51G3z768sgnrY,61445753.0,87.0,british soul;pop;pop soul;uk pop,https://i.scdn.co/image/ab6761610000e5eb68f6e5892075d7f22615bd17
+Metro Boomin,Male,30.0,United States,0iEtIxbK0KxaSlF7G42ZOp,10094313.0,90.0,rap,https://i.scdn.co/image/ab6761610000e5ebdf9a1555f53a20087b8c5a5c
+Enrique Iglesias,Male,49.0,Spain,7qG3b048QCHVRO5Pv1T5lw,11341512.0,79.0,dance pop;latin pop;mexican pop,https://i.scdn.co/image/ab6761610000e5eb4fa1405802a42c665b0f2dd1
+John Legend,Male,45.0,United States,5y2Xq6xcjJb2jVM54GHK3t,7329448.0,80.0,neo soul;pop;pop soul;urban contemporary,https://i.scdn.co/image/ab6761610000e5eb01784e44ffd1a339350f4417
+Pitbull,Male,43.0,United States,0TnOYISbd1XYRBk9myaseg,11123247.0,86.0,dance pop;miami hip hop;pop,https://i.scdn.co/image/ab6761610000e5eb4051627b19277613e0e62a34
+Lil Pump,Male,25.0,United States,3wyVrVrFCkukjdVIdirGVY,7621875.0,65.0,emo rap;miami hip hop;pop rap;rap;trap,https://i.scdn.co/image/ab6761610000e5eb6bc83a52ca96ea7e6ac30c7f
+Bazzi,Male,26.0,United States,4GvEc3ANtPPjt1ZJllr5Zl,5477495.0,71.0,pop,https://i.scdn.co/image/ab6761610000e5eb901476fdd0fd274362d445db
+Felix Jaehn,Male,29.0,Germany,4bL2B6hmLlMWnUEZnorEtG,1293661.0,75.0,edm;german dance;pop dance;tropical house;uk dance,https://i.scdn.co/image/ab6761610000e5eb9157889cadd0d28c5b45eb93
+Beyoncé,Female,42.0,United States,6vWDO969PvNqNYHIOW5v0m,39380870.0,88.0,pop;r&b,https://i.scdn.co/image/ab6761610000e5eb247f44069c0bd1781df2f785
+Daya,Female,25.0,United States,6Dd3NScHWwnW6obMFbl1BH,1714375.0,72.0,alt z;pop,https://i.scdn.co/image/ab6761610000e5eb540e862652f24fe2988911b2
+Normani,Female,28.0,United States,2cWZOOzeOm4WmBJRnD5R7I,2839582.0,70.0,pop;r&b,https://i.scdn.co/image/ab6761610000e5ebdc6e85ec0f93f5b2cf475487
+Lunay,Male,24.0,Puerto Rico,47MpMsUfWtgyIIBEFOr4FE,9738051.0,72.0,reggaeton;reggaeton flow;trap latino;urbano latino,https://i.scdn.co/image/ab6761610000e5ebaf9e096cfe63bb5115890cb9
+Meghan Trainor,Female,30.0,United States,6JL8zeS1NmiOftqZTRgdTz,15551360.0,83.0,hip pop;pop,https://i.scdn.co/image/ab6761610000e5eb365984489dac7a79eac204e3
+Macklemore,Male,41.0,United States,3JhNCzhSMTxs9WLGJJxWOY,2513185.0,79.0,pop rap;seattle hip hop,https://i.scdn.co/image/ab6761610000e5eb488b3b242f97163a7f8e17b9
+2 Chainz,Male,47.0,United States,17lzZA2AlOHwCwFALHttmp,8171980.0,76.0,atl hip hop;hip hop;pop rap;rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5ebf556662d187b9191c421be1c
+Benny Blanco,Male,36.0,United States,5CiGnKThu5ctn9pBxv7DGa,1284538.0,80.0,pop,https://i.scdn.co/image/ab6761610000e5eb860c37890942e05e58c19372
+Bryson Tiller,Male,31.0,United States,2EMAnMvWE2eb56ToJVfCWs,9437698.0,83.0,kentucky hip hop;r&b;rap,https://i.scdn.co/image/ab6761610000e5eb078fdd734b7f0aa782328428
+Tainy,Male,34.0,Puerto Rico,0GM7qgcRCORpGnfcN2tCiB,2623785.0,79.0,pop reggaeton;reggaeton;trap latino;urbano latino,https://i.scdn.co/image/ab6761610000e5ebb50d43598b9074f0d6146127
+Justin Timberlake,Male,43.0,United States,31TPClRtHm23RisEBtV3X7,14904845.0,83.0,dance pop;pop,https://i.scdn.co/image/ab6761610000e5eb7a5cfe2597665a3d160e805e
+Mark Ronson,Male,48.0,United Kingdom,3hv9jJF3adDNsBSIQDqcjp,1167363.0,78.0,pop soul,https://i.scdn.co/image/ab6761610000e5eb105cc9628c315b29d299fbb4
+Wiz Khalifa,Male,36.0,United States,137W8MRPWKqSmrBGDBFSop,11637950.0,83.0,hip hop;pittsburgh rap;pop rap;rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5ebc66b0a8c3268f0b6556f64a8
+Miley Cyrus,Female,31.0,United States,5YGY8feqx7naU7z4HrwZM6,25334626.0,85.0,pop,https://i.scdn.co/image/ab6761610000e5ebe73dc6aa2598689da2e9476c
+Tove Lo,Female,36.0,Sweden,4NHQUGzhtTLFvgF5SZesLK,3649572.0,75.0,dance pop;metropopolis;pop;swedish electropop;swedish pop;swedish synthpop,https://i.scdn.co/image/ab6761610000e5eb2360c963315739fc33b01687
+Rosalía,Female,30.0,Spain,7ltDVBr6mKbRvohxheJ9h1,8414600.0,80.0,pop;r&b en espanol,https://i.scdn.co/image/ab6761610000e5ebd7bb678bef6d2f26110cae49
+Meek Mill,Male,37.0,United States,20sxb77xiYeusSH8cVdatc,8050559.0,75.0,hip hop;philly rap;pop rap;rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5ebc14756c27212bdea80f6cfac
+Mustard,Male,34.0,United States,0YinUQ50QDB7ZxSCLyQ40k,1464217.0,75.0,cali rap;pop rap;rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5eb54406b7007a449aeaac06c44
+Lil Tecca,Male,21.0,United States,4Ga1P7PMIsmqEZqhYZQgDo,8413093.0,84.0,melodic rap;pluggnb;rap,https://i.scdn.co/image/ab6761610000e5ebeeba43c460454fcababda14f
+Alesso,Male,33.0,Sweden,4AVFqumd2ogHFlRbKIjp1t,3970759.0,76.0,dance pop;edm;pop;pop dance;progressive electro house,https://i.scdn.co/image/ab6761610000e5eb327e7178289c299c48e12577
+Doja Cat,Female,28.0,United States,5cj0lLjcoR7YOSnhnX0Po5,32367070.0,87.0,dance pop;pop,https://i.scdn.co/image/ab6761610000e5ebe94f88ff74ae4ddcab961f97
+Lizzo,Female,36.0,United States,56oDRnqbIiwx4mymNEv7dS,5707558.0,71.0,escape room;minnesota hip hop;pop;trap queen,https://i.scdn.co/image/ab6761610000e5eb0d66b3670294bf801847dae2
+Tory Lanez,Male,32.0,Canada,2jku7tDXc6XoB6MO2hFuqg,7300644.0,83.0,canadian hip hop;canadian trap;melodic rap;pop rap;r&b;rap;trap,https://i.scdn.co/image/ab6761610000e5ebbd5d3e1b363c3e26710661c3
+Liam Payne,Male,30.0,United Kingdom,5pUo3fmmHT8bhCyHE52hA6,10253018.0,72.0,pop,https://i.scdn.co/image/ab6761610000e5eb4b2a3fffa1076ea1c920dcb2
+Tiësto,Male,55.0,Netherlands,2o5jDhtHVPhrJdv3cEQ99Z,7646323.0,84.0,big room;brostep;dutch edm;edm;house;pop dance;progressive electro house;slap house;trance,https://i.scdn.co/image/ab6761610000e5ebe84e08fb1dfa2bf9b5a61563
+MEDUZA,Male,42.0,Italy,0xRXCcSX89eobfrshSVdyu,858300.0,75.0,edm;pop dance;pop house;uk dance,https://i.scdn.co/image/ab6761610000e5eb4c49dba58421b29648964acd
+Flo Rida,Male,44.0,United States,0jnsk9HBra6NMjO2oANoPY,8773876.0,81.0,dance pop;miami hip hop;pop;pop rap,https://i.scdn.co/image/ab6761610000e5eb655ca8f3196953554b479452
+Lil Mosey,Male,22.0,United States,5zctI4wO9XSKS8XwcnqEHk,5696794.0,70.0,melodic rap;rap conscient,https://i.scdn.co/image/ab6761610000e5eb80cf6091910a50ec6f238709
+Childish Gambino,Male,40.0,United States,73sIBHcqh3Z3NyqHKZ7FOL,13716477.0,81.0,atl hip hop;hip hop;rap,https://i.scdn.co/image/ab6761610000e5ebc3dc5429b676b16d451e5f77
+Mike Posner,Male,36.0,United States,2KsP6tYLJlTBvSUxnwlVWa,1428791.0,72.0,dance pop;pop;pop dance;pop rap,https://i.scdn.co/image/ab6761610000e5eb5ca6c70cd9661b2eca98999f
+Dean Lewis,Male,36.0,Australia,3QSQFmccmX81fWCUSPTS7y,3488018.0,77.0,australian pop;pop,https://i.scdn.co/image/ab6761610000e5eb43a00ea7cb7be891ba310978
+Michael Bublé,Male,48.0,Canada,1GxkXlMwML1oSg5eLPiAz3,6588168.0,91.0,adult standards;canadian pop;jazz pop;lounge,https://i.scdn.co/image/ab6761610000e5ebecf79fd5be85dabb0f489107
+Desiigner,Male,27.0,United States,7pFeBzX627ff0VnN6bxPR4,3533231.0,62.0,pop rap;rap;southern hip hop;trap;viral trap,https://i.scdn.co/image/ab6761610000e5eb7142aa94e6774b71d88eb3bd
+Arizona Zervas,Male,29.0,United States,0vRvGUQVUjytro0xpb26bs,771237.0,63.0,indie pop rap;pop rap;rhode island rap,https://i.scdn.co/image/ab6761610000e5ebfc992fcd4e92e84dbdd28d91
+George Ezra,Male,31.0,United Kingdom,2ysnwxxNtSgbb9t1m2Ur4j,4268177.0,75.0,folk-pop;neo-singer-songwriter,https://i.scdn.co/image/ab6761610000e5ebbe936a26ceb9cbbdec7df15b
+blackbear,Male,33.0,United States,2cFrymmkijnjDg9SS92EPM,5008551.0,76.0,alt z;pop,https://i.scdn.co/image/ab6761610000e5eb4f7d049994ac00ed885bfbf2
+Alok,Male,32.0,Brazil,0NGAZxHanS9e0iNHpR8f2W,11278555.0,80.0,electro house;pop nacional;slap house,https://i.scdn.co/image/ab6761610000e5ebf7d1bdca65e1cefd4e60c379
+Lorde,Female,27.0,New Zealand,163tK9Wjr9P9DmM0AVK7lm,10123332.0,78.0,art pop;metropopolis;nz pop;pop,https://i.scdn.co/image/ab6761610000e5ebc4902f080d3620b3e6da80c3
+Partynextdoor,Male,31.0,Canada,2HPaUgqeutzr3jx5a9WyDV,7963368.0,86.0,r&b;rap;urban contemporary,https://i.scdn.co/image/ab6761610000e5eb957320981e31e862bc2fb844
+Nio Garcia,Male,35.0,Puerto Rico,5hdhHgpxyniooUiQVaPxQ0,5391187.0,71.0,reggaeton;trap latino;urbano latino,https://i.scdn.co/image/ab6761610000e5eb896f795cb3e4125f4f6f394d
+Iggy Azalea,Female,34.0,United States,5yG7ZAZafVaAlMTeBybKAL,6686804.0,70.0,australian hip hop;dance pop;pop,https://i.scdn.co/image/ab6761610000e5eb698a6abf2897a8fc8283cc0c
+Skrillex,Male,36.0,United States,5he5w2lnU9x7JFhnwcekXX,7659583.0,77.0,brostep;complextro;edm;electro;pop dance,https://i.scdn.co/image/ab6761610000e5eb61f92702ca14484aa263a931
+Mabel,Female,28.0,United Kingdom,1MIVXf74SZHmTIp4V4paH4,2033657.0,67.0,pop;uk pop,https://i.scdn.co/image/ab6761610000e5ebc5c0e1d109d8a876076187f1
+Niall Horan,Male,30.0,United Kingdom,1Hsdzj7Dlq2I7tHP7501T4,10076461.0,76.0,pop,https://i.scdn.co/image/ab6761610000e5ebeccc1cde8e9fdcf1c9289897
+Jax Jones,Male,37.0,United Kingdom,4Q6nIcaBED8qUel8bBx6Cr,1213833.0,72.0,dance pop;edm;house;pop dance;uk dance,https://i.scdn.co/image/ab6761610000e5eb09b06c6e39518619ecd56ec5
+Rich The Kid,Male,32.0,United States,1pPmIToKXyGdsCF6LmqLmI,3396999.0,68.0,atl hip hop;melodic rap;plugg;rap;trap,https://i.scdn.co/image/ab6761610000e5eb831fd7e9e9fe1b0217791b94
+Dynoro,Male,26.0,Lithuania,3v6Ji4uoWtKRkhuDUaxi9n,297652.0,68.0,edm,https://i.scdn.co/image/ab6761610000e5eb71c0e657e2c507f83aeb1627
+Stormzy,Male,31.0,United Kingdom,2SrSdSvpminqmStGELCSNd,3029766.0,73.0,grime;uk hip hop,https://i.scdn.co/image/ab6761610000e5eb674d29e07df021a35df3ddf1
+Kehlani,Female,29.0,United States,0cGUm45nv7Z6M6qdXYQGTX,8032255.0,77.0,pop;r&b;rap,https://i.scdn.co/image/ab6761610000e5eb7c1477b5efba46636dbe1874
+Saint Jhn,Male,39.0,Guyana,0H39MdGGX6dbnnQPt6NQkZ,1099528.0,69.0,melodic rap;slap house,https://i.scdn.co/image/ab6761610000e5eb345b522ec424ba302d8c6b63
+Gigi D'Agostino,Male,56.0,Italy,1OAjDaKgg00KCUYqDe68un,986837.0,73.0,eurodance;italo dance,https://i.scdn.co/image/ab6761610000e5eb3547c85b33443eb3d8abd004
+Charli Xcx,Female,31.0,United Kingdom,25uiPmTg16RbhZWAqwLBy5,4694525.0,87.0,art pop;candy pop;metropopolis;pop;uk pop,https://i.scdn.co/image/ab6761610000e5eb936885667ef44c306483c838
+Trevor Daniel,Male,29.0,United States,7uaIm6Pw7xplS8Dy06V6pT,874531.0,67.0,melodic rap,https://i.scdn.co/image/ab6761610000e5eb91fa81ee7feed311d9aedf7e
+Imanbek,Male,23.0,Kazakhstan,5rGrDvrLOV2VV8SCFVGWlj,257607.0,71.0,electro house;pop dance;slap house,https://i.scdn.co/image/ab6761610000e5ebb2f35da2dbdcb7daa6295596
+Hozier,Male,34.0,United Kingdom,2FXC3k01G6Gw61bmprjgqS,8263505.0,86.0,irish singer-songwriter;modern rock;pop;pov: indie,https://i.scdn.co/image/ab6761610000e5ebad85a585103dfc2f3439119a
+Jp Cooper,Male,42.0,United Kingdom,4kYGAK2zu9EAomwj3hXkXy,920750.0,66.0,uk pop,https://i.scdn.co/image/ab6761610000e5ebdaa277bb453ad8863ca5e519
+Nf,Male,33.0,United States,6fOMl44jA4Sp5b9PpYCkzz,10536758.0,80.0,hip hop;pop rap,https://i.scdn.co/image/ab6761610000e5eb1cf142a710a2f3d9b7a62da1
+Lost Frequencies,Male,30.0,Belgium,7f5Zgnp2spUuuzKplmRkt7,2962143.0,81.0,belgian edm;edm;pop dance;tropical house,https://i.scdn.co/image/ab6761610000e5eb6a77aaa2cde6783b1ca727e9
+Mariah Carey,Female,54.0,United States,4iHNK0tOyZPYnBU7nGAgpQ,10922724.0,89.0,dance pop;pop;urban contemporary,https://i.scdn.co/image/ab6761610000e5eb35c3eff5d73f7e20ba3c9a2e
+Playboi Carti,Male,27.0,United States,699OTQXzgjhIYAHMy9RyPD,12763075.0,90.0,atl hip hop;plugg;pluggnb;rage rap;rap,https://i.scdn.co/image/ab6761610000e5ebba50ca67ffc3097f6ea1710a
+Raye,Female,26.0,United Kingdom,5KKpBU5eC2tJDzf0wmlRp2,1900403.0,80.0,uk contemporary r&b;uk pop,https://i.scdn.co/image/ab6761610000e5eb5e4949a1e3073b5a34b9d938
+Matoma,Male,33.0,Norway,4YXycRbyyAE0wozTk7QMEq,712025.0,63.0,pop dance;tropical house,https://i.scdn.co/image/ab6761610000e5eb9e89c8d25b3f4b4be014f2a8
+P!nk,Female,44.0,United States,1KCSPY1glIKqW2TotWuXOR,17482272.0,82.0,dance pop;pop,https://i.scdn.co/image/ab6761610000e5eb7bbad89a61061304ec842588
+Blocboy Jb,Male,28.0,United States,4TEJudQY2pXxVHPE3gD2EU,1399725.0,57.0,memphis hip hop;rap;tennessee hip hop;trap,https://i.scdn.co/image/ab6761610000e5eb600f823b07af7fdd65a6b877
+Jeremih,Male,37.0,United States,3KV3p5EY4AvKxOlhGHORLg,6840759.0,76.0,chicago rap;pop rap;r&b;southern hip hop;trap;urban contemporary,https://i.scdn.co/image/ab6761610000e5eb8ddeab89a67542470e2631c8
+Nle Choppa,Male,21.0,United States,0ErzCpIMyLcjPiwT4elrtZ,9116044.0,82.0,memphis hip hop;rap,https://i.scdn.co/image/ab6761610000e5ebe2c985e8509fc8788a5a5208
+KYLE,Male,31.0,United States,4qBgvVog0wzW75IQ48mU7v,1089704.0,62.0,deep underground hip hop;indie pop rap;meme rap;pop rap;viral trap,https://i.scdn.co/image/ab6761610000e5ebeb77665897ce533f73f59bf6
+Vance Joy,Male,36.0,Australia,10exVja0key0uqUkk6LJRT,3254610.0,78.0,folk-pop;modern rock,https://i.scdn.co/image/ab6761610000e5eb8f074ec8c25406680bf26422
+Sigala,Male,30.0,United Kingdom,1IueXOQyABrMOprrzwQJWN,1570172.0,68.0,dance pop;edm;pop dance;uk dance,https://i.scdn.co/image/ab6761610000e5eb8c0cfbb67ce0f49f26527aaf
+Regard,Male,31.0,United States,4ofCBoyEiGSePFAG500xev,268374.0,70.0,pop dance;pop edm;slap house;uk dance,https://i.scdn.co/image/ab6761610000e5eb3a40d117d52a9fe3aacf304f
+Frank Ocean,Male,36.0,United States,2h93pZq0e7k5yf4dywlkpM,17128835.0,89.0,lgbtq+ hip hop;neo soul,https://i.scdn.co/image/ab6761610000e5ebee3123e593174208f9754fab
+Flume,Male,32.0,Australia,6nxWCVXbOlEVRexSbLsTer,2473652.0,72.0,australian dance;australian electropop;australian indie;downtempo;edm;indietronica,https://i.scdn.co/image/ab6761610000e5ebdcbf7ddf047dd267e4de8978
+Polo G,Male,26.0,United States,6AgTAQt8XS6jRWi4sX7w49,12224652.0,81.0,chicago rap;rap,https://i.scdn.co/image/ab6761610000e5ebbedf3bdf589da06d1567196c
+Kesha,Female,37.0,United States,6LqNN22kT3074XbTVUrhzX,8406118.0,83.0,dance pop;pop,https://i.scdn.co/image/ab6761610000e5eb2ac07249400857d8b16dc17a
+Kid Ink,Male,38.0,United States,6KZDXtSj0SzGOV705nNeh3,2990326.0,69.0,pop rap;rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5ebf4904a817005f3b96f4e6e53
+Lil Tjay,Male,23.0,United States,6jGMq4yGs7aQzuGsMgVgZR,9376312.0,80.0,brooklyn drill;melodic rap;nyc rap;rap,https://i.scdn.co/image/ab6761610000e5eb61a229ac35bdd68d42bffe32
+Labrinth,Male,35.0,United Kingdom,2feDdbD5araYcm6JhFHHw7,3404721.0,78.0,indie poptimism;pop,https://i.scdn.co/image/ab6761610000e5eb7885d725841e0338092f5f6f
+Passenger,Male,40.0,United Kingdom,0gadJ2b9A4SKsB1RFkBb66,3491641.0,72.0,folk-pop;neo mellow,https://i.scdn.co/image/ab6761610000e5eb3eb6f55c271d954cc871954f
+Megan Thee Stallion,Female,29.0,United States,181bsRPaVXVlUKXrxwZfHK,10072406.0,83.0,houston rap;pop;rap;trap queen,https://i.scdn.co/image/ab6761610000e5eba300c2e412844ab60e397b1b
+mgk,Male,34.0,United States,6TIYQ3jFPwQSRmorSezPxX,5442752.0,79.0,ohio hip hop;pop rap,https://i.scdn.co/image/ab6761610000e5eb6659c0c409fee150c1f7c879
+Alec Benjamin,Male,30.0,United States,5IH6FPUwQTxPSXurCrcIov,5343991.0,77.0,alt z;pop;pov: indie,https://i.scdn.co/image/ab6761610000e5eb10164a7f6d166aabbb00c4dd
+Powfu,Male,25.0,Canada,6bmlMHgSheBauioMgKv2tn,1380808.0,70.0,sad lo-fi;sad rap,https://i.scdn.co/image/ab6761610000e5eba7978c860303da52742e7551
+Starley,Female,37.0,Australia,02A3cEvlLLCbIMVDrK2GHV,211621.0,57.0,aussietronica,https://i.scdn.co/image/ab6761610000e5eb35f7fd848c6ec8218ec904e8
+"Tyler, The Creator",Male,33.0,United States,4V8LLVI7PbaPR0K2TGSxFF,18984051.0,93.0,hip hop;rap,https://i.scdn.co/image/ab6761610000e5ebdfa2b0c7544a772042a12e52
+James Bay,Male,33.0,United Kingdom,4EzkuveR9pLvDVFNx6foYD,4053545.0,71.0,neo mellow;pop;uk pop,https://i.scdn.co/image/ab6761610000e5eb58d57084e75247d33ce25eaf
+Martin Jensen,Male,32.0,Denmark,4ehtJnVumNf6xzSCDk8aLB,1274202.0,62.0,danish electronic;edm;pop dance,https://i.scdn.co/image/ab6761610000e5ebbb66aefa6eee7185729d6921
+Kiiara,Female,29.0,United States,4u5smJBskI6Adzv08PuiUP,924998.0,60.0,alt z;electropop,https://i.scdn.co/image/ab6761610000e5eb3a50ec3bc61d904970f4dd1b
+gnash,Male,31.0,United States,3iri9nBFs9e4wN7PLIetAw,1579486.0,62.0,alt z;pop,https://i.scdn.co/image/ab6761610000e5eb78e3e309ea0bf5dfb2192469
+Sheck Wes,Male,25.0,United States,2RDOrhPqAM4jzTRCEb19qX,1662081.0,64.0,pop rap;rap;trap,https://i.scdn.co/image/ab6761610000e5eb1709525276c11ad492f56354
+Mike Perry,Male,33.0,Sweden,6lB8vOoI4DRrrVxXwuV19c,1427049.0,63.0,pop dance;swedish tropical house,https://i.scdn.co/image/ab6761610000e5eb4ca7ccebc2f9e6c281cd6ff3
+Lana Del Rey,Female,39.0,United States,00FQb4jTyendYWaN8pK0wa,43374300.0,92.0,art pop;pop,https://i.scdn.co/image/ab6761610000e5ebb99cacf8acd5378206767261
+Juanes,Male,51.0,Colombia,0UWZUmn7sybxMCqrw9tGa7,5079936.0,78.0,colombian pop;latin pop;mexican pop;rock en espanol,https://i.scdn.co/image/ab6761610000e5eb330d24db775125dcec2c7b4c
+Joji,Male,31.0,United States,3MZsBdqDrRTJihTHQrO6Dq,10003253.0,80.0,viral pop,https://i.scdn.co/image/ab6761610000e5eb4111c95b5f430c3265c7304b
+Aloe Blacc,Male,45.0,United States,0id62QV2SZZfvBn9xpmuCl,730578.0,66.0,pop soul;r&b,https://i.scdn.co/image/ab6761610000e5ebb5afb132544178f57769bd56
+Dennis Lloyd,Male,31.0,Israel,3EOEK57CV77D4ovYVcmiyt,692709.0,65.0,israeli pop,https://i.scdn.co/image/ab6761610000e5ebe98ba0e81c76949960dd6c48
+Jason Mraz,Male,47.0,United States,4phGZZrJZRo4ElhRtViYdl,7268624.0,73.0,acoustic pop;dance pop;neo mellow;pop,https://i.scdn.co/image/ab6761610000e5ebc3b370fc26c83312db52af14
+Don Omar,Male,46.0,Puerto Rico,33ScadVnbm2X8kkUqOkC6Z,13444640.0,85.0,latin hip hop;puerto rican pop;reggaeton;trap latino;urbano latino,https://i.scdn.co/image/ab6761610000e5ebe1a911f620f24ffa1c736346
+DRAMA,Male,36.0,United States,7LvvNoUPwTZpgXDWBRrfHg,152111.0,58.0,indie soul,https://i.scdn.co/image/ab6761610000e5ebe0fab40ca94631e8a0936e5c
+Jessie J,Female,36.0,United Kingdom,2gsggkzM5R49q6jpPvazou,11882960.0,75.0,dance pop;pop,https://i.scdn.co/image/ab6761610000e5eb91f0dd753c09e051675a1ca6
+Dave,Male,96.0,Netherlands,6Ip8FS7vWT1uKkJSweANQK,5709399.0,78.0,uk hip hop,https://i.scdn.co/image/ab6761610000e5ebd03e9ecf77419871b96daee1
+Pop Smoke,Male,24.0,United States,0eDvMgVFoNV3TpwtrVCoTj,14855999.0,80.0,brooklyn drill;hip hop;rap,https://i.scdn.co/image/ab6761610000e5eb597f9edd2cd1a892d4412b09
+Steve Aoki,Male,46.0,United States,77AiFEVeAVj2ORpC85QVJs,3794619.0,74.0,edm;electro house;pop dance,https://i.scdn.co/image/ab6761610000e5ebcf85b39d94c486218a687248
+Mr. Probz,Male,40.0,Netherlands,33W1pnW9zScZtYTnAoWnOT,346245.0,65.0,pop dance,https://i.scdn.co/image/ab6761610000e5eb4665e17c6cad3616d170dfeb
+Kungs,Male,27.0,France,7keGfmQR4X5w0two1xKZ7d,964703.0,71.0,edm;pop dance;uk dance,https://i.scdn.co/image/ab6761610000e5eb3b0676d8b5ef3e99ceb0194e
+Afrojack,Male,36.0,Netherlands,4D75GcNG95ebPtNvoNVXhz,3962659.0,75.0,big room;dance pop;dutch house;edm;electro house;pop dance,https://i.scdn.co/image/ab6761610000e5eb78484e23002e1607039af9b9
+John Newman,Male,34.0,United Kingdom,34v5MVKeQnIo0CWYMbbrPf,779247.0,71.0,dance pop,https://i.scdn.co/image/ab6761610000e5eb4eaf903c2b9df9217dafeba8
+Jennifer Lopez,Female,55.0,United States,2DlGxzQSjYe5N6G9nkYghR,13385260.0,77.0,dance pop;pop;urban contemporary,https://i.scdn.co/image/ab6761610000e5ebdc125248f01efbffd4efaaf4
+Maxwell,Male,51.0,United States,2AOt5htsbtyaHd5Eq3kl3j,1718704.0,60.0,contemporary r&b;neo soul;quiet storm;r&b;urban contemporary,https://i.scdn.co/image/ab6761610000e5eb7deeb99e9886e6132640e13f
+Lil Peep,Male,25.0,United States,2kCcBybjl3SAtIcwdWpUe3,13876728.0,86.0,cloud rap;emo rap;lgbtq+ hip hop,https://i.scdn.co/image/ab6761610000e5eb3d9d59e200e82fa53d8781a1
+Lil Dicky,Male,36.0,United States,1tqhsYv8yBBdwANFNzHtcr,2013533.0,62.0,comedy rap;indie pop rap;pop rap,https://i.scdn.co/image/ab6761610000e5ebfd1780645d82ecbc3b5253cb
+Thomas Rhett,Male,34.0,United States,6x2LnllRG5uGarZMsD4iO8,4806548.0,76.0,contemporary country;country;country road;modern country rock,https://i.scdn.co/image/ab6761610000e5eb8b81c855bed88e94b1f1bc72
+Stefflon Don,Female,32.0,United Kingdom,2ExGrw6XpbtUAJHTLtUXUD,1196138.0,71.0,dancehall;dancehall queen;uk dancehall;uk hip hop,https://i.scdn.co/image/ab6761610000e5ebb3c6751ef7b8d174d5f79b4c
+Russ Millions,Male,31.0,United States,3FoFW2AoUGRHBacC6i4x4p,968729.0,64.0,melodic drill;uk drill,https://i.scdn.co/image/ab6761610000e5eb901d3c1544af6a8de98124d7
+Astrid S,Female,27.0,Norway,3AVfmawzu83sp94QW7CEGm,1359946.0,66.0,alt z;norwegian pop;pop;uk pop,https://i.scdn.co/image/ab6761610000e5eba0afba2d87ea2c5adb0c90e3
+Robin Thicke,Male,47.0,United States,0ZrpamOxcZybMHGg1AYtHP,1963606.0,65.0,dance pop;neo soul;pop rap;r&b;urban contemporary,https://i.scdn.co/image/ab6761610000e5eb02582bb3fa9d68f44a247f39
+Sam Feldt,Male,30.0,Netherlands,20gsENnposVs2I4rQ5kvrf,787259.0,69.0,edm;pop dance;tropical house,https://i.scdn.co/image/ab6761610000e5eba453d633bcbc18143f45400a
+Nick Jonas,Male,31.0,United States,4Rxn7Im3LGfyRkY2FlHhWi,10047201.0,67.0,dance pop;pop,https://i.scdn.co/image/ab6761610000e5eb780447f701c671015c2109a0
+Mac Miller,Male,30.0,United States,4LLpKhyESsyAXpc4laK94U,11207129.0,84.0,hip hop;pittsburgh rap;rap,https://i.scdn.co/image/ab6761610000e5ebed3b89aa602145fde71a163a
+Snoop Dogg,Male,52.0,United States,7hJcb9fa4alzcOq3EaNPoG,13672898.0,86.0,g funk;gangster rap;hip hop;pop rap;rap;west coast rap,https://i.scdn.co/image/ab6761610000e5ebc19a88576ebe6fcbb325c297
+Benee,Female,24.0,New Zealand,0Cp8WN4V8Tu4QJQwCN5Md4,822039.0,65.0,alt z;nz pop,https://i.scdn.co/image/ab6761610000e5eb85ec12826041b0442a7f4499
+Alvaro Soler,Male,33.0,Spain,2urF8dgLVfDjunO0pcHUEe,1768452.0,66.0,latin pop,https://i.scdn.co/image/ab6761610000e5eb1d839fecf34bb98ec13ca4bd
+Yo Gotti,Male,43.0,United States,6Ha4aES39QiVjR0L2lwuwq,4381234.0,66.0,dirty south rap;gangster rap;memphis hip hop;rap;southern hip hop;tennessee hip hop;trap,https://i.scdn.co/image/ab6761610000e5eb38197044dd7bdb898225e6d7
+Blueface,Male,27.0,United States,3Fl1V19tmjt57oBdxXKAjJ,6812256.0,66.0,cali rap;rap;trap,https://i.scdn.co/image/ab6761610000e5eb9ee6c8739ef1f20553231132
+Aminé,Male,30.0,United States,3Gm5F95VdRxW3mqCn8RPBJ,1974673.0,67.0,pop rap;portland hip hop;rap;underground hip hop,https://i.scdn.co/image/ab6761610000e5ebe7730231c2411fd2df0c03f9
+Dominic Fike,Male,27.0,United States,6USv9qhCn6zfxlBQIYJ9qs,1976958.0,79.0,alternative pop rock;pov: indie,https://i.scdn.co/image/ab6761610000e5ebb62462a1a43ff08f8a982791
+A$AP Ferg,Male,35.0,United States,5dHt1vcEm9qb8fCyLcB3HL,4013922.0,72.0,hip hop;pop rap;rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5eb11b1fd4dfaa772c272ac98ec
+Morgan Wallen,Male,31.0,United States,4oUHIQIBe0LHzYfvXNW4QM,11530970.0,90.0,contemporary country,https://i.scdn.co/image/ab6761610000e5ebdf42c758479fe40372584e77
+Jack Harlow,Male,26.0,United States,2LIk90788K0zvyj2JJVwkJ,4031772.0,82.0,deep underground hip hop;hip hop;kentucky hip hop;pop rap;rap,https://i.scdn.co/image/ab6761610000e5ebb645c02cfa05103299775097
+Martin Solveig,Male,47.0,France,1bj5GrcLom5gZFF5t949Xl,1181792.0,64.0,disco house;edm;electro house;filter house;house;pop dance;vocal house,https://i.scdn.co/image/ab6761610000e5eb7520cf8cf5c0395d388ce696
+Calum Scott,Male,35.0,United Kingdom,6ydoSd3N2mwgwBHtF6K7eX,5813752.0,77.0,pop,https://i.scdn.co/image/ab6761610000e5eb81eb936f95f4ed10b1e36997
+David Bowie,Male,73.0,United Kingdom,0oSGxfWSnnOXhD2fKuz2Gy,11040068.0,79.0,art rock;classic rock;glam rock;permanent wave;rock,https://i.scdn.co/image/ab6761610000e5ebb78f77c5583ae99472dd4a49
+Ne-Yo,Male,44.0,United States,21E3waRsmPlU7jZsS13rcj,9426996.0,83.0,dance pop;pop;r&b;urban contemporary,https://i.scdn.co/image/ab6761610000e5ebca118e3822061f7b7f6bc537
+Sabrina Carpenter,Female,25.0,United States,74KM79TiuVKeVCqs8QtB0B,17401012.0,94.0,pop,https://i.scdn.co/image/ab6761610000e5ebe053b8338322b9c8609ee7ae
+Aj Tracey,Male,30.0,United Kingdom,4Xi6LSfFqv26XgP9NKN26U,1355271.0,69.0,grime;uk hip hop;ukg revival,https://i.scdn.co/image/ab6761610000e5eb906bc930e23be36850a0e928
+Kid Cudi,Male,40.0,United States,0fA0VVWsXO9YnASrzqfmYu,7358745.0,81.0,hip hop;ohio hip hop;pop rap;rap,https://i.scdn.co/image/ab6761610000e5eb876faa285687786c3d314ae0
+Flipp Dinero,Male,28.0,United States,2HUwZ0kumzCSlhFcjFZfpp,1331468.0,58.0,melodic rap;trap,https://i.scdn.co/image/ab6761610000e5eb8be85e344141cf541cfab04c
+Topic,Male,32.0,Germany,0u6GtibW46tFX7koQ6uNJZ,274790.0,77.0,german dance;pop dance;pop edm;uk dance,https://i.scdn.co/image/ab6761610000e5eb311541bc44662323717a413b
+Usher,Male,45.0,United States,23zg3TcAtWQy7J6upgbUnj,12629460.0,83.0,atl hip hop;contemporary r&b;dance pop;pop;r&b;rap;south carolina hip hop;urban contemporary,https://i.scdn.co/image/ab6761610000e5eb716114797a4a644c67c5fa72
+Jp Saxe,Male,30.0,Canada,66W9LaWS0DPdL7Sz8iYGYe,555553.0,66.0,alt z;canadian contemporary r&b;singer-songwriter pop,https://i.scdn.co/image/ab6761610000e5ebe5ad2bb4e1b1795a1a4bc713
+Deorro,Male,32.0,United States,6VD4UEUPvtsemqD3mmTqCR,1262100.0,67.0,dutch house;edm;electro house;melbourne bounce;melbourne bounce international;pop dance;progressive electro house,https://i.scdn.co/image/ab6761610000e5eb6927317407c8e2499d0cd39f
+Schoolboy Q,Male,37.0,United States,5IcR3N7QB1j6KBL8eImZ8m,4900574.0,78.0,gangster rap;hip hop;pop rap;rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5eba59f2f483877c8d0142f71f3
+Tom Walker,Male,32.0,United Kingdom,7z2avKuuiMAT4XZJFv8Rvh,1268682.0,68.0,indie anthem-folk;uk pop,https://i.scdn.co/image/ab6761610000e5ebc2384c86f647f1d9ae9fb3ed
+Tinashe,Female,31.0,United States,0NIIxcxNHmOoyBx03SfTCD,2914837.0,73.0,alternative r&b;dance pop;metropopolis;pop;r&b,https://i.scdn.co/image/ab6761610000e5eba669f860c74c9007934d2cb6
+Michael Jackson,Male,54.0,United States,3fMbdgg4jU18AjLCKBhRSm,34149735.0,85.0,r&b;soul,https://i.scdn.co/image/ab6761610000e5eb997cc9a4aec335d46c9481fd
+Jon Bellion,Male,33.0,United States,50JJSqHUf2RQ9xsHs0KMHg,1448800.0,67.0,indie pop rap,https://i.scdn.co/image/ab6761610000e5eb4edcc18be45e0af37bdb6886
+Armin Van Buuren,Male,47.0,Netherlands,0SfsnGyD8FpIN4U4WCkBZ5,4462134.0,77.0,dutch house;dutch trance;edm;pop dance;progressive house;trance,https://i.scdn.co/image/ab6761610000e5eb90db664ba1bf6574239f859d
+Ella Henderson,Female,28.0,United Kingdom,7nDsS0l5ZAzMedVRKPP8F1,1640913.0,73.0,dance pop;pop dance;talent show;uk pop,https://i.scdn.co/image/ab6761610000e5eb6c6702fe8d62862e6f8bc373
+Surf Mesa,Male,25.0,United States,1lmU3giNF3CSbkVSQmLpHQ,180694.0,61.0,pop edm,https://i.scdn.co/image/ab6761610000e5eb4abc929c835b815a99fdfaf0
+Andy Grammer,Male,40.0,United States,2oX42qP5ineK3hrhBECLmj,1267431.0,70.0,neo mellow;post-teen pop,https://i.scdn.co/image/ab6761610000e5ebcd5b6023d6b9ed5873c843e9
+Trey Songz,Male,39.0,United States,2iojnBLj0qIMiKPvVhLnsH,7557539.0,71.0,dance pop;r&b;southern hip hop;trap;urban contemporary,https://i.scdn.co/image/ab6761610000e5ebfd7cca32a58a9bb263fb5c4a
+Marc E. Bassy,Male,37.0,United States,3tQx1LPXbsYjE9VwN1Peaa,416027.0,58.0,indie pop rap,https://i.scdn.co/image/ab6761610000e5eb6c044c16a167a8b1ebcf5965
+John Mayer,Male,46.0,United States,0hEurMDQu99nJRq8pTxO14,6110143.0,78.0,neo mellow;singer-songwriter,https://i.scdn.co/image/ab6761610000e5ebe926dd683e1700a6d65bd835
+Bizarrap,Male,26.0,Argentina,716NhGYqD1jl2wI1Qkgq36,17209614.0,83.0,argentine hip hop;pop venezolano;trap argentino;trap latino;urbano latino,https://i.scdn.co/image/ab6761610000e5eb14add0d3419426b84158b913
+Kevin Gates,Male,38.0,United States,1gPhS1zisyXr5dHTYZyiMe,6349040.0,74.0,baton rouge rap;pop rap;rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5eb180a7912dbf0e40790292ba3
+James Blunt,Male,50.0,United Kingdom,7KMqksf0UMdyA0UCf4R3ux,3112386.0,72.0,neo mellow,https://i.scdn.co/image/ab6761610000e5eb3863fa2fdb07fb4fe1a9607d
+Joel Adams,Male,28.0,Australia,36jaGQtMj5UWD0eO1fCVdD,201942.0,51.0,australian pop;pop soul,https://i.scdn.co/image/ab6761610000e5eb87462cbff7c782a4147b2e8f
+Shaggy,Male,55.0,Jamaica,5EvFsr3kj42KNv97ZEnqij,2318052.0,74.0,dance pop;pop rap;reggae fusion,https://i.scdn.co/image/ab6761610000e5eb356dc7e9ba8792cb86a0c50c
+Kent Jones,Male,31.0,United States,3jHBxvZ9gbBkZ17wKUqVsO,115941.0,50.0,miami hip hop;viral trap,https://i.scdn.co/image/ab6761610000e5eb81338a5f164ad9ee6932b8c9
+Burak Yeter,Male,42.0,Netherlands,4ON1ruy5ijE7ZPQthbrkgI,164437.0,58.0,electro house,https://i.scdn.co/image/ab6761610000e5eb22735c7f9472e50c557560e3
+Madison Beer,Female,25.0,United States,2kRfqPViCqYdSGhYSM9R0Q,7502566.0,75.0,pop,https://i.scdn.co/image/ab6761610000e5ebe0b37426761bbaa441615c5b
+24Kgoldn,Male,24.0,United States,6fWVd57NKTalqvmjRd2t8Z,2257812.0,71.0,cali rap;pop rap,https://i.scdn.co/image/ab6761610000e5ebdbe6d377ce63a248c0108605
+Neiked,Male,32.0,Sweden,5H6xmHXjsq98NLbEjuE29f,176616.0,59.0,scandipop,https://i.scdn.co/image/ab6761610000e5eba4bf6df5107fe7b721066b97
+Elley Duhé,Female,32.0,United States,67MNhiAICFY6Pwc2YxCO0K,610184.0,75.0,alt z,https://i.scdn.co/image/ab6761610000e5eb44efd91d240d9853049612b4
+T.I.,Male,43.0,United States,4OBJLual30L7gRl5UkeRcT,4936342.0,77.0,atl hip hop;dirty south rap;gangster rap;hip hop;pop rap;rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5eb12057d342f33c61b3768f2bc
+Jay Rock,Male,38.0,United States,28ExwzUQsvgJooOI0X1mr3,1538137.0,72.0,conscious hip hop;hip hop;rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5eb9c48431caf52a2d0f38433ff
+Christina Aguilera,Female,43.0,United States,1l7ZsJRRS8wlW3WfJfPfNS,8686760.0,80.0,dance pop;pop,https://i.scdn.co/image/ab6761610000e5eb1fb7a2d94b56df1f8a61d779
+Ella Mai,Female,29.0,United Kingdom,7HkdQ0gt53LP4zmHsL0nap,5764706.0,72.0,r&b;rap;uk contemporary r&b;urban contemporary,https://i.scdn.co/image/ab6761610000e5eb4349cc98c1606d1be4fb375d
+Rob $tone,Male,29.0,United States,2hWs22BmQkK4czFtDLnar2,284584.0,61.0,san diego rap;viral trap,https://i.scdn.co/image/ab6761610000e5ebe38135c98ef2ad510391c684
+Tinie Tempah,Male,35.0,United Kingdom,0Tob4H0FLtEONHU1MjpUEp,841671.0,64.0,dance pop;grime;pop rap,https://i.scdn.co/image/ab6761610000e5ebb3ba872f2db68e17e01d3cbd
+Petit Biscuit,Male,24.0,France,6gK1Uct5FEdaUWRWpU4Cl2,972933.0,62.0,new french touch,https://i.scdn.co/image/ab6761610000e5ebeb1cd0996b2847abfdbb13f6
+Rich Homie Quan,Male,34.0,United States,5lHRUCqkQZCIWeX7xG4sYT,2918874.0,68.0,atl hip hop;rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5ebf4b802f5eb81d33fd2db292f
+E-40,Male,56.0,United States,3crnzLy8R4lVwaigKEOz7V,940410.0,68.0,cali rap;gangster rap;hyphy;oakland hip hop;west coast rap,https://i.scdn.co/image/ab6761610000e5eb8ca18cf65fbe696a56d9cfda
+Britney Spears,Female,42.0,United States,26dSoYclwsYLMAKD3tpOr4,15861042.0,85.0,dance pop;pop,https://i.scdn.co/image/ab6761610000e5eb3a49b0a3954e460a8a76ed90
+Carly Rae Jepsen,Female,38.0,Canada,6sFIWsNpZYqfjUpaCgueju,4998209.0,74.0,canadian pop;dance pop;pop,https://i.scdn.co/image/ab6761610000e5eb8272bf414106646e0e4a89f3
+Cashmere Cat,Male,36.0,Norway,2LZDXcxJWgsJfKXZv9a5eG,327922.0,57.0,downtempo;electropop;shiver pop,https://i.scdn.co/image/ab6761610000e5ebed91e9bebd673752510f4bae
+Oliver Heldens,Male,29.0,Netherlands,5nki7yRhxgM509M5ADlN1p,1051757.0,69.0,dutch house;edm;electro house;future house;house;pop dance;progressive electro house;progressive house,https://i.scdn.co/image/ab6761610000e5ebe0de3617061247aa35ff7865
+Matt Simons,Male,37.0,United States,1g0fXhQMHAxlRyIBkCbuE7,229337.0,60.0,neo-singer-songwriter,https://i.scdn.co/image/ab6761610000e5eb3687e533572fa4bf43ef4c39
+Dermot Kennedy,Male,32.0,United Kingdom,5KNNVgR6LBIABRIomyCwKJ,1587145.0,71.0,folk-pop;irish pop;uk pop,https://i.scdn.co/image/ab6761610000e5eb01d2c1d798d01d814a830430
+Silentó,Male,26.0,United States,7juKTDFlPesGeWQ1GmjmOv,226177.0,53.0,chicago bop;pinoy hip hop,https://i.scdn.co/image/ab6761610000e5ebcfeebd0ddbe90a66e89f638b
+Olly Murs,Male,40.0,United Kingdom,3whuHq0yGx60atvA2RCVRW,3221586.0,67.0,dance pop;pop;talent show;uk pop,https://i.scdn.co/image/ab6761610000e5eb054b9ae2e94ed919c05a363b
+Jawsh 685,Male,23.0,New Zealand,56mfhUDKa1vec6rSLZV5Eg,136457.0,60.0,nz pop,https://i.scdn.co/image/ab6761610000e5ebaa68b9e1caeac496ee2500ff
+Kelly Clarkson,Female,42.0,United States,3BmGtnKgCSGYIUhmivXKWX,10684652.0,86.0,dance pop;pop;talent show,https://i.scdn.co/image/ab6761610000e5eb1dd7d8fbcaa03fca3619b644
+Naughty Boy,Male,39.0,United Kingdom,1bT7m67vi78r2oqvxrP3X5,355361.0,68.0,uk contemporary r&b,https://i.scdn.co/image/ab6761610000e5eba19c2ed6473d34ac24bd4093
+Plan B,Male,40.0,United Kingdom,2jSGzJw0ebJLu7OLVSOcBP,5428133.0,81.0,reggaeton;trap latino;urbano latino,https://i.scdn.co/image/eb21793908d1eabe0fba02659bdff4e4a4b3724a
+Elton John,Male,77.0,United Kingdom,3PhoLpVuITZKcymswpck5b,14248151.0,87.0,glam rock;mellow gold;piano rock;rock,https://i.scdn.co/image/ab6761610000e5eb0a7388b95df960b5c0da8970
+Pamungkas,Male,31.0,Indonesia,7d86ERlvO5UG44j7Va0Y0C,6205657.0,71.0,indonesian pop;indonesian singer-songwriter,https://i.scdn.co/image/ab6761610000e5eb5e3ac408fb21143f3bcd6634
+Big Shaq,Male,33.0,United Kingdom,7mnAzEmgquhrVtGob81SmO,331590.0,45.0,london rap,https://i.scdn.co/image/ab6761610000e5eb31cd6b7c946b2b0e7583f0e5
+Ruth B.,Female,29.0,Canada,2WzaAvm2bBCf4pEhyuDgCY,3949310.0,75.0,alt z;canadian contemporary r&b;canadian pop;pop,https://i.scdn.co/image/ab6761610000e5eb1da7ba1c178ab9f68d065197
+Ramz,Male,27.0,United Kingdom,6ywXRaHY7m2DJ0dd7CsLAB,309888.0,56.0,afroswing;london rap;uk hip hop,https://i.scdn.co/image/ab6761610000e5eb043000ee5668e8f8cf30b680
+Gesaffelstein,Male,39.0,France,3hteYQFiMFbJY7wS0xDymP,797510.0,73.0,dark clubbing,https://i.scdn.co/image/ab6761610000e5ebd1b0c16bf77cfe30c09b4951
+Lil Jon,Male,53.0,United States,7sfl4Xt5KmfyDs2T3SVSMK,1635057.0,75.0,atl hip hop;crunk;dance pop;dirty south rap;old school atlanta hip hop;pop rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5ebf893feb44e74c8b4c15ecc95
+Conan Gray,Male,25.0,United States,4Uc8Dsxct0oMqx0P6i60ea,10880359.0,81.0,bedroom pop;pop;pov: indie,https://i.scdn.co/image/ab6761610000e5ebcc2d67917c6dc6cdfd009964
+Mk.gee,Male,52.0,United States,7tr9pbgNEKtG0GQTKe08Tz,301873.0,68.0,experimental r&b,https://i.scdn.co/image/ab6761610000e5ebb2d9e39feee78336a5c9ec35
+50 Cent,Male,49.0,United States,3q7HBObVc0L8jNeTe5Gofh,16572593.0,85.0,east coast hip hop;gangster rap;hip hop;pop rap;queens hip hop;rap,https://i.scdn.co/image/dd031b9c5d1b6eba4a691cd89c954255aae787f2
+King Princess,Female,25.0,United States,6beUvFUlKliUYJdLOXNj9C,1728668.0,69.0,alt z;indie pop;nyc pop,https://i.scdn.co/image/ab6761610000e5ebdced725bdaf4014fdf5c3238
+Sebastian Ingrosso,Male,41.0,Sweden,6hyMWrxGBsOx6sWcVj1DqP,975661.0,62.0,"dutch house, edm, electro house, pop dance, progressive electro house, progressive house",https://i.scdn.co/image/ab6761610000e5eb2e079e23c13aacb2e249d975
+Joel Corry,Male,36.0,United Kingdom,6DgP9otnZw5z6daOntINxp,445386.0,72.0,dance pop;pop dance;uk dance,https://i.scdn.co/image/ab6761610000e5eb4f4bcc61c2898f83ec3a3dfc
+Elvis Presley,Male,46.0,United States,43ZHCT0cAZBISjO8DG9PnE,10206040.0,85.0,rock-and-roll;rockabilly,https://i.scdn.co/image/ab6761610000e5eb9a93e273380982dff84c0d7c
+Imany,Female,45.0,France,74eY8wbrhhVD7pACbBHwHw,305741.0,59.0,french indie pop,https://i.scdn.co/image/ab6761610000e5eb5e05bc9449320ec436001490
+will.i.am,Male,49.0,United States,085pc2PYOi8bGKj0PNjekA,4274582.0,75.0,dance pop;pop,https://i.scdn.co/image/ab6761610000e5ebc9ab8da6f7a3ce02f0b16fd8
+Kiesza,Female,35.0,Canada,4zxvC7CRGvggq9EWXOpwAo,304537.0,55.0,electropop;pop edm,https://i.scdn.co/image/ab6761610000e5ebf8449085dadabebe939997a1
+Bobby Shmurda,Male,29.0,United States,34Y0ldeyUv7jBvukWOGASO,1585128.0,58.0,nyc rap;rap;trap,https://i.scdn.co/image/ab6761610000e5ebee12e6771607433caee705a3
+Wale,Male,39.0,United States,67nwj3Y5sZQLl72VNUHEYE,4174548.0,72.0,pop rap;r&b;rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5eb204ce9bb25bd19a056cac78a
+Zay Hilfigerrr,Male,24.0,United States,7nKeLE1toRtW4M279iS26h,64949.0,44.0,viral trap,https://i.scdn.co/image/ab6761610000e5ebf7550f0fd384a38a3c9a6200
+Nelly,Male,49.0,United States,2gBjLmx6zQnFGQJCAQpRgw,3209805.0,76.0,"dance pop, gangster rap, hip hop, pop rap, rap, st louis rap, urban contemporary",https://i.scdn.co/image/3677690af58abb70a5c5fd58d69db4d1ad705d4f
+Giveon,Male,29.0,United States,4fxd5Ee7UefO4CUXgwJ7IP,4256593.0,78.0,r&b,https://i.scdn.co/image/ab6761610000e5eb871222ecd8d50f1efa64bcb8
+Adam Lambert,Male,42.0,United States,6prmLEyn4LfHlD9NnXWlf7,1630385.0,61.0,dance pop;idol;pop;post-teen pop,https://i.scdn.co/image/ab6761610000e5ebca8eeadf722d0b64eb019cce
+Pia Mia,Female,27.0,United States,1BhWF9W2PngtPSyobKg0rP,1944513.0,60.0,dance pop;pop;post-teen pop,https://i.scdn.co/image/ab6761610000e5eb900d9d32886a4c3c9f6a1e6a
+Wiley,Male,45.0,United Kingdom,7k9T7lZlHjRAM1bb0r9Rm3,356382.0,57.0,grime;uk dancehall;uk hip hop,https://i.scdn.co/image/ab6761610000e5eb704bca279377f7a1bd828b53
+Omarion,Male,39.0,United States,0f5nVCcR06GX8Qikz0COtT,3035399.0,63.0,dance pop;hip pop;r&b;rap;southern hip hop;trap;urban contemporary,https://i.scdn.co/image/ab6761610000e5eb8b09a264a0e22193f0786c1b
+Craig David,Male,43.0,United Kingdom,2JyWXPbkqI5ZJa3gwqVa0c,927536.0,65.0,british soul,https://i.scdn.co/image/ab6761610000e5ebf5fa84e65aeb19b122aae9cb
+The Kid Laroi,Male,20.0,Australia,2tIP7SsRs7vjIcLrU85W8J,5991748.0,85.0,australian hip hop,https://i.scdn.co/image/ab6761610000e5ebebf5c408f4d003817161e061
+Akon,Male,51.0,Senegal,0z4gvV4rjIZ9wHck67ucSV,5259463.0,84.0,dance pop,https://i.scdn.co/image/ab6761610000e5eb3b6ab4190c7435238735b59d
+Freya Ridings,Female,30.0,United Kingdom,5pDjmC5mRl7vDJhsjVwNfk,434770.0,67.0,uk pop,https://i.scdn.co/image/ab6761610000e5ebdb1fb14f73fb48658cd8ebe7
+Jason Aldean,Male,47.0,United States,3FfvYsEGaIb52QPXhg4DcH,6690485.0,75.0,contemporary country;country;country road;modern country rock,https://i.scdn.co/image/ab6761610000e5eb70d22778295f215b94941a21
+Duke Dumont,Male,41.0,United Kingdom,61lyPtntblHJvA7FMMhi7E,750251.0,67.0,edm;house;pop dance;progressive house;uk dance,https://i.scdn.co/image/ab6761610000e5eb208e2d15d19c97801c0bd5fc
+O.T. Genasis,Male,37.0,United States,1Zatb2YN4erBOoSivOXc0o,1069548.0,53.0,southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5eb6aea835a2e35e92e7a65eec9
+The Notorious B.I.G.,Male,28.0,United States,5me0Irg2ANcsgc93uaYrpb,11370273.0,79.0,east coast hip hop;gangster rap;hardcore hip hop;hip hop;rap,https://i.scdn.co/image/1b4858fbd24046a81cace5ee18d19c868262b91f
+Olivia Holt,Female,26.0,United States,188VINPQh5dyNfLUkevKqf,1110740.0,50.0,post-teen pop,https://i.scdn.co/image/ab6761610000e5eb78f5b8a5f2e1d6e30d6230b9
+Otto Knows,Male,35.0,Sweden,5fahUm8t5c0GIdeTq0ZaG8,383670.0,58.0,edm;electro house;pop dance;progressive electro house,https://i.scdn.co/image/ab6761610000e5eb34f11fa225bb47cd91bf0766
+James Tw,Male,26.0,United Kingdom,0B3N0ZINFWvizfa8bKiz4v,1363330.0,63.0,british singer-songwriter;uk pop,https://i.scdn.co/image/ab6761610000e5eb856c04f446eb4217fc1de30f
+Colbie Caillat,Female,39.0,United States,6aZyMrc4doVtZyKNilOmwu,2528273.0,68.0,dance pop;neo mellow;pop,https://i.scdn.co/image/ab6761610000e5eb08635ff0ed30023d2ee764a1
+Stromae,Male,39.0,Belgium,5j4HeCoUlzhfWtjAfM1acR,3583815.0,82.0,belgian pop;g-house,https://i.scdn.co/image/ab6761610000e5ebcc129f1c9b5047760d66aae2
+Duncan Laurence,Male,30.0,Netherlands,3klZnJvYGIbWritVwQD434,632508.0,68.0,dutch pop,https://i.scdn.co/image/ab6761610000e5eb7a3fa5fef04357ffa40d4d5c
+Paloma Faith,Female,43.0,United Kingdom,4fwuXg6XQHfdlOdmw36OHa,1348707.0,67.0,british soul;talent show;uk pop,https://i.scdn.co/image/ab6761610000e5eb7265a79cf26c2e4b3fed8d66
+Travie Mccoy,Male,42.0,United States,7o9Nl7K1Al6NNAHX6jn6iG,420410.0,64.0,pop rap,https://i.scdn.co/image/ab6761610000e5ebaf115cb8c3abf7629111fabc
+Fergie,Female,49.0,United States,3r17AfJCCUqC9Lf0OAc73G,5888392.0,71.0,dance pop;pop,https://i.scdn.co/image/ab6761610000e5eb1fd1c6d465e03a904d63c9b5
+Leona Lewis,Female,39.0,United Kingdom,5lKZWd6HiSCLfnDGrq9RAm,3648019.0,74.0,british soul;dance pop;pop;talent show,https://i.scdn.co/image/ab6761610000e5ebe9cf3862b8027eb5b9f6b831
+Shania Twain,Female,58.0,Canada,5e4Dhzv426EvQe3aDb64jL,3186778.0,75.0,canadian country;canadian pop;contemporary country;country;country dawn,https://i.scdn.co/image/ab6761610000e5eb01022f4092cb96e0a91811a5
+Saweetie,Female,31.0,United States,6cK3NBO6uP7hh0oyuVELFl,2428688.0,71.0,cali rap;trap queen,https://i.scdn.co/image/ab6761610000e5eb7c350e80bfc4993f977934d1
+Nadin Amizah,Female,25.0,Indonesia,20zafXaLhm5IcXnSU93rNn,7211775.0,75.0,indonesian pop,https://i.scdn.co/image/ab6761610000e5eb1d143802cf034044739dbcdc
+Ja Rule,Male,48.0,United States,1J2VVASYAamtQ3Bt8wGgA6,1988851.0,73.0,dance pop;east coast hip hop;gangster rap;hip hop;hip pop;pop rap;queens hip hop;rap;urban contemporary,https://i.scdn.co/image/ab6761610000e5ebb47b549b590b63e52c68b89b
+Fat Joe,Male,53.0,United States,3ScY9CQxNLQei8Umvpx5g6,1915015.0,70.0,bronx hip hop;east coast hip hop;gangster rap;hardcore hip hop;hip hop;pop rap;rap;trap,https://i.scdn.co/image/ab6761610000e5eba1fe5b14818dd48f0efbf919
+Illy,Male,38.0,Australia,5gWFbdcQOMRYz1cdCuBxWO,21906.0,36.0,nova mpb;nova musica carioca;pop lgbtq+ brasileira,https://i.scdn.co/image/ab6761610000e5eb6ae6b551f96b8e4510b1ba80
+Kylie Minogue,Female,56.0,Australia,4RVnAU35WRWra6OZ3CbbMA,2118210.0,77.0,australian dance;australian pop;dance pop;eurodance;new wave pop,https://i.scdn.co/image/ab6761610000e5eb9a8ae4546aa5fb59aac60262
+Ardhito Pramono,Male,29.0,Indonesia,3TkSKriI4EZmTxSFyzs0fd,1145724.0,63.0,indonesian indie;indonesian jazz;indonesian pop;jazz pop,https://i.scdn.co/image/ab6761610000e5ebe8a47fac892453717b0bf3f7
+Jamie Foxx,Male,56.0,United States,7LnaAXbDVIL75IVPnndf7w,1272198.0,71.0,contemporary r&b;hip pop;pop rap;r&b;southern hip hop;trap;urban contemporary,https://i.scdn.co/image/a3823abbd476fa00cdf95a9f5cbbe09d2f96add2
+Alicia Keys,Female,43.0,United States,3DiDSECUqqY1AuBP8qtaIa,12300951.0,81.0,neo soul;pop;r&b,https://i.scdn.co/image/ab6761610000e5ebebfd16a3bca87c31c1e20576
+Sean Kingston,Male,34.0,Jamaica,6S0dmVVn4udvppDhZIWxCr,3467504.0,73.0,dance pop;miami hip hop;pop,https://i.scdn.co/image/ab6761610000e5ebee205e5029a04bd0460e16e4
+Gwen Stefani,Female,54.0,United States,4yiQZ8tQPux8cPriYMWUFP,6719685.0,80.0,dance pop;pop,https://i.scdn.co/image/ab6761610000e5eb64b94bebbaee56f793e24853
+B Young,Male,29.0,United Kingdom,7JMwO9tyFPMsb2KnsJqZlp,399639.0,59.0,afroswing;london rap;uk hip hop,https://i.scdn.co/image/ab6761610000e5eb9f0e37a5f7d707351ea610df
+Jidenna,Male,39.0,United States,4TsHKU8l8Wq7n7OPVikirn,377590.0,54.0,ghanaian hip hop;viral trap,https://i.scdn.co/image/ab6761610000e5eb1412a6c6ccf340d8623cd6ab
+Wyclef Jean,Male,54.0,United States,7aBzpmFXB4WWpPl2F7RjBe,371781.0,74.0,rap kreyol,https://i.scdn.co/image/ab6761610000e5ebad53e714cc3481bd069bfc93
+Hayden James,Male,28.0,Australia,4csQIMQm6vI2A2SCVDuM2z,267644.0,60.0,aussietronica;gauze pop;house,https://i.scdn.co/image/ab6761610000e5ebe38aa86841dc064735a5bcaa
+ÉoDan,Male,22.0,United States,2wJTFunFUfIEZBoSRtgGzl,96858.0,49.0,rap geek,https://i.scdn.co/image/ab6761610000e5ebf19a70e57db6f8dc0091310c
+Route 94,Male,31.0,United Kingdom,1dgdvbogmctybPrGEcnYf6,170216.0,63.0,house;uk dance,https://i.scdn.co/image/ab6761610000e5eb33f4f47b1ac051a5461dc40e
+Budi Doremi,Male,39.0,Indonesia,6Ifk2cbxyVzT41jLexYCas,2302602.0,66.0,indonesian pop,https://i.scdn.co/image/ab6761610000e5eb8b28da4736978e4cb368361f
+Christina Perri,Female,37.0,United States,7H55rcKCfwqkyDFH9wpKM6,4021603.0,74.0,pop,https://i.scdn.co/image/ab6761610000e5eb9bbbc124c9f0f75af892d97d
+Olivia Rodrigo,Female,21.0,United States,1McMsnEElThX1knmY4oliG,42713491.0,88.0,pop,https://i.scdn.co/image/ab6761610000e5ebe03a98785f3658f0b6461ec4
+Agnes,Female,36.0,Sweden,6SsTlCsuCYleNza6xGwynu,134629.0,55.0,"swedish electropop, swedish idol pop, swedish pop",https://i.scdn.co/image/ab6761610000e5ebc0927a09248d75b7cda51193
+Birdy,Female,28.0,United Kingdom,2WX2uTcsvV5OnS0inACecP,3725332.0,72.0,neo mellow;uk pop;viral pop,https://i.scdn.co/image/ab6761610000e5eb778483686ae247c1906f02fb
+Emeli Sandé,Female,37.0,United Kingdom,7sfgqEdoeBTjd8lQsPT3Cy,2173352.0,63.0,r&b;talent show;uk pop,https://i.scdn.co/image/ab6761610000e5ebf26a49a45ad43119b4409d7c
+Tim Mcgraw,Male,57.0,United States,6roFdX1y5BYSbp60OTJWMd,4748023.0,72.0,contemporary country;country;country road,https://i.scdn.co/image/ab6761610000e5ebbd6977f3970a7a4a8d4becbe
+iann dior,Male,26.0,United States,6ASri4ePR7RlsvIQgWPJpS,1869288.0,72.0,melodic rap,https://i.scdn.co/image/ab6761610000e5eb44df283059d7e9c3c09a7499
+Philip George,Male,31.0,United Kingdom,0Q9slhIaEgg190iG8udYIV,114134.0,53.0,"house, uk dance",https://i.scdn.co/image/ab6761610000e5ebd950dea694e121fe91744d82
+Jay Sean,Male,43.0,United Kingdom,4pADjHPWyrlAF0FA7joK2H,1897265.0,69.0,dance pop;pop;pop rap;post-teen pop,https://i.scdn.co/image/ab6761610000e5eb1fe57aeec785741820fedd52
+Inna,Female,37.0,Romania,2w9zwq3AktTeYYMuhMjju8,1379828.0,72.0,dance pop;romanian house;romanian pop,https://i.scdn.co/image/ab6761610000e5eb571bd5587850d252e8fc892d
+Nas,Male,50.0,United States,20qISvAhX20dpIbOOzGK3q,4016289.0,74.0,conscious hip hop;east coast hip hop;gangster rap;hardcore hip hop;hip hop;queens hip hop;rap,https://i.scdn.co/image/ab6761610000e5eb153198caeef9e3bda92f9285
+DJ Fresh,Male,47.0,United Kingdom,6r20qOqY7qDWI0PPTxVMlC,276053.0,58.0,dancefloor dnb;drum and bass;uk dance,https://i.scdn.co/image/ab6761610000e5eb9c898180e4e467b7c709de63
+Eric Church,Male,47.0,United States,2IvkS5MXK0vPGnwyJsrEyV,3971652.0,72.0,contemporary country;country;country road,https://i.scdn.co/image/ab6761610000e5eb9d21d0550d0281cb03de2d1a
+Judika,Male,45.0,Indonesia,5fS7aONqrIhiw6YzgKVOsd,5916857.0,68.0,indonesian pop,https://i.scdn.co/image/ab6761610000e5ebad38956d1cbcfbc180f7928c
+Jesse Mccartney,Male,37.0,United States,2Hjj68yyUPiC0HKEOigcEp,1046209.0,59.0,dance pop;pop;post-teen pop,https://i.scdn.co/image/ab6761610000e5eb6910fb4dd7f57ab18539b8ae
+Avril Lavigne,Female,39.0,Canada,0p4nmQO2msCgU4IF37Wi3j,11461423.0,78.0,canadian pop;candy pop;dance pop;pop,https://i.scdn.co/image/ab6761610000e5eb5c3349ddba6b8e064c1bab16
+Kali Uchis,Female,30.0,United States,1U1el3k54VvEUzo3ybLPlM,8322207.0,87.0,colombian pop,https://i.scdn.co/image/ab6761610000e5eb51dfdac248da65a860963b68
+Madonna,Female,65.0,United States,6tbjWDEIzxoDsBA1FuhfPW,8288750.0,81.0,dance pop;pop,https://i.scdn.co/image/ab6761610000e5eb4b36d28b55620959821f4a5b
+The Game,Male,44.0,United States,0NbfKEOTQCcwd6o7wSDOHI,4967073.0,72.0,detroit hip hop;gangster rap;hip hop;pop rap;rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5eba657aa5506945d264e147244
+Vanessa Carlton,Female,43.0,United States,5ILrArfIV0tMURcHJN8Q07,662641.0,65.0,lilith;neo mellow;piano rock;pop rock;post-teen pop,https://i.scdn.co/image/ab6761610000e5eb9a9873aca07694682036f5b7
+Michel Teló,Male,43.0,Brazil,1sDVuztNhGcetCLChkleDA,3000882.0,61.0,sertanejo;sertanejo pop;sertanejo universitario,https://i.scdn.co/image/ab6761610000e5eb04f64ef5cf013f38ae29e8ec
+Børns,Male,32.0,United States,1KP6TWI40m7p3QBTU6u2xo,1312138.0,67.0,indie poptimism;modern alternative rock;modern rock;pov: indie,https://i.scdn.co/image/ab6761610000e5eb074f5f432c1475162ab42a64
+Missy Elliott,Female,53.0,United States,2wIVse2owClT7go1WT98tk,2584609.0,72.0,dance pop;hip hop;hip pop;neo soul;pop rap;r&b;rap;urban contemporary;virginia hip hop,https://i.scdn.co/image/ab6761610000e5ebf6691f40d906f097e9fbaa4c
+Howie Day,Male,43.0,United States,0ekbDNE2eOq8QiaXM34wer,338052.0,53.0,acoustic pop;neo mellow;pop rock,https://i.scdn.co/image/ab6761610000e5ebc0b5ef9b8149782359ef0e0c
+A.R. Rahman,Male,57.0,India,1mYsTxnqsietFxj1OgoGbG,57739410.0,82.0,filmi,https://i.scdn.co/image/ab6761610000e5ebb19af0ea736c6228d6eb539c
+Céline Dion,Female,56.0,Canada,4S9EykWXhStSc15wEx8QFK,9296091.0,82.0,canadian pop,https://i.scdn.co/image/ab6761610000e5ebc3b380448158e7b6e5863cde
+Lisa,Female,37.0,Japan,5L1lO4eRHmJ7a0Q6csE5cT,10295235.0,81.0,k-pop,https://i.scdn.co/image/ab6761610000e5eb426faee7010fa829bb527cfb
+Lily Allen,Female,39.0,United Kingdom,13saZpZnCDWOI9D4IJhp1f,2094179.0,70.0,dance pop;electropop;neo mellow,https://i.scdn.co/image/ab6761610000e5eb4816f55146bf03d294005165
+Tom Odell,Male,33.0,United Kingdom,2txHhyCwHjUEpJjWrEyqyX,4082971.0,79.0,chill pop,https://i.scdn.co/image/ab6761610000e5eb532e8dd8ba9fbd5e78105a78
+Chip,Male,34.0,United Kingdom,0tJCNteqwm7LmRZ6KWr8GT,347693.0,56.0,grime;instrumental grime;london rap;uk hip hop,https://i.scdn.co/image/ab6761610000e5ebaf1e7488ff6a294e7ac97564
+Carrie Underwood,Female,41.0,United States,4xFUf1FHVy696Q1JQZMTRj,6035044.0,74.0,classic oklahoma country;contemporary country;country;country dawn;dance pop;pop,https://i.scdn.co/image/ab6761610000e5eb6d81a16f9d1b2abf04e765a6
+Jeezy,Male,46.0,United States,4yBK75WVCQXej1p04GWqxH,2465900.0,72.0,atl hip hop;crunk;dirty south rap;gangster rap;old school atlanta hip hop;rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5eb075a4c9d6da66addd8247c12
+Sting,Male,72.0,United Kingdom,0Ty63ceoRnnJKVEYP0VQpk,3551923.0,75.0,permanent wave;soft rock;sophisti-pop,https://i.scdn.co/image/ab6761610000e5eb9fdb4dab484a9f12e347c216
+Robyn,Female,45.0,Sweden,6UE7nl9mha6s8z0wFQFIZ2,853470.0,64.0,dance pop;electropop;neo-synthpop;scandipop;swedish electropop;swedish pop,https://i.scdn.co/image/ab6761610000e5ebbc142401994ad4c5ddbf7829
+Faith Evans,Female,51.0,United States,5NDMothbpdpq2xHqSjrrWn,1714026.0,66.0,contemporary r&b;hip pop;r&b;urban contemporary,https://i.scdn.co/image/ab6761610000e5eb59b1c5df87253aa6bfd1f524
+Dizzee Rascal,Male,39.0,United Kingdom,0gusqTJKxtU1UTmNRMHZcv,506414.0,63.0,grime;instrumental grime,https://i.scdn.co/image/ab6761610000e5eb2d2ffbc3afe1bdc91f403485
+Timbaland,Male,52.0,United States,5Y5TRrQiqgUO4S36tzjIRZ,3082846.0,80.0,dance pop;pop;pop rap,https://i.scdn.co/image/ab6761610000e5ebb713079a55dcf937d241dd2b
+Dr. Dre,Male,59.0,United States,6DPYiyq5kWVQS4RGwxzPC7,13271728.0,83.0,g funk;gangster rap;hip hop;rap;west coast rap,https://i.scdn.co/image/83d2489cade1dadcdc533ddbcd74993d0ca6d4cb
+MARINA,Female,38.0,United Kingdom,6CwfuxIqcltXDGjfZsMd9A,5792838.0,74.0,metropopolis;pop;pov: indie;uk alternative pop,https://i.scdn.co/image/ab6761610000e5ebc28e02e9bb9bf19358669fef
+Dmx,Male,53.0,United States,1HwM5zlC5qNWhJtM00yXzG,5477244.0,72.0,detroit hip hop;east coast hip hop;gangster rap;hardcore hip hop;hip hop;rap,https://i.scdn.co/image/ab6761610000e5ebd3258669d149a2e4e247a3d2
+Fabolous,Male,46.0,United States,0YWxKQj2Go9CGHCp77UOyy,2696169.0,67.0,gangster rap;hip hop;pop rap;rap;trap;urban contemporary,https://i.scdn.co/image/ab6761610000e5ebece5603bef9fa046ef9a178c
+Milow,Male,43.0,Belgium,6mo0UbyIvIePdXNyLwQlk5,186758.0,57.0,belgian pop;belgian rock;belgian singer-songwriter,https://i.scdn.co/image/ab6761610000e5ebd8167838eeea4e8cddfcc045
+Ronan Keating,Male,47.0,United Kingdom,3nlHsNqwCSvT988ZfSW1Yh,1128788.0,65.0,europop;talent show,https://i.scdn.co/image/ab6761610000e5ebc7538bd3293f5e3b292cf3e4
+Lykke Li,Female,38.0,Sweden,6oBm8HB0yfrIc9IHbxs6in,1915432.0,70.0,art pop;electropop;indietronica;neo-synthpop;swedish electropop;swedish indie pop;swedish pop,https://i.scdn.co/image/ab6761610000e5eb0bf8a86c8e3a34bb4934abb7
+The-Dream,Male,46.0,United States,1W3FSF1BLpY3hlVIgvenLz,1325831.0,67.0,dirty south rap;hip pop;r&b;southern hip hop;trap;urban contemporary,https://i.scdn.co/image/ab6761610000e5eba01ad0bea0957a2e3b7c3ced
+George Michael,Male,57.0,United Kingdom,19ra5tSw0tWufvUp8GotLo,5177039.0,76.0,new wave pop;soft rock,https://i.scdn.co/image/ab6761610000e5ebd919dbf4e6ed3e695ba6339d
+Jennifer Hudson,Female,42.0,United States,35GL8Cu2GKTcHzKGi75xl5,2005532.0,68.0,dance pop;r&b;urban contemporary,https://i.scdn.co/image/ab6761610000e5eb2662b4a85c8b3e57cb3953cc
+Mika,Male,40.0,United Kingdom,5MmVJVhhYKQ86izuGHzJYA,1410841.0,67.0,electropop,https://i.scdn.co/image/ab6761610000e5ebc5adcd7630c57d002cc5a645
+Benny Benassi,Male,57.0,Italy,4Ws2otunReOa6BbwxxpCt6,577040.0,67.0,dutch house;edm;electro house;pop dance,https://i.scdn.co/image/ab6761610000e5ebae7d930f8e916482ec30a064
+Cher Lloyd,Female,31.0,United Kingdom,4m4SfDVbF5wxrwEjDKgi4k,2610085.0,60.0,dance pop;pop;post-teen pop;talent show,https://i.scdn.co/image/ab6761610000e5eb7c8d89c11955770907d3afb9
+Amy Winehouse,Female,31.0,United Kingdom,6Q192DXotxtaysaqNPy5yR,9339349.0,80.0,british soul;neo soul,https://i.scdn.co/image/ab6761610000e5eb2ceb023b10da17590878e88c
+Estelle,Female,44.0,United Kingdom,5T0MSzX9RC5NA6gAI6irSn,329542.0,68.0,neo soul;r&b,https://i.scdn.co/image/ab6761610000e5eb4d51e3664ea42c2dfb09f21b
+Robbie Williams,Male,50.0,United Kingdom,2HcwFjNelS49kFbfvMxQYw,3030409.0,77.0,dance rock;europop,https://i.scdn.co/image/ab6761610000e5eb15709ba37709bc245a116a1c
+Ashanti,Female,43.0,United States,5rkVyNGXEgeUqKkB5ccK83,3283415.0,73.0,dance pop;hip pop;r&b;urban contemporary,https://i.scdn.co/image/ab6761610000e5eb1ebb81323a96e465ad20b932
+Brandy,Female,45.0,United States,05oH07COxkXKIMt6mIPRee,3815530.0,69.0,contemporary r&b;dance pop;hip pop;r&b;urban contemporary,https://i.scdn.co/image/ab6761610000e5ebb39417aaafb9c373e78594ef
+Diddy,Male,54.0,United States,59wfkuBoNyhDMQGCljbUbA,1845869.0,73.0,dance pop;east coast hip hop;hip hop;hip pop;pop rap;rap,https://i.scdn.co/image/ab6761610000e5eb5065f82653e9ad00fdcafa42
+Maggie Rogers,Female,30.0,United States,4NZvixzsSefsNiIqXn0NDe,1199273.0,71.0,indie pop,https://i.scdn.co/image/ab6761610000e5eb42ac28bac739fd27c568cf4b
+Sidney Samson,Male,42.0,Netherlands,3XonXgjEAAXVl0WKLF1Z4g,64248.0,47.0,dutch house;electro house;melbourne bounce;progressive electro house,https://i.scdn.co/image/ab6761610000e5eb3cd00d458a91f62a1cd0ff21
+Gotye,Male,44.0,Australia,2AsusXITU8P25dlRNhcAbG,2222617.0,72.0,australian pop,https://i.scdn.co/image/713664fded8bdd28ed84f4b2054815af92999b9c
+Janelle Monáe,Female,38.0,United States,6ueGR6SWhUJfvEhqkvMsVs,1483046.0,69.0,afrofuturism;alternative r&b;atl hip hop;neo soul;r&b,https://i.scdn.co/image/ab6761610000e5eb5dab878686269b7b8f4c3ab1
+M.I.A.,Female,49.0,United Kingdom,0QJIPDAEDILuo8AIq3pMuU,1399844.0,71.0,escape room;indietronica;new rave,https://i.scdn.co/image/ab6761610000e5ebd75b03e7f83d62dcd55617ca
+Kelly Rowland,Female,43.0,United States,3AuMNF8rQAKOzjYppFNAoB,3541039.0,71.0,atl hip hop;dance pop;hip pop;r&b;urban contemporary,https://i.scdn.co/image/ab6761610000e5eb7c614a2b3cedfc53e4679c2e
+Ludacris,Male,46.0,United States,3ipn9JLAPI5GUEo4y4jcoi,3189330.0,79.0,atl hip hop;dance pop;dirty south rap;hip hop;old school atlanta hip hop;pop rap;rap;southern hip hop;trap,https://i.scdn.co/image/adcc1cb654e89f2e404688ae0d1bbc942ce02e5d
+Duffy,Female,40.0,United Kingdom,37NqXwtb6nIEqRt4EJSoIO,960922.0,61.0,british soul,https://i.scdn.co/image/ab6772690000c46c50e750d1aed632c37a450ffb
+Montell Jordan,Male,55.0,United States,0iVrCROxeyon7MZUW3MfzT,908081.0,59.0,contemporary r&b;hip pop;new jack swing;r&b;urban contemporary,https://i.scdn.co/image/ab6761610000e5eb4c3f0acc0e5ef5b08e54bbb9
+Sara Bareilles,Female,44.0,United States,2Sqr0DXoaYABbjBo9HaMkM,1961442.0,66.0,acoustic pop;lilith;neo mellow;pop rock;post-teen pop,https://i.scdn.co/image/ab6761610000e5eb0bae7cfd3b32b10154e0b8b3
+Cheryl,Female,41.0,United Kingdom,3NyNPJaemMYsL14DK2tO01,573347.0,53.0,dance pop;post-teen pop;talent show,https://i.scdn.co/image/ab6761610000e5eb581bef826c6d454a6a61d453
+Alex Clare,Male,37.0,United Kingdom,5Tf4EH8tDvznnjULcFxkIl,520362.0,54.0,modern alternative rock,https://i.scdn.co/image/ab6761610000e5eb2f28c07c6c87870c97eaaa10
+Paolo Nutini,Male,37.0,United Kingdom,7x5rK9BClDQ8wmCkYAGsQp,1480266.0,67.0,british soul;neo mellow;scottish singer-songwriter,https://i.scdn.co/image/ab6761610000e5eb5b30c7c50a4dc96f5d5872d5
+Natasha Bedingfield,Female,42.0,United Kingdom,7o95ZoZt5ZYn31e9z1Hc0a,1841575.0,76.0,dance pop;pop;post-teen pop,https://i.scdn.co/image/ab6761610000e5eb15f48264917c2b09a573ecc7
+Bob Sinclar,Male,57.0,France,5YFS41yoX0YuFY39fq21oN,672017.0,73.0,disco house;filter house,https://i.scdn.co/image/ab6761610000e5eb8461d91d68e2721fb31c2ac6
+Lyodra,Female,21.0,Indonesia,6Sv2jkzH9sWQjwghW5ArMG,5960832.0,75.0,indonesian pop,https://i.scdn.co/image/ab6761610000e5eb57371565e006b10a40d41025
+Ciara,Female,38.0,United States,2NdeV5rLm47xAvogXrYhJX,6904586.0,73.0,dance pop;hip pop;pop;r&b;urban contemporary,https://i.scdn.co/image/ab6761610000e5eb7aba0bf3576fe56c2b367c83
+Busta Rhymes,Male,52.0,United States,1YfEcTuGvBQ8xSD1f53UnK,2926187.0,73.0,east coast hip hop;hardcore hip hop;hip hop;pop rap;rap,https://i.scdn.co/image/ab6761610000e5eb7b31aba081ef084510cde4e3
+Alexandra Stan,Female,35.0,Romania,0BmLNz4nSLfoWYW1cYsElL,396649.0,64.0,romanian pop,https://i.scdn.co/image/ab6761610000e5eb4469592b9a24ea17d3f47f00
+Finneas,Male,27.0,United States,37M5pPGs6V1fchFJSgCguX,2143841.0,71.0,alt z;la indie;pop;pov: indie,https://i.scdn.co/image/ab6761610000e5eb9b3eec90cbef9a38ce85b984
+Keyshia Cole,Female,42.0,United States,1vfezMIyCr4XUdYRaKIKi3,4078162.0,71.0,hip pop;r&b;urban contemporary,https://i.scdn.co/image/ab6761610000e5eb1ab13fdacbb8017ec4087ca9
+Jack Johnson,Male,49.0,United States,3GBPw9NK25X1Wt2OUvOwY3,3931884.0,77.0,neo mellow,https://i.scdn.co/image/ab6761610000e5eb9555a0b3231117c8cde1fca7
+Lupe Fiasco,Male,42.0,United States,01QTIT5P1pFP3QnnFSdsJf,1923635.0,68.0,chicago rap;conscious hip hop;hip hop;political hip hop;pop rap;rap;southern hip hop,https://i.scdn.co/image/ab6761610000e5eb17e0a43f3aaa0c48410c4b68
+Taio Cruz,Male,44.0,United Kingdom,6MF9fzBmfXghAz953czmBC,2283452.0,72.0,dance pop;pop;pop rap,https://i.scdn.co/image/ab6761610000e5eb153171480a6f22912253b9f1
+Jaymes Young,Male,34.0,United States,6QrQ7OrISRYIfS5mtacaw2,981050.0,68.0,indie poptimism,https://i.scdn.co/image/ab6761610000e5eb87528aedec4b8d5586768014
+Tim Berg,Male,32.0,Sweden,7iLc4hrjOjQPfg1E3cCHg1,213784.0,52.0,edm;electro house;pop dance;progressive electro house,https://i.scdn.co/image/ebae979a746db853d4f8f274719a7ab48f6978d3
+Daniel Powter,Male,53.0,Canada,7xTcuBOIAAIGDOSvwYFPzk,293560.0,60.0,canadian pop;neo mellow;pop rock,https://i.scdn.co/image/ab6761610000e5eb1f1ea5c01092257885e0c627
+Ceelo Green,Male,50.0,United States,5nLYd9ST4Cnwy6NHaCxbj8,656176.0,68.0,atl hip hop;pop rap,https://i.scdn.co/image/ab6761610000e5eb8079989370c50963b60ee7bc
+Owl City,Male,38.0,United States,07QEuhtrNmmZ0zEcqE9SF6,2447910.0,70.0,indietronica;pop,https://i.scdn.co/image/ab6761610000e5ebce3fbd73ae4f8b3ff54a0a5c
+Iyaz,Male,37.0,British Virgin Islands,5tKXB9uuebKE34yowVaU3C,1028234.0,69.0,dance pop;pop rap;post-teen pop,https://i.scdn.co/image/07be68a6b678e0307e38303186ddbc6816f250af
+Grimes,Female,36.0,Canada,053q0ukIDRgzwTr4vNSwab,2483926.0,70.0,art pop;canadian electropop;grave wave;indietronica;metropopolis;neo-synthpop,https://i.scdn.co/image/ab6761610000e5eb34771f759ca81a422f5f2b57
+Corinne Bailey Rae,Female,45.0,United Kingdom,29WzbAQtDnBJF09es0uddn,819409.0,65.0,british soul;neo soul;pop soul;soul,https://i.scdn.co/image/ab6761610000e5ebdcb57d08016c41fca3e221ab
+Oliver Tree,Male,31.0,United States,6TLwD7HPWuiOzvXEa3oCNe,2509401.0,71.0,alternative hip hop,https://i.scdn.co/image/ab6761610000e5eb2615ef39cf9128c447b31619
+Bridgit Mendler,Female,31.0,United States,4VhL8KLjVso4vLfOLVViTb,1341196.0,63.0,pop;post-teen pop,https://i.scdn.co/image/ab6761610000e5ebbc30d8897d7327fa50d5f9f0
+Mario,Male,37.0,United States,20s0P9QLxGqKuCsGwFsp7w,3642282.0,71.0,dance pop;r&b;southern hip hop;urban contemporary,https://i.scdn.co/image/ab6761610000e5eb48f54214e0580b101375840c
+Mary J. Blige,Female,53.0,United States,1XkoF8ryArs86LZvFOkbyr,4052740.0,73.0,dance pop;hip pop;neo soul;r&b;urban contemporary,https://i.scdn.co/image/ab6761610000e5eb3d7888ba4d2bf67fe6b64a55
+Phillip Phillips,Male,33.0,United States,6p5JxpTc7USNnBnLzctyd4,1129556.0,62.0,folk-pop;neo mellow;pop rock,https://i.scdn.co/image/ab6761610000e5eb9c7c4d6d864163e70c68e4cf
+Ginuwine,Male,53.0,United States,7r8RF1tN2A4CiGEplkp1oP,2679908.0,67.0,contemporary r&b;hip pop;r&b;urban contemporary,https://i.scdn.co/image/c8bc9979554744c06b3c62b7e94b82cd9303ec81
+Dido,Female,52.0,United Kingdom,2mpeljBig2IXLXRAFO9AAs,1955498.0,76.0,dance pop;europop;lilith;neo mellow;pop rock,https://i.scdn.co/image/ab6761610000e5ebf36e7b59cdaa0df8bee8e63f
+2Pac,Male,29.0,United States,1ZwdS5xdxEREPySFridCfh,20176639.0,82.0,g funk;gangster rap;hip hop;rap;west coast rap,https://i.scdn.co/image/ab6761610000e5eb7f5cc432c9c109248ebec1ac
+Twista,Male,50.0,United States,6vbY3hOaCAhC7VjucswgdS,1150395.0,67.0,chicago rap;dirty south rap;gangster rap;trap,https://i.scdn.co/image/ab6761610000e5eb9180d83c13785479032d5b97
+James Morrison,Male,39.0,United Kingdom,3LpLGlgRS1IKPPwElnpW35,1545542.0,64.0,neo mellow,https://i.scdn.co/image/ab6761610000e5eb340fa517cfa6d15bb850c710
+Anastacia,Female,55.0,United States,2siHvYaxjaW5rKVRiIrMYH,411547.0,62.0,pop soul,https://i.scdn.co/image/ab6761610000e5eb1d479612f500e9fb7bbd9abb
+Elliott Yamin,Male,46.0,United States,4am1I89OWXUzFh4ctRLkdd,133693.0,44.0,idol,https://i.scdn.co/image/ab6761610000e5ebf798b04d91c7d57528a2d1bb
+Jojo's ASMR,Female,33.0,United States,7ivkAId7fKuhHHCKi28jSy,86155.0,56.0,asmr,https://i.scdn.co/image/ab67616d0000b273797d63830768ad363a13d2d4
+Nelly Furtado,Female,45.0,Canada,2jw70GZXlAI8QzWeY2bgRc,4197426.0,79.0,canadian latin;canadian pop;dance pop;pop,https://i.scdn.co/image/ab6761610000e5ebd2ce0bf5614b54bd44e059d5
+Toby Keith,Male,63.0,United States,2bA6fzP0lMAQ4kz6CF61w8,2678864.0,72.0,classic oklahoma country;contemporary country;country;country road,https://i.scdn.co/image/ab6761610000e5eb1b6b9d83cfd806b328496207
+Gavin Degraw,Male,47.0,United States,5DYAABs8rkY9VhwtENoQCz,1270183.0,62.0,neo mellow;pop rock,https://i.scdn.co/image/ab6761610000e5eb5ddcc8e4678ca527cb361162
+Darude,Male,49.0,Finland,0LhHRmSd1EYM5QdNeNnCoQ,227036.0,61.0,eurodance;finnish edm,https://i.scdn.co/image/ab6761610000e5eb2fe2de0779658eeb9665ccb4
+Norah Jones,Female,45.0,United States,2Kx7MNY7cI1ENniW7vT30N,3247672.0,77.0,contemporary vocal jazz;jazz pop;neo mellow;vocal jazz,https://i.scdn.co/image/ab6761610000e5ebed83d3ea063d87ce7e708f00
+Lenny Kravitz,Male,60.0,United States,5gznATMVO85ZcLTkE9ULU7,3428610.0,74.0,permanent wave;rock,https://i.scdn.co/image/ab6761610000e5ebe0cf058473839f1c9f49937e
+Daniel Bedingfield,Male,44.0,United Kingdom,11hIqBsGRPztdjBHCSLClX,225365.0,55.0,europop;talent show,https://i.scdn.co/image/411b4430f842fca92fedf709799274c52764cbbc
+Sisqo,Male,45.0,United States,6x9QLdzo6eBZxJ1bHsDkjg,1100081.0,60.0,contemporary r&b;hip pop;r&b;urban contemporary,https://i.scdn.co/image/65c4f2d897d65c2236ddc7ab761887910f8ac02f
+Waka Flocka Flame,Male,38.0,United States,6f4XkbvYlXMH0QgVRzW0sM,2744741.0,68.0,atl hip hop;dirty south rap;pop rap;rap;southern hip hop;trap,https://i.scdn.co/image/ab6761610000e5eb098d901516df803fdfa7bb74
+Lou Bega,Male,49.0,Germany,46lnlnlU0dXTDpoAUmH6Qx,143046.0,62.0,latin pop,https://i.scdn.co/image/ab6761610000e5ebcbe7ddc503fe3f14a2a56ac7
