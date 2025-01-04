@@ -197,7 +197,7 @@ Para a realização deste projeto foi utilizado um /[dockercompose.yml](https://
 
 - ...
 
-## **Análise ao utilizar a imagem Hue**
+## **Análise ao utilizar o Hue**
 
 O processo desenvolvido nesta fase pode ser encontrado na seguinte [pasta](https://github.com/Vullkano/BDDA/tree/main/docs/relatorios/relatorio%20pratico%20imgs).
 
@@ -216,10 +216,44 @@ JOIN spotify.hue__tmp_artist_details d
 WHERE d.country_born = 'United States'; -- != 'United States'
 ```
 
-Após observarmos os gráficos de dispersão para os artistas nascidos nos EUA e os que nasceram fora dos EUA, vemos que normalmente as músicas com features são mais energéticas e dançáveis, exceto algumas exceções. 
+**NOTA**: Uma das limitações é que só são mostrados 100 músicas nos gráficos de dispersão seguintes. Apesar disso, é válido fazer uma análise para esta amostra.
+
+<details open>
+  <summary>Gráfico de dispersão danceability/energy <strong>artistas nascidos nos EUA</strong></summary>
+<div style="text-align: center;">
+       <img src="docs/relatorios/relatorio_pratico_ imgs/EUA-disp-danceability_energy.jpg" alt="Texto alternativo" style="width: 550px;"/>
+</div>
+</details>
+
+<details open>
+  <summary>Gráfico de dispersão danceability/energy <strong>artistas nascidos fora dos EUA</strong></summary>
+<div style="text-align: center;">
+       <img src="docs/relatorios/relatorio_pratico_ imgs/noEUA-disp-danceability_energy.jpg" alt="Texto alternativo" style="width: 550px;"/>
+</div>
+</details>
+
+Após observarmos os gráficos de dispersão para os artistas nascidos nos EUA e os que nasceram fora dos EUA, é possível perceber que as duas variáveis têm pouca correlação entre elas; não é muito evidente. Também reparamos que normalmente as músicas com features são mais energéticas e dançáveis, exceto algumas exceções (principalmente fora dos EUA)
 
 Comparando os EUA com os de fora dos EUA, vemos que a dispersão é mais ou menos parecida. Porém, os artistas nascidos fora dos EUA atingem valores mais altos de energia e têm uma dispersão maior de valores de danceability para músicas com features, do que os nascidos nos EUA. 
 De realçar também que as músicas com menos "dançabilidade" têm um tempo de duração inferior relativamente às dos artistas nascidos nos EUA (tamanho das bolhas).
+
+### Relação entre  (agrupado por )
+
+**NOTA**: Uma das limitações é que só são mostrados 100 músicas nos gráficos de dispersão seguintes. Apesar disso, é válido fazer uma análise para esta amostra.
+
+<details open>
+  <summary>Gráfico de dispersão  <strong>artistas nascidos nos EUA</strong></summary>
+<div style="text-align: center;">
+       <img src="docs/relatorios/relatorio_pratico_ imgs/" alt="Texto alternativo" style="width: 550px;"/>
+</div>
+</details>
+
+<details open>
+  <summary>Gráfico de dispersão  <strong>artistas nascidos fora dos EUA</strong></summary>
+<div style="text-align: center;">
+       <img src="docs/relatorios/relatorio_pratico_ imgs/" alt="Texto alternativo" style="width: 550px;"/>
+</div>
+</details>
 
 
 ### Média de danceability por artist_name
