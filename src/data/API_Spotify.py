@@ -37,7 +37,7 @@ def get_artist_details(df, column_name, sp):
                     artist_ids.append(artist['id'])
                     followers.append(artist['followers']['total'])
                     popularity.append(artist['popularity'])
-                    genres.append(", ".join(artist['genres']))
+                    genres.append(";".join(artist['genres']))
                     image_urls.append(artist['images'][0]['url'] if artist['images'] else None)
                 else:
                     artist_ids.append(None)
@@ -69,6 +69,31 @@ def get_artist_details(df, column_name, sp):
     df = df[cols]
 
     return df
+
+
+def get_artists_info_by_ids(artist_ids, sp):
+    artists_data = {}
+
+    for artist_id in artist_ids:
+        try:
+            artist = sp.artist(artist_id)
+
+            artist_data = {
+                'artist_id': artist['id'],
+                'artist_name': artist['name'],
+                'genres': ', '.join(artist['genres']),
+                'popularity': artist['popularity'],
+                'followers': artist['followers']['total'],
+                'image_url': artist['images'][0]['url'] if artist['images'] else None
+            }
+
+            artists_data[artist['name']] = artist_data
+
+        except Exception as e:
+            print(f"Erro ao buscar informações do artista com ID {artist_id}: {e}")
+
+    return artists_data
+
 
 # Wikipedia
 def is_convertible_to_int(s):
@@ -166,12 +191,15 @@ if __name__ == "__main__":
         scope="user-library-read",
         requests_timeout=15))  # Definindo a scope necessária
 
-    test_artists = ['Anitta']
+    test_artists = ['Anitta', "Agnes"]
     for artist in test_artists:
         artist_id, artist_name = get_artist_id_ind(artist)
         print(f"ID: {artist_id}, Nome: {artist_name}\n")
 
-    test_ids = ['7FNnA9vBm6EKceENgCGRMb']
+    test_ids = ['7FNnA9vBm6EKceENgCGRMb', '6SsTlCsuCYleNza6xGwynu', '2gBjLmx6zQnFGQJCAQpRgw',
+                "6hyMWrxGBsOx6sWcVj1DqP", "0Q9slhIaEgg190iG8udYIV", "1mYsTxnqsietFxj1OgoGbG"]
     for artist_id in test_ids:
         artist_name = get_artist_name_by_id(artist_id)
         print(f"ID: {artist_id}, Nome: {artist_name}")
+
+    x = get_artists_info_by_ids(test_ids, sp)
