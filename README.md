@@ -43,7 +43,7 @@ Neste relatório, vamos contextualizar as seguintes etapas:
 
 
    <div style="text-align: center;">
-       <img src="docs\relatorios\relatorio_pratico_imgs\drawSQL-BaseDataSets.png" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs\relatorios\relatorio pratico imgs\drawSQL-BaseDataSets.png" alt="Texto alternativo" style="width: 550px;"/>
    </div>
 
 - **As metodologias utilizadas e a stack _Hadoop_ empregue para a realização do projeto:**
