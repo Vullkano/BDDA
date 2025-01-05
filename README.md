@@ -243,7 +243,7 @@ Após a criação do utilizador, ao aceder à interface do _HUE_, foi necessári
        <img src="docs/relatorios/relatorio_pratico_imgs/criarDBspotify.png" alt="Texto alternativo" style="width: 550px;"/>
    </div>
 
-Para a inserção das tabelas, era necessário ter os mesmos dados nos formatos **_.csv_** e **_.parquet_**, pois o [**CSV**](https://en.wikipedia.org/wiki/Comma-separated_values) é utilizado para carregar dados rapidamente, enquanto o [**Parquet**](https://www.databricks.com/br/glossary/what-is-parquet) garante uma análises eficiente e de alto desempenho no Hadoop. Após a inserção de todas as tabelas, estas tornaram-se visíveis no dashboard do HUE (pode ser visualizado à esquerda, abaixo da **database** do Spotify). Para verificar se tudo estava a funcionar corretamente, foi executado o seguinte comando SQL:
+Para a inserção das tabelas, era necessário ter os mesmos dados nos formatos **_.csv_** e **_.parquet_**, pois o [**CSV**](https://en.wikipedia.org/wiki/Comma-separated_values) é utilizado para carregar dados rapidamente, enquanto o [**Parquet**](https://www.databricks.com/br/glossary/what-is-parquet) garante uma análise eficiente e de alto desempenho no Hadoop. Após a inserção de todas as tabelas, estas tornaram-se visíveis no dashboard do HUE (pode ser visualizado à esquerda, abaixo da **database** do Spotify). Para verificar se tudo estava a funcionar corretamente, foi executado o seguinte comando SQL:
 
 ```sql
 SELECT * FROM spotify.hue__tmp_artist_details
