@@ -573,7 +573,7 @@ ORDER BY avg_energy DESC;
 Através da análise da energia média dos álbuns, destacamos os top-5 e os low-5 álbuns com maior e menor média de energia. Entre os artistas nascidos fora dos Estados Unidos, o álbum "Novo Sonic System" destaca-se como o mais energético, enquanto "Pocketful Of Sunshine" apresenta a menor energia média. Já entre os álbuns de artistas nascidos nos Estados Unidos, "4OKI" lidera como o álbum mais energético, enquanto "Cuz I Love You (Super Deluxe)" aparece como o menos energético. De destacar também o álbum "5OKI" que também aparece no TOP-3 (como o "4OKI"->TOP-1), álbuns de autoria de Steve Aoki, um cantor norte-americano de música eletrónica, normalmente mais "energética".
 
 
-Embora haja variação na energia média, os valores permanecem em uma faixa relativamente estreita, que reflete uma consistência nos géneros ou estilos musicais representados. No entanto, esses resultados também são influenciados pelo número de músicas presentes em cada álbum na base de dados. Para que os valores não fossem demasiado altos optámos por considerar apenas álbuns com mais de 2 músicas presentes na base de dados.
+Embora haja variação na energia média, os valores permanecem numa faixa relativamente estreita, que reflete uma consistência nos géneros ou estilos musicais representados. No entanto, esses resultados também são influenciados pelo número de músicas presentes em cada álbum na base de dados. Para que os valores não fossem demasiado altos optámos por considerar apenas álbuns com mais de 2 músicas presentes na base de dados.
 
 #### 4. Relação entre loudness e energy para artistas com géneros musicais semelhantes
 
