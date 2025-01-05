@@ -119,8 +119,7 @@ Directory structure:
 
   - **`data/`**: Diretório que armazena os datasets utilizados no projeto. Está organizado em duas categorias principais:  
      - **`raw/`**: Dados brutos recolhidos diretamente das fontes originais, sem qualquer tratamento ou modificação.  
-     - **`processed/`**: Dados já tratados, limpos e prontos para serem utilizados na análise e visualização.
-        e os processed (dados já tratados).
+     - **`processed/`**: Dados já tratados, limpos e prontos para serem utilizados na análise e na visualização.
   - **`docs/`**: Contém a documentação do projeto, incluindo o enunciado, relatórios teóricos e práticos.
   - **`notebook/`**: Contém os notebooks utilizados para a análise dos dados e a criação de visualizações.
   - **`src/`**: Contém os scripts utilizados para a recolha, processamento e análise dos dados, bem como a implementação de modelos de aprendizagem não supervisionada.
