@@ -16,16 +16,13 @@ _Relatório: Componente Técnica_
 - **João Francisco Botas** (104782)  
 - **Rebeca Sampaio** (126628)
 
----
-
 ## **Índice**
 1. [Introdução](#introdução)
-2. [Metodologia e stack Hadoop](#metodologia-e-stack-hadoop)
-3. [Descrição dos conjuntos de dados a utilizar](#descrição-dos-conjuntos-de-dados-a-utilizar)
-4. [Análise ao utilizar a imagem Hue](#análise-ao-utilizar-a-imagem-hue)
-5. [Conclusão](#conclusão)
-
----
+2. [Metodologia e Stack Hadoop](#metodologia-e-stack-hadoop)
+3. [Descrição dos Conjuntos de Dados Utilizados](#descrição-dos-conjuntos-de-dados-a-utilizar)
+    - [Análise e Conclusões sobre os Artistas](#dataset-1-artist_details)
+    - [Análise e Conclusões sobre as Músicas dos Artistas](#dataset-2-artist_tracks)
+4. [Conclusão](#conclusão)
 
 ## **Introdução**
 > **Objetivo**: Apresentar um relatório sobre o uso de bases de dados distribuídas avançadas no contexto do projeto desenvolvido.
@@ -50,8 +47,6 @@ Neste relatório, vamos contextualizar as seguintes etapas:
    <div style="text-align: center;">
        <img src="docs/relatorios/relatorio_pratico_imgs/drawSQL-BaseDataSets.png" alt="Texto alternativo" style="width: 550px;"/>
    </div>
-
-> **Nota**: Posteriormente, será criada uma nova tabela no próprio Hadoop, que será utilizada para a análise detalhada de cada país. TODO: Colocar tabela
 
 - **As metodologias utilizadas e a stack _Hadoop_ empregue para a realização do projeto:**
 
@@ -130,16 +125,8 @@ Directory structure:
   - **`notebook/`**: Contém os notebooks utilizados para a análise dos dados e a criação de visualizações.
   - **`src/`**: Contém os scripts utilizados para a recolha, processamento e análise dos dados, bem como a implementação de modelos de aprendizagem não supervisionada.
 
-<progress value="20" max="100" style="width: 100%; height: 25px; border-radius: 10px; background-color: #f0f0f0; border: none;">
-  <div style="background-color: #4caf50; height: 100%; width: 5%; border-radius: 10px;"></div>
-</progress>
-
----
-
-
 ## **Metodologia e stack Hadoop**
 Para a realização deste projeto, foi utilizado um ficheiro [_docker-compose.yml_](https://github.com/Vullkano/BDDA/blob/main/docker-compose.yml), que se baseia em imagens disponíveis no Docker Hub. Estas imagens oferecem uma estrutura pré-configurada, facilitando a criação e configuração rápida do ambiente necessário para o funcionamento do cluster Hadoop e dos serviços associados. Segue-se uma visualização das componentes definidas no ficheiro, acompanhada de uma breve explicação de cada uma:
-
 
 ```
 version: "3"
@@ -253,14 +240,13 @@ Após iniciar o Docker e os respetivos containers utilizando as imagens configur
 
 Após a criação do utilizador, ao aceder à interface do _HUE_, foi necessário criar a base de dados onde seriam inseridas as tabelas previamente criadas. Abaixo, apresenta-se uma imagem que demonstra a criação da base de dados _spotify_.
 
-
    <div style="text-align: center;">
        <img src="docs/relatorios/relatorio_pratico_imgs/criarDBspotify.png" alt="Texto alternativo" style="width: 550px;"/>
    </div>
 
 Para a inserção das tabelas, era necessário ter os mesmos dados nos formatos **_.csv_** e **_.parquet_**, pois o [**CSV**](https://en.wikipedia.org/wiki/Comma-separated_values) é utilizado para carregar dados rapidamente, enquanto o [**Parquet**](https://www.databricks.com/br/glossary/what-is-parquet) garante uma análises eficiente e de alto desempenho no Hadoop. Após a inserção de todas as tabelas, estas tornaram-se visíveis no dashboard do HUE (pode ser visualizado à esquerda, abaixo da **database** do Spotify). Para verificar se tudo estava a funcionar corretamente, foi executado o seguinte comando SQL:
 
-```
+```sql
 SELECT * FROM spotify.hue__tmp_artist_details
 ```
 
@@ -269,10 +255,6 @@ Abaixo, podemos visualizar o output e concluir que está tudo pronto para começ
    <div style="text-align: center;">
        <img src="docs\relatorios\relatorio_pratico_imgs\SqlBase_comando1.png" alt="Texto alternativo" style="width: 550px;"/>
    </div>
-
-<progress value="40" max="100" style="width: 100%; height: 25px; border-radius: 10px; background-color: #f0f0f0; border: none;">
-  <div style="background-color: #4caf50; height: 100%; width: 5%; border-radius: 10px;"></div>
-</progress>
 
 ## **Descrição dos conjuntos de dados a utilizar**
 ### Dataset 1: _artist_details_
@@ -313,7 +295,7 @@ Para realizar esta análise, será utilizado o dashboard para a visualização d
 
 Na imagem acima, é evidente que a nossa base de dados contém um número significativamente maior de artistas do sexo masculino em comparação com o sexo feminino. Contudo, é importante ressaltar que esta base de dados resulta de uma limpeza do conjunto de dados dos "top artistas" provenientes de uma fonte do Kaggle. Assim, não podemos generalizar que existem mais artistas do sexo masculino do que feminino no universo dos artistas de topo, uma vez que esta análise se baseia apenas nos dados disponíveis nesta base específica.
 
-```
+```sql
 SELECT
     gender,
     COUNT(*) AS ArtistCount
@@ -343,22 +325,22 @@ Relacionando a popularidade com o número de seguidores de cada um artistas, é 
        <img src="docs\relatorios\relatorio_pratico_imgs\Tabela_followers_popularity_Filter4.png" alt="Texto alternativo" style="width: 550px;"/>
    </div>
 
-##### 4. Género de cada um dos artistas
+##### 3. Género de música de cada um dos artistas
 
 
-Uma característica muito interessante de se analisar, mas ao mesmo tempo bastante complexa, é o gênero musical de cada um dos artistas. Na tabela de exemplo de variáveis do [dataset 1](#dataset-1-artist_details), podemos observar que os três artistas mencionados possuem múltiplos estilos musicais, o que torna difícil compará-los, pois as **strings** dos estilos variam. Para facilitar uma análise mais clara, uma abordagem seria simplificar os gêneros musicais.
+Uma característica muito interessante de se analisar, mas ao mesmo tempo bastante complexa, é o género musical de cada um dos artistas. Na tabela de exemplo de variáveis do [dataset 1](#dataset-1-artist_details), podemos observar que os três artistas mencionados possuem múltiplos estilos musicais, o que torna difícil compará-los, pois as **strings** dos estilos variam. Para facilitar uma análise mais clara, uma abordagem seria simplificar os géneros musicais.
 
-Por exemplo, o [**Post Malone**](https://open.spotify.com/intl-pt/artist/246dkjvS1zLTtiykXe5h60) possui como gêneros _rap_ e _melodic rap_, mas, de forma geral, podemos agrupá-lo como _rap_, já que esses estilos não se diferenciam significativamente. Tendo isso em mente, para realizar uma análise simplificada, foram considerados apenas os gêneros mais conhecidos e amplos, sendo esses os seguintes:
+Por exemplo, o [**Post Malone**](https://open.spotify.com/intl-pt/artist/246dkjvS1zLTtiykXe5h60) possui como géneros _rap_ e _melodic rap_, mas, de forma geral, podemos agrupá-lo como _rap_, já que esses estilos não se diferenciam significativamente. Tendo isso em mente, para realizar uma análise simplificada, foram considerados apenas os géneros mais conhecidos e amplos, sendo esses os seguintes:
 
 
    <div style="text-align: center;">
        <img src="docs\relatorios\relatorio_pratico_imgs\generosBarPlot.png" alt="Texto alternativo" style="width: 550px;"/>
    </div>
 
-Analisando detalhadamente, o **pop** é, de longe, o estilo com o maior número de artistas, seguido pelo **hip-hop** e **rap**, ambos com números consideravelmente menores. Os estilos **eletrônica** e **rock** são muito menores, somando menos do que todos os outros estilos restantes juntos.
+Analisando detalhadamente, o **pop** é, de longe, o estilo com o maior número de artistas, seguido pelo **hip-hop** e **rap**, ambos com números consideravelmente menores. Os estilos **eletrónica** e **rock** são muito menores, somando menos do que todos os outros estilos restantes juntos.
 
 
-```
+```sql
 SELECT 
     CASE
         WHEN genres LIKE '%hip hop%' THEN 'Hip-Hop'
@@ -393,7 +375,7 @@ Na imagem acima, podemos observar a contagem do número de artistas por país de
 
 Ao separar os dados por género, vemos que os três primeiros países possuem mais artistas do sexo masculino, como era de se esperar. Contudo, um dado interessante é que, por exemplo, a Austrália apresenta exclusivamente artistas do sexo feminino, o que revela disparidades curiosas entre os países analisados.
 
-```
+```sql
 SELECT
     country_born,
     COUNT(*) AS total_count,
@@ -413,8 +395,13 @@ Para termos uma noção da proporção, vamos então visualizar um gráfico circ
 
 Analisando o gráfico acima, é evidente que os Estados Unidos representam a maioria absoluta do nosso dataset, com uma participação superior a 60%. É interessante notar que os três primeiros países do nosso _top3_ correspondem a quase 75% da nossa base de dados.
 
-
 ### Dataset 2: _artist_tracks_
+
+Para a criação do segundo conjunto de dados, o grupo inicialmente planeava utilizar a API do Spotify para recolher não apenas as músicas dos artistas, mas também as respetivas características. No entanto, deparou-se com um grande problema: a API foi [descontinuada](https://developer.spotify.com/documentation/web-api/reference/get-audio-features) na parte relativa à recolha de análises das músicas. Isto deveu-se à política do Spotify, que restringiu a utilização de *machine learning* com base nas suas músicas.
+
+Para solucionar esta limitação, o grupo procurou uma base de dados alternativa que permitisse realizar a interligação desejada. Foi encontrada uma base de dados com mais de [1,2 milhões de músicas](https://www.kaggle.com/datasets/rodolfofigueroa/spotify-12m-songs), criada a partir de recolhas feitas antes das alterações na API do Spotify. Como esta base de dados incluía o *ID* dos artistas, tornou-se viável realizar a interligação entre os dados das tabelas e proceder à limpeza necessária.
+
+Abaixo, podemos visualizar as características de cada uma das colunas:
 
 |Id                    | Type        | Description
 |----------------|--------------|-------------------------------------|
@@ -440,17 +427,9 @@ Analisando o gráfico acima, é evidente que os Estados Unidos representam a mai
 | `key`                    |int              |Representa a tonalidade principal da música usando números (0 a 11), |
 | `mode`                    |boolean              |Indica se a música está em tom maior ou menor. (0=menor, 1=maior).|
 | `is_solo`                    |boolean              |Indica se a música foi feita a solo ou com feature. (0=feature, 1=solo).|
-| `cluster_hierarchical`                    |int              |Indica o grupo de agrupamento que foi atribuído no [clustering hierárquico](https://github.com/Vullkano/BDDA/blob/main/src/model/unsupervised.py). (0=menor, 1=maior).|
+| `cluster_hierarchical`                    |int              |Indica o grupo de agrupamento que foi atribuído no [clustering hierárquico](https://github.com/Vullkano/BDDA/blob/main/src/model/unsupervised.py). (4 grupos diferentes -> [Visualização](docs\relatorios\relatorio_pratico_imgs\clusterhierarquico.png))
 
-## **Análise ao utilizar o Hue**
-
-O processo desenvolvido nesta fase pode ser encontrado na seguinte [pasta](https://github.com/Vullkano/BDDA/tree/main/docs/relatorios/relatorio%20pratico%20imgs).
-
-(...)
-
-Com a tabela dos _artists_details_, conseguimos perceber que a distribuição de artistas nascidos nos EUA e fora dos EUA é bastante parecida. Daí, aos vermos as músicas dos artistas, vamos fazer uma análise exploratória de dados separada, a fim de retirar conclusões e descobrir padrões entre a música ouvida no Spotify para artistas nascidos nos EUA vs fora dos EUA.
-
-### Relação entre danceability e energy (agrupado por is_solo)
+#### 1. Relação entre danceability e energy (agrupado por is_solo)
 
 Como primeira relação achámos relevante ver se o quão a música era dançável relacionava-se com a energia da mesma; agrupámos para as músicas solo e feature para perceber se os features tendiam para serem músicas mais "mexidas" ou não. Para isso, fizemos a query seguinte:
 ```sql
@@ -483,7 +462,7 @@ Comparando os EUA com os de fora dos EUA, vemos que a dispersão é mais ou meno
 De realçar também que as músicas com menos "dançabilidade" têm um tempo de duração inferior relativamente às dos artistas nascidos nos EUA (tamanho das bolhas).
 
 
-### Média de danceability por artist_name
+#### 2. Média de danceability por artist_name
 
 ```sql
 SELECT t.artist_name, AVG(t.danceability) AS avg_danceability
@@ -517,7 +496,7 @@ ORDER BY avg_danceability DESC;
 </details>
 
 <details>
-  <summary>Tabela com músicas de artistas nascidos nos EUA (TOP-5 e LOW-5)</summary>
+  <summary>Tabela com músicas de artistas nascidos fora dos EUA (TOP-5 e LOW-5)</summary>
 
 | Posição | Artista (Nascidos fora dos EUA)          | Mean(danceability)       |
 |---------|------------------------------------------|--------------------------|
@@ -540,7 +519,7 @@ ORDER BY avg_danceability DESC;
 
 Através desta relação queremos comparar os top-5 e os low-5 com média de dançabilidade entre os diferentes artistas. Nos EUA destacamos o Kanye West como a pessoa que produz músicas mais dançáveis, em média, e a Kali Uchis e NF como menos dançáveis (em média). Já dos artistas nascidos fora dos EUA destacamos o Drake e o Olly Murs a produzir músicas mais e menos dançáveis, em média, respetivamente. Os valores não variam muito e também está dependente do número de músicas que cada artista tem na base de dados.
 
-### Média de energy por album
+#### 3. Média de energy por album
 
 ```sql
 SELECT t.album, AVG(t.energy) AS avg_energy
@@ -597,7 +576,7 @@ Através da análise da energia média dos álbuns, destacamos os top-5 e os low
 
 Embora haja variação na energia média, os valores permanecem em uma faixa relativamente estreita, que reflete uma consistência nos géneros ou estilos musicais representados. No entanto, esses resultados também são influenciados pelo número de músicas presentes em cada álbum na base de dados. Para que os valores não fossem demasiado altos optámos por considerar apenas álbuns com mais de 2 músicas presentes na base de dados.
 
-### Relação entre loudness e energy para artistas com géneros musicais semelhantes
+#### 4. Relação entre loudness e energy para artistas com géneros musicais semelhantes
 
 Nesta análise decidimos ver se existe alguma relação entre os géneros de artistas para artistas nascidos nos EUA e fora dos EUA. 
 
@@ -637,3 +616,68 @@ Já os artistas de eletrónica (Steve Aoki e Afrojack) têm música com muita en
 Os cantores de hip-hop e rap decidimos incluir apenas porque na danceability vimos que o Drake destacava-se como um dos mais dançáveis e o NF como um dos menos. Contudo, percebemos que o NF tem as suas duas músicas mais altas (mais próximas de 0) e mais energéticas que as 3 músicas do Drake da base de dados. Ou seja, considerando apenas estes artistas neste estilo, vimos esta relação engraçada e deveras "surpreendente". Normalmente as letras do NF são mais tristes e tocam em pontos mais sérios, mas com alguma raiva a cantar e com a batida alta do que o Drake que é "mais comercial".
 
 
+#### 5. Cluster Hierárquico
+
+Como mencionado anteriormente, foi realizado um *clustering* hierárquico simples para analisar se seria possível agrupar as músicas com base nas suas características mais marcantes. Abaixo, apresenta-se um [dendograma](https://support.minitab.com/pt-br/minitab/help-and-how-to/statistical-modeling/multivariate/how-to/cluster-observations/interpret-the-results/all-statistics-and-graphs/dendrogram/) que demonstra que um valor interessante para o número de clusters é **4**:
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\dendogramaCluster.png" alt="Texto alternativo" style="width: 550px;"/>
+</div>
+
+Após a criação destes grupos, chegou o momento de analisar como cada um deles se comportava. Para isso, foi calculada a média de cada característica das músicas em relação a cada grupo.
+
+
+```sql
+SELECT 
+    cluster_hierarchical,
+    AVG(danceability) AS avg_danceability,
+    AVG(loudness) AS avg_loudness,
+    AVG(speechiness) AS avg_speechiness,
+    AVG(instrumentalness) AS avg_instrumentalness,
+    AVG(valence) AS avg_valence,
+    AVG(duration_ms) AS avg_duration_ms
+FROM 
+    spotify.hue__tmp_artist_tracks
+WHERE 
+    cluster_hierarchical IN (0, 1, 2, 3)
+GROUP BY 
+    cluster_hierarchical;
+```
+
+Após uma análise detalhada, uma das características mais interessantes foi observada no *cluster 3*, que apresentou músicas com elevada instrumentalidade e pouca presença vocal, como é possível visualizar na imagem abaixo:
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\cluster3_analise.png" alt="Texto alternativo" style="width: 550px;"/>
+</div>
+
+Com esta descoberta, foi possível identificar as músicas pertencentes a este grupo, bem como visualizar os respetivos artistas e géneros. Este processo permitiu explorar possíveis padrões relacionados a estas características. Abaixo, podemos então visualizar uma tabela com os resultados:
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\tabelaCluster3.png" alt="Texto alternativo" style="width: 550px;"/>
+</div>
+
+Ao analisarmos detalhadamente, é notório que este grupo inclui músicas eletrónicas, *remixes*, faixas editadas para rádio e músicas instrumentais. Esse padrão ajuda a explicar o motivo pelo qual as músicas apresentam menos vocais e uma maior presença de instrumentalidade, características típicas de faixas, sejam elas originais ou não, mais focadas na batida. Além disso, é evidente que os artistas deste grupo pertencem a géneros mais orientados para a batida, como: *escape room*, *dance pop*, *electro*, entre outros.
+
+```sql
+SELECT 
+    t.name AS track_name,
+    t.artist_name,
+    t.instrumentalness,
+    t.speechiness,
+    a.genres
+FROM 
+    spotify.hue__tmp_artist_tracks t
+JOIN 
+    spotify.hue__tmp_artist_details a ON t.artist_id = a.artist_id
+WHERE 
+    t.cluster_hierarchical = 3;
+```
+
+## Conclusão
+Neste trabalho, foi utilizado o **Docker** com uma imagem que integra o **Hive** e o **Phoenix**. Deste forma, era possível criar um ambiente isolado e facilmente escalável no  **Docker**, ideal para trabalhar com grandes volumes de dados de forma eficiente e controlada. A combinação de **Hive** e **Phoenix** no Docker permitiu o armazenamento e consulta eficientes de dados distribuídos, utilizando a capacidade do **Hive** para trabalhar com grandes conjuntos de dados e o **Phoenix** para realizar consultas SQL de maneira rápida sobre o HBase, garantindo um desempenho superior para as análises realizadas.
+
+Durante a análise dos dados, o grupo concentrou-se na exploração das **características das músicas** e dos **artistas**. Relativamente aos **artistas**, foi observado que a base de dados contém uma maior quantidade de artistas dos **Estados Unidos** e do **sexo masculino**. Também foi notada uma alta relação entre o **número de seguidores** e a **popularidade** dos artistas. Outro ponto relevante foi que o género **Pop** se destacou como o mais comum entre os artistas da base de dados.
+
+No que diz respeito às **tracks**, o grupo encontrou uma forte correlação entre as variáveis **danceability** e **energia**. Além disso, um **cluster interessante** foi o **cluster 3**, que se destacou por agrupar **remixes**, **músicas eletrónicas** e **faixas instrumentais**. Esse cluster apresentou uma maior presença de instrumentalidade e menor foco vocal, características típicas de músicas com forte ênfase na batida.
+
+Em termos de conclusões gerais, o trabalho permitiu explorar eficazmente as capacidades do **Docker** na criação de ambientes de trabalho dinâmicos e escaláveis, e contribuiu para a compreensão dos dados musicais através da análise de agrupamentos e características dos artistas e das faixas. Este tipo de análise não só revelou padrões valiosos para a indústria musical, como também pode ser expandido para outras áreas de pesquisa que envolvam grandes volumes de dados e a necessidade de processamento distribuído.
