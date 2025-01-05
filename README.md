@@ -318,7 +318,7 @@ O gráfico acima aplica 4 variáveis:
 
 > Antes de proceder a qualquer conclusão, é importante referir que a visualização acima possui uma limitação do HUE, que exibe apenas 100 linhas, não apresentando o gráfico com a base de dados completa.
 
-Relacionando a popularidade com o número de seguidores de cada um artistas, é notório que existe uma correlação entre estas 2 variáveis, isto é, quanto mais popular é um artista, mais seguidores ele tem. Somado a isso, podemos visualizar que os artistas masculinos são mais velhos que as artistas femeninas (relembrar que esta conclusão é limitada devido ás limitações do HUE). É interessante reparar que a artista mais famosa e com mais seguidores é do sexo femenino, sendo ela a [**Taylor Swift**](https://open.spotify.com/intl-pt/artist/06HL4z0CvFAxyc27GXpf02). Abaixo, podemos então visualizar os artistas mais famosos:
+Relacionando a popularidade com o número de seguidores de cada um artistas, é notório que existe uma correlação entre estas 2 variáveis, isto é, quanto mais popular é um artista, mais seguidores ele tem. Somado a isso, podemos visualizar que os artistas masculinos são mais velhos que as artistas femeninas (relembrar que esta conclusão é limitada devido às limitações do HUE). É interessante reparar que a artista mais famosa e com mais seguidores é do sexo femenino, sendo ela a [**Taylor Swift**](https://open.spotify.com/intl-pt/artist/06HL4z0CvFAxyc27GXpf02). Abaixo, podemos então visualizar os artistas mais famosos:
 
    <div style="text-align: center;">
        <img src="docs\relatorios\relatorio_pratico_imgs\Tabela_followers_popularity_Filter4.png" alt="Texto alternativo" style="width: 550px;"/>
