@@ -482,23 +482,6 @@ Após observarmos os gráficos de dispersão para os artistas nascidos nos EUA e
 Comparando os EUA com os de fora dos EUA, vemos que a dispersão é mais ou menos parecida. Porém, os artistas nascidos fora dos EUA atingem valores mais altos de energia e têm uma dispersão maior de valores de danceability para músicas com features, do que os nascidos nos EUA. 
 De realçar também que as músicas com menos "dançabilidade" têm um tempo de duração inferior relativamente às dos artistas nascidos nos EUA (tamanho das bolhas).
 
-### Relação entre  (agrupado por )
-
-**NOTA**: Uma das limitações é que só são mostrados 100 músicas nos gráficos de dispersão seguintes. Apesar disso, é válido fazer uma análise para esta amostra.
-
-<details open>
-  <summary>Gráfico de dispersão  <strong>artistas nascidos nos EUA</strong></summary>
-<div style="text-align: center;">
-       <img src="docs/relatorios/relatorio_pratico_imgs/" alt="Texto alternativo" style="width: 550px;"/>
-</div>
-</details>
-
-<details open>
-  <summary>Gráfico de dispersão  <strong>artistas nascidos fora dos EUA</strong></summary>
-<div style="text-align: center;">
-       <img src="docs/relatorios/relatorio_pratico_imgs/" alt="Texto alternativo" style="width: 550px;"/>
-</div>
-</details>
 
 ### Média de danceability por artist_name
 
@@ -613,3 +596,44 @@ Através da análise da energia média dos álbuns, destacamos os top-5 e os low
 
 
 Embora haja variação na energia média, os valores permanecem em uma faixa relativamente estreita, que reflete uma consistência nos géneros ou estilos musicais representados. No entanto, esses resultados também são influenciados pelo número de músicas presentes em cada álbum na base de dados. Para que os valores não fossem demasiado altos optámos por considerar apenas álbuns com mais de 2 músicas presentes na base de dados.
+
+### Relação entre loudness e energy para artistas com géneros musicais semelhantes
+
+Nesta análise decidimos ver se existe alguma relação entre os géneros de artistas para artistas nascidos nos EUA e fora dos EUA. 
+
+Para isso escolhemos três artistas de géneros de músicas que diferenciam-se pela sua intensidade, ritmo e energia. Associados a estes géneros escolhemos 3 artistas específicos provinientes dos EUA e fora dos EUA; os critérios de escolha foram:
+- mesmo estilo principal em comum;
+- os resultados anteriores (como NF e Drake que tinham os mesmos);
+- quantidade de músicas parecidas presentes na base de dados;
+- artistas conhecidos pelo grupo.
+
+<details open>
+  <summary>Artistas e géneros selecionados</summary>
+
+| Artista Nascido nos EUA | Artista Nascido Fora dos EUA | Género em Comum          |
+|--------------------------|-----------------------------|--------------------------|
+| Ava Max                 | Anne-Marie                 | Pop                      |
+| NF                      | Drake                      | Hip Hop, Pop Rap         |
+| Steve Aoki              | Afrojack                   | EDM, Electro House, Pop Dance |
+
+</details>
+
+```sql
+SELECT t.*
+FROM spotify.hue__tmp_artist_tracks t
+JOIN spotify.hue__tmp_artist_details d
+  ON t.artist_id = d.artist_id
+WHERE d.artist_name IN ('Ava Max', 'Nf', 'Steve Aoki', 'Anne-Marie', 'Drake', 'Afrojack');
+```
+
+<div style="text-align: center;">
+       <img src="docs/relatorios/relatorio_pratico_imgs/disp-loudness_energy.jpg" alt="Texto alternativo" style="width: 550px;"/>
+</div>
+
+Através do gráfico concluímos que as artistas de pop (Anne-Marie e Ava Max) têm os valores de loudness e energy mais dispersos, onde atingem os dois extremos opostos do gráfico. Isto deve-se talvez pela música pop ser muito abrangente e em que duas músicas diferentes podem ter carcaterísticas completamente distintas. Concluindo, não há uma correlação exata entre loudness e energy e não há nada muito significativo entre a artista oriunda dos EUA e da França (Anne-Marie).
+
+Já os artistas de eletrónica (Steve Aoki e Afrojack) têm música com muita energia porque são músicas que fazem vibrar, mas que nem sempre são muito altas, em termos de decibeis, relativamente a algumas de pop. Talvez isto aconteça porque há músicas que têm bastante batida e ritmo, mas que não tocam em notas tão altas; ou que não têm tantas camadas(layers), como voz, _second voices_, etc.. A música "Home We'll Go" do Steve Aoki pode refletir isto ou este [exemplo de playlist](https://www.youtube.com/watch?v=AA0tPSKpznw). Em geral, as músicas a que temos acesso na base de dados do Steve Aoki são mais altas que as do Afrojack.
+
+Os cantores de hip-hop e rap decidimos incluir apenas porque na danceability vimos que o Drake destacava-se como um dos mais dançáveis e o NF como um dos menos. Contudo, percebemos que o NF tem as suas duas músicas mais altas (mais próximas de 0) e mais energéticas que as 3 músicas do Drake da base de dados. Ou seja, considerando apenas estes artistas neste estilo, vimos esta relação engraçada e deveras "surpreendente". Normalmente as letras do NF são mais tristes e tocam em pontos mais sérios, mas com alguma raiva a cantar e com a batida alta do que o Drake que é "mais comercial".
+
+
