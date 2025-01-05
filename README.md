@@ -1,5 +1,7 @@
 # **BDDA - Bases de Dados Distribuídas Avançadas**  
-_Relatório: Componente Técnica_
+**_Relatório: Componente Prática_**
+
+> **NOTA**: A componente técnica do relatório pode ser consultado [aqui](docs/relatorios/relatorio_teorico/BDDAgrupo7-relatorio_teorico.pdf).
 
 ---
 
@@ -39,13 +41,16 @@ Neste relatório, vamos contextualizar as seguintes etapas:
     - O código em **Python** referente aos dados mencionados acima podem ser encontrado no seguinte diretório: [**`src/data`**](src/data)
       - Recolha dos dados do Kaggle: [**`get_data.py`**](src/data/get_data.py)
       - Recolha dos dados da **_API_**: [**`API_Spotify.py`**](src/data/API_Spotify.py)
+      - Conversão dos ficheiros **_.csv_** para **_.parquet_**: [**`parquet_converter.py`**](src\data\parquet_converter.py)
+    - Também existe o diretório [**`src/model`**](src\model), sendo um diretório focado em colocar os algoritmos de _machine learning_, algoritmo este que foi aplicado na tabela [_artist_tracks_](#dataset-2-artist_tracks), possuindo um único ficheiro:
+      - Modelo não supervisionado: [**`unsupervised.py`**](src\model\unsupervised.py)
 
 
    Abaixo, podemos visualizar a relação entre as tabelas, juntamente com as respetivas colunas, que serão explicadas mais detalhadamente à [frente](#descrição-dos-conjuntos-de-dados-a-utilizar).
 
 
    <div style="text-align: center;">
-       <img src="docs/relatorios/relatorio_pratico_imgs/drawSQL-BaseDataSets.png" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs/relatorios/relatorio_pratico_imgs/drawSQL-BaseDataSets.png" alt="Texto alternativo" style="width: 650px;"/>
    </div>
 
 - **As metodologias utilizadas e a stack _Hadoop_ empregue para a realização do projeto:**
@@ -240,10 +245,34 @@ Após iniciar o Docker e os respetivos containers utilizando as imagens configur
 Após a criação do utilizador, ao aceder à interface do _HUE_, foi necessário criar a base de dados onde seriam inseridas as tabelas previamente criadas. Abaixo, apresenta-se uma imagem que demonstra a criação da base de dados _spotify_.
 
    <div style="text-align: center;">
-       <img src="docs/relatorios/relatorio_pratico_imgs/criarDBspotify.png" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs/relatorios/relatorio_pratico_imgs/criarDBspotify.png" alt="Texto alternativo" style="width: 650px;"/>
    </div>
 
-Para a inserção das tabelas, era necessário ter os mesmos dados nos formatos **_.csv_** e **_.parquet_**, pois o [**CSV**](https://en.wikipedia.org/wiki/Comma-separated_values) é utilizado para carregar dados rapidamente, enquanto o [**Parquet**](https://www.databricks.com/br/glossary/what-is-parquet) garante uma análise eficiente e de alto desempenho no Hadoop. Após a inserção de todas as tabelas, estas tornaram-se visíveis no dashboard do HUE (pode ser visualizado à esquerda, abaixo da **database** do Spotify). Para verificar se tudo estava a funcionar corretamente, foi executado o seguinte comando SQL:
+Após a criação da base de dados do *Spotify*, foi necessário inserir as tabelas previamente mencionadas na [introdução](#introdução). O primeiro passo consistiu em adicionar os ficheiros ao ambiente do Hue, como ilustrado na imagem abaixo:
+
+   <div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\verCSV.png" alt="Texto alternativo" style="width: 650px;"/>
+   </div>
+
+É importante referir que possuímos duas versões do mesmo ficheiro: uma em **_.csv_** e outra em **_.parquet_**. O [**CSV**](https://en.wikipedia.org/wiki/Comma-separated_values) é utilizado para carregar dados rapidamente, enquanto o [**Parquet**](https://www.databricks.com/br/glossary/what-is-parquet) assegura uma análise eficiente e de alto desempenho no Hadoop.  
+
+> Adicionalmente, é relevante lembrar que esta versão utiliza o [**Hive-on-MR**](https://www.ibm.com/docs/de/storage-scale-bda?topic=cases-running-hive-mapreduce-execution-engine-test) (*Hive on MapReduce*), que foi descontinuado. Neste projeto, optámos por não trabalhar com o [**Spark**](https://spark.apache.org/).
+
+Após selecionar o primeiro ficheiro, correspondente à tabela dos [_artist_details_](#dataset-1-artist_details), foi apresentada a seguinte visualização:
+
+   <div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\inserirCSV1.png" alt="Texto alternativo" style="width: 650px;"/>
+   </div>
+
+Como é possível observar, o _dashboard_ do **HUE** reconheceu corretamente os dados do ficheiro **.csv**. Tendo isso em conta, foi possível avançar para a página seguinte:  
+
+   <div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\inserirCSV2.png" alt="Texto alternativo" style="width: 650px;"/>
+   </div>
+
+Para concluir a inserção dos dados corretamente, foi necessário selecionar o ficheiro de destino no formato **.parquet**, conforme previamente destacado pela sua importância. Após a inserção da tabela [_artist_details_](#dataset-1-artist_details), o mesmo procedimento foi realizado para a tabela [_track_details_](#dataset-2-artist_tracks).  
+ 
+Após a inserção dos dados, estes tornaram-se visíveis no _dashboard_ do **HUE** (podem ser observados à esquerda, abaixo da **database** do Spotify). Para garantir que tudo estava a funcionar corretamente, foi executado o seguinte comando SQL:  
 
 ```sql
 SELECT * FROM spotify.hue__tmp_artist_details
@@ -252,7 +281,7 @@ SELECT * FROM spotify.hue__tmp_artist_details
 Abaixo, podemos visualizar o output e concluir que está tudo pronto para começar a análise das respetivas tabelas.
 
    <div style="text-align: center;">
-       <img src="docs\relatorios\relatorio_pratico_imgs\SqlBase_comando1.png" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs\relatorios\relatorio_pratico_imgs\SqlBase_comando1.png" alt="Texto alternativo" style="width: 650px;"/>
    </div>
 
 ## **Descrição dos conjuntos de dados a utilizar**
@@ -289,7 +318,7 @@ Para realizar esta análise, será utilizado o dashboard para a visualização d
 ##### 1. Géneros dos artistas
 
    <div style="text-align: center;">
-       <img src="docs\relatorios\relatorio_pratico_imgs\artistas_generoQTD2.png" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs\relatorios\relatorio_pratico_imgs\artistas_generoQTD2.png" alt="Texto alternativo" style="width: 650px;"/>
    </div>
 
 Na imagem acima, é evidente que a nossa base de dados contém um número significativamente maior de artistas do sexo masculino em comparação com o sexo feminino. Contudo, é importante ressaltar que esta base de dados resulta de uma limpeza do conjunto de dados dos "top artistas" provenientes de uma fonte do Kaggle. Assim, não podemos generalizar que existem mais artistas do sexo masculino do que feminino no universo dos artistas de topo, uma vez que esta análise se baseia apenas nos dados disponíveis nesta base específica.
@@ -307,7 +336,7 @@ GROUP BY
 ##### 2. Followers & Popularity
 
    <div style="text-align: center;">
-       <img src="docs\relatorios\relatorio_pratico_imgs\followers_popularity_Filter4.png" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs\relatorios\relatorio_pratico_imgs\followers_popularity_Filter4.png" alt="Texto alternativo" style="width: 650px;"/>
    </div>
 
 O gráfico acima aplica 4 variáveis:
@@ -321,7 +350,7 @@ O gráfico acima aplica 4 variáveis:
 Relacionando a popularidade com o número de seguidores de cada um artistas, é notório que existe uma correlação entre estas 2 variáveis, isto é, quanto mais popular é um artista, mais seguidores ele tem. Somado a isso, podemos visualizar que os artistas masculinos são mais velhos que as artistas femeninas (relembrar que esta conclusão é limitada devido às limitações do HUE). É interessante reparar que a artista mais famosa e com mais seguidores é do sexo femenino, sendo ela a [**Taylor Swift**](https://open.spotify.com/intl-pt/artist/06HL4z0CvFAxyc27GXpf02). Abaixo, podemos então visualizar os artistas mais famosos:
 
    <div style="text-align: center;">
-       <img src="docs\relatorios\relatorio_pratico_imgs\Tabela_followers_popularity_Filter4.png" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs\relatorios\relatorio_pratico_imgs\Tabela_followers_popularity_Filter4.png" alt="Texto alternativo" style="width: 650px;"/>
    </div>
 
 ##### 3. Género de música de cada um dos artistas
@@ -333,7 +362,7 @@ Por exemplo, o [**Post Malone**](https://open.spotify.com/intl-pt/artist/246dkjv
 
 
    <div style="text-align: center;">
-       <img src="docs\relatorios\relatorio_pratico_imgs\generosBarPlot.png" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs\relatorios\relatorio_pratico_imgs\generosBarPlot.png" alt="Texto alternativo" style="width: 650px;"/>
    </div>
 
 Analisando detalhadamente, o **pop** é, de longe, o estilo com o maior número de artistas, seguido pelo **hip-hop** e **rap**, ambos com números consideravelmente menores. Os estilos **eletrónica** e **rock** são muito menores, somando menos do que todos os outros estilos restantes juntos.
@@ -367,7 +396,7 @@ GROUP BY
 ##### 4. Local de nascimento dos artistas
 
    <div style="text-align: center;">
-       <img src="docs\relatorios\relatorio_pratico_imgs\country_born_Count3.png" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs\relatorios\relatorio_pratico_imgs\country_born_Count3.png" alt="Texto alternativo" style="width: 650px;"/>
    </div>
 
 Na imagem acima, podemos observar a contagem do número de artistas por país de nascimento. É evidente que este gráfico reflete um _top 5_ dos locais de nascimento, organizado de forma decrescente. De maneira notável, os **EUA** destacam-se como o país com o maior número de artistas na nossa base de dados, apresentando uma quantidade significativamente superior aos demais. Em segundo lugar, encontramos o Reino Unido, seguido do Canadá. A partir do quarto lugar, os valores tornam-se consideravelmente menores, tornando-se até difíceis de visualizar.
@@ -389,7 +418,7 @@ GROUP BY
 Para termos uma noção da proporção, vamos então visualizar um gráfico circular que nos permite ter noção desta disparidade.
 
    <div style="text-align: center;">
-       <img src="docs\relatorios\relatorio_pratico_imgs\country_born_PiePlot3.png" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs\relatorios\relatorio_pratico_imgs\country_born_PiePlot3.png" alt="Texto alternativo" style="width: 650px;"/>
    </div>
 
 Analisando o gráfico acima, é evidente que os Estados Unidos representam a maioria absoluta do nosso dataset, com uma participação superior a 60%. É interessante notar que os três primeiros países do nosso _top3_ correspondem a quase 75% da nossa base de dados.
@@ -444,14 +473,14 @@ WHERE d.country_born = 'United States'; -- != 'United States'
 <details open>
   <summary>Gráfico de dispersão danceability/energy <strong>artistas nascidos nos EUA</strong></summary>
 <div style="text-align: center;">
-       <img src="docs/relatorios/relatorio_pratico_imgs/EUA-disp-danceability_energy.jpg" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs/relatorios/relatorio_pratico_imgs/EUA-disp-danceability_energy.jpg" alt="Texto alternativo" style="width: 650px;"/>
 </div>
 </details>
 
 <details open>
   <summary>Gráfico de dispersão danceability/energy <strong>artistas nascidos fora dos EUA</strong></summary>
 <div style="text-align: center;">
-       <img src="docs/relatorios/relatorio_pratico_imgs/noEUA-disp-danceability_energy.jpg" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs/relatorios/relatorio_pratico_imgs/noEUA-disp-danceability_energy.jpg" alt="Texto alternativo" style="width: 650px;"/>
 </div>
 </details>
 
@@ -605,7 +634,7 @@ WHERE d.artist_name IN ('Ava Max', 'Nf', 'Steve Aoki', 'Anne-Marie', 'Drake', 'A
 ```
 
 <div style="text-align: center;">
-       <img src="docs/relatorios/relatorio_pratico_imgs/disp-loudness_energy.jpg" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs/relatorios/relatorio_pratico_imgs/disp-loudness_energy.jpg" alt="Texto alternativo" style="width: 650px;"/>
 </div>
 
 Através do gráfico concluímos que as artistas de pop (Anne-Marie e Ava Max) têm os valores de loudness e energy mais dispersos, onde atingem os dois extremos opostos do gráfico. Isto deve-se talvez pela música pop ser muito abrangente e em que duas músicas diferentes podem ter carcaterísticas completamente distintas. Concluindo, não há uma correlação exata entre loudness e energy e não há nada muito significativo entre a artista oriunda dos EUA e da França (Anne-Marie).
@@ -620,7 +649,7 @@ Os cantores de hip-hop e rap decidimos incluir apenas porque na danceability vim
 Como mencionado anteriormente, foi realizado um *clustering* hierárquico simples para analisar se seria possível agrupar as músicas com base nas suas características mais marcantes. Abaixo, apresenta-se um [dendograma](https://support.minitab.com/pt-br/minitab/help-and-how-to/statistical-modeling/multivariate/how-to/cluster-observations/interpret-the-results/all-statistics-and-graphs/dendrogram/) que demonstra que um valor interessante para o número de clusters é **4**:
 
 <div style="text-align: center;">
-       <img src="docs\relatorios\relatorio_pratico_imgs\dendogramaCluster.png" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs\relatorios\relatorio_pratico_imgs\dendogramaCluster.png" alt="Texto alternativo" style="width: 650px;"/>
 </div>
 
 Após a criação destes grupos, chegou o momento de analisar como cada um deles se comportava. Para isso, foi calculada a média de cada característica das músicas em relação a cada grupo.
@@ -646,13 +675,13 @@ GROUP BY
 Após uma análise detalhada, uma das características mais interessantes foi observada no *cluster 3*, que apresentou músicas com elevada instrumentalidade e pouca presença vocal, como é possível visualizar na imagem abaixo:
 
 <div style="text-align: center;">
-       <img src="docs\relatorios\relatorio_pratico_imgs\cluster3_analise.png" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs\relatorios\relatorio_pratico_imgs\cluster3_analise.png" alt="Texto alternativo" style="width: 650px;"/>
 </div>
 
 Com esta descoberta, foi possível identificar as músicas pertencentes a este grupo, bem como visualizar os respetivos artistas e géneros. Este processo permitiu explorar possíveis padrões relacionados a estas características. Abaixo, podemos então visualizar uma tabela com os resultados:
 
 <div style="text-align: center;">
-       <img src="docs\relatorios\relatorio_pratico_imgs\tabelaCluster3.png" alt="Texto alternativo" style="width: 550px;"/>
+       <img src="docs\relatorios\relatorio_pratico_imgs\tabelaCluster3.png" alt="Texto alternativo" style="width: 650px;"/>
 </div>
 
 Ao analisarmos detalhadamente, é notório que este grupo inclui músicas eletrónicas, *remixes*, faixas editadas para rádio e músicas instrumentais. Esse padrão ajuda a explicar o motivo pelo qual as músicas apresentam menos vocais e uma maior presença de instrumentalidade, características típicas de faixas, sejam elas originais ou não, mais focadas na batida. Além disso, é evidente que os artistas deste grupo pertencem a géneros mais orientados para a batida, como: *escape room*, *dance pop*, *electro*, entre outros.
