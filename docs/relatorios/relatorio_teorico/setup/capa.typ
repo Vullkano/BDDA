@@ -1,6 +1,6 @@
 #import "template.typ": *
 
-#let titulo = "Relatório Teórico acerca do stack Hadoop"
+#let titulo = "Relatório Teórico acerca de componentes do stack Hadoop"
 #let subtitulo = "Trabalho de Grupo realizado no âmbito da Unidade Curricular de Bases de Dados Distribuídas Avançadas do 1º ano do Mestrado em Ciência de Dados"
 #let indice= false
 // TODO change to grid
@@ -27,21 +27,21 @@
 #v(0.1cm)
 #line(length: 100%, stroke: 0.5pt)
 
-#v(0.4cm)
+#v(0.1cm)
 #par(leading: 0.22cm)[
   #text(28pt)[#titulo]
   #linebreak()
   #v(0.1cm)
   #text(16pt)[#subtitulo]
 ]
-#v(0.4cm)
+#v(0.1cm)
 #line(length: 100%, stroke: 1pt)
 #if indice {
   v(0.4cm)
 } else {
   v(2cm)
 }
-#v(2cm)
+#v(1cm)
 #par(leading: 0.3cm)[
   #text(20pt)[Diogo Freitas, 104841, MCD-LCD]\
   #link("mailto:daafs@iscte-iul.pt")
@@ -55,20 +55,20 @@
 #if indice {
   v(2cm)
 } else {
-  v(6.5cm)
+  v(2.5cm)
 }
 #par(leading: 0.2cm)[
   #text(16pt)[6 de janeiro 2025]\
-  #text(16pt)[Versão 0.1.0] 
+  #text(16pt)[Versão 1.0.0] 
   // 1st number: versão "final" para entregar
   // 2nd number: incremento de conteúdo e tópicos
   // 3rd number: correções de escrita e + info/comments
   // ao aumentar um número, da direita desse passam a 0
 ]
-#v(3cm)
+#v(0.1cm)
 #set align(left)
-// #outline(
-//   title: text(weight: 600)[Índice],
-//   fill: text(15pt, spacing: 220%)[#repeat(" . ")]
-// )
+ #outline(
+   title: text(weight: 600)[Índice],
+   fill: text(15pt, spacing: 220%)[#repeat(" . ")]
+ )
 
