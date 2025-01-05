@@ -1,7 +1,7 @@
 # **BDDA - Bases de Dados Distribuídas Avançadas**  
 **_Relatório: Componente Prática_**
 
-> **NOTA**: A componente técnica do relatório pode ser consultado [aqui](docs/relatorios/relatorio_teorico/BDDAgrupo7-relatorio_teorico.pdf).
+> **NOTA**: A componente técnica do relatório pode ser consultado [aqui](docs/relatorios/relatorio_teorico/BDDA-MCD.pdf).
 
 ---
 
