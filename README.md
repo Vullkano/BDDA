@@ -235,7 +235,7 @@ volumes:
 
 ### Inicialização do servidor 
 
-Após iniciar o Docker e os respetivos containers utilizando as imagens configuradas no ficheiro [_docker-compose.yml_](https://github.com/Vullkano/BDDA/blob/main/docker-compose.yml), foi necessário criar um utilizador. As credenciais do utilizador podem ser consultadas no ficheiro [_Utilizador.txt_](docs\Utilizador.txt).  
+Após iniciar o Docker e os respetivos containers utilizando as imagens configuradas no ficheiro [_docker-compose.yml_](https://github.com/Vullkano/BDDA/blob/main/docker-compose.yml), foi necessário criar um utilizador. As credenciais do utilizador podem ser consultadas no ficheiro [_Utilizador.txt_](docs/Utilizador.txt).  
 
 Após a criação do utilizador, ao aceder à interface do _HUE_, foi necessário criar a base de dados onde seriam inseridas as tabelas previamente criadas. Abaixo, apresenta-se uma imagem que demonstra a criação da base de dados _spotify_.
 
