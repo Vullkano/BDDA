@@ -105,7 +105,6 @@ if __name__ == "__main__":
         "hedizekri/top-charts-artists-country",  # Países dos artistas
         "jackharding/spotify-artist-metadata-top-10k",  # Idade, género dos artistas
         "rodolfofigueroa/spotify-12m-songs",  # Spotify 12M Songs
-        "estienneggx/spotify-unpopular-songs",  # Unpopular Songs
     ]
 
     # Executa o processo de download e conversão

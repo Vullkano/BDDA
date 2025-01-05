@@ -20,8 +20,8 @@ _Relatório: Componente Técnica_
 
 ## **Índice**
 1. [Introdução](#introdução)
-2. [Descrição dos conjuntos de dados a utilizar](#descrição-dos-conjuntos-de-dados-a-utilizar)
-3. [Metodologia e stack Hadoop](#metodologia-e-stack-hadoop)
+2. [Metodologia e stack Hadoop](#metodologia-e-stack-hadoop)
+3. [Descrição dos conjuntos de dados a utilizar](#descrição-dos-conjuntos-de-dados-a-utilizar)
 4. [Análise ao utilizar a imagem Hue](#análise-ao-utilizar-a-imagem-hue)
 5. [Conclusão](#conclusão)
 
@@ -38,6 +38,11 @@ Neste relatório, vamos contextualizar as seguintes etapas:
 
     2. **[_artist_tracks_](#dataset-2-_artist_tracks_)**  
        - O segundo dataset descreve as características das músicas dos artistas, estando relacionado ao primeiro por meio da chave estrangeira (_foreign key_) associada ao _id_ de cada artista. Através deste dataset, é possível verificar o tipo de música de cada artista, analisando características como a dançabilidade, a duração e a complexidade da música.
+    
+    - O código em **Python** referente aos dados mencionados acima podem ser encontrado no seguinte diretório: [**`src/data`**](src/data)
+      - Recolha dos dados do Kaggle: [**`get_data.py`**](src/data/get_data.py)
+      - Recolha dos dados da **_API_**: [**`API_Spotify.py`**](src/data/API_Spotify.py)
+
 
    Abaixo, podemos visualizar a relação entre as tabelas, juntamente com as respetivas colunas, que serão explicadas mais detalhadamente à [frente](#descrição-dos-conjuntos-de-dados-a-utilizar).
 
@@ -45,6 +50,8 @@ Neste relatório, vamos contextualizar as seguintes etapas:
    <div style="text-align: center;">
        <img src="docs/relatorios/relatorio_pratico_imgs/drawSQL-BaseDataSets.png" alt="Texto alternativo" style="width: 550px;"/>
    </div>
+
+> **Nota**: Posteriormente, será criada uma nova tabela no próprio Hadoop, que será utilizada para a análise detalhada de cada país. TODO: Colocar tabela
 
 - **As metodologias utilizadas e a stack _Hadoop_ empregue para a realização do projeto:**
 
@@ -129,18 +136,150 @@ Directory structure:
 
 ---
 
+
+## **Metodologia e stack Hadoop**
+Para a realização deste projeto, foi utilizado um ficheiro [_docker-compose.yml_](https://github.com/Vullkano/BDDA/blob/main/docker-compose.yml), que se baseia em imagens disponíveis no Docker Hub. Estas imagens oferecem uma estrutura pré-configurada, facilitando a criação e configuração rápida do ambiente necessário para o funcionamento do cluster Hadoop e dos serviços associados. Segue-se uma visualização das componentes definidas no ficheiro, acompanhada de uma breve explicação de cada uma:
+
+
+```
+version: "3"
+
+services:
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop2.7.4-java8
+    volumes:
+      - namenode:/hadoop/dfs/name
+    environment:
+      - CLUSTER_NAME=test
+    env_file:
+      - ./hadoop-hive.env
+    ports:
+      - "50070:50070"
+    
+  datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop2.7.4-java8
+    volumes:
+      - datanode:/hadoop/dfs/data
+    env_file:
+      - ./hadoop-hive.env
+    environment:
+      SERVICE_PRECONDITION: "namenode:50070"
+    ports:
+      - "50075:50075"
+
+  resourcemanager:
+    image: bde2020/hadoop-resourcemanager:2.0.0-hadoop2.7.4-java8
+    environment:
+      SERVICE_PRECONDITION: "namenode:50070 datanode:50075"
+    env_file:
+      - ./hadoop-hive.env
+
+  hive-server:
+    image: bde2020/hive:2.3.2-postgresql-metastore
+    env_file:
+      - ./hadoop-hive.env
+    environment:
+      HIVE_CORE_CONF_javax_jdo_option_ConnectionURL: "jdbc:postgresql://hive-metastore/metastore"
+      SERVICE_PRECONDITION: "hive-metastore:9083"
+    ports:
+      - "10000:10000"
+
+  hive-metastore:
+    image: bde2020/hive:2.3.2-postgresql-metastore
+    env_file:
+      - ./hadoop-hive.env
+    command: /opt/hive/bin/hive --service metastore
+    environment:
+      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432 resourcemanager:8088"
+    ports:
+      - "9083:9083"
+
+  hive-metastore-postgresql:
+    image: bde2020/hive-metastore-postgresql:2.3.0
+    ports:
+      - "5432:5432"
+
+  huedb:
+    image: postgres:12.1-alpine
+    volumes:
+      - pg_data:/var/lib/postgresl/data/
+    ports:
+      - "5432"
+    env_file:
+      - ./hadoop-hive.env
+    environment:
+        SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432 resourcemanager:8088 hive-metastore:9083"
+  
+  hue:
+    image: gethue/hue:4.6.0
+    environment:
+        SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432 resourcemanager:8088 hive-metastore:9083 huedb:5000"
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./hue-overrides.ini:/usr/share/hue/desktop/conf/hue-overrides.ini
+    links:
+      - huedb
+
+volumes:
+  namenode:
+  datanode:
+  pg_data:
+```
+
+- **NameNode** (`bde2020/hadoop-namenode`):  
+  Gere os metadados do HDFS. Armazena-os num volume persistente e expõe a interface web na porta `50070`.
+
+- **DataNode** (`bde2020/hadoop-datanode`):  
+  Armazena os blocos de dados no HDFS. Utiliza um volume dedicado e verifica se o NameNode está ativo antes de iniciar. Porta: `50075`.
+
+- **ResourceManager** (`bde2020/hadoop-resourcemanager`):  
+  Gere os recursos e tarefas no cluster Hadoop. Funciona em conjunto com NameNode e DataNodes.
+
+- **Hive Server** (`bde2020/hive`):  
+  Permite executar consultas SQL no Hadoop (via Hive). Liga-se ao Hive Metastore, que usa PostgreSQL para armazenar metadados. Porta: `10000`.
+
+- **Hue** (`gethue/hue`):  
+  Fornece uma interface gráfica para interagir com Hadoop, Hive, e outros serviços. Configurado para ligar a todos os componentes do cluster. Porta: `8888`.
+
+> Outras Notas
+>  - Todos os serviços dependem uns dos outros para garantir a ordem correta de inicialização.
+>  - Volumes persistentes são usados para garantir a durabilidade dos dados, mesmo que os containers sejam reiniciados.
+>  - Ficheiros de configuração (`.env` e `hue-overrides.ini`) permitem personalizar as variáveis e o comportamento do cluster.
+
+### Inicialização do servidor 
+
+Após iniciar o Docker e os respetivos containers utilizando as imagens configuradas no ficheiro [_docker-compose.yml_](https://github.com/Vullkano/BDDA/blob/main/docker-compose.yml), foi necessário criar um utilizador. As credenciais do utilizador podem ser consultadas no ficheiro [_Utilizador.txt_](docs\Utilizador.txt).  
+
+Após a criação do utilizador, ao aceder à interface do _HUE_, foi necessário criar a base de dados onde seriam inseridas as tabelas previamente criadas. Abaixo, apresenta-se uma imagem que demonstra a criação da base de dados _spotify_.
+
+
+   <div style="text-align: center;">
+       <img src="docs/relatorios/relatorio_pratico_imgs/criarDBspotify.png" alt="Texto alternativo" style="width: 550px;"/>
+   </div>
+
+Para a inserção das tabelas, era necessário ter os mesmos dados nos formatos **_.csv_** e **_.parquet_**, pois o [**CSV**](https://en.wikipedia.org/wiki/Comma-separated_values) é utilizado para carregar dados rapidamente, enquanto o [**Parquet**](https://www.databricks.com/br/glossary/what-is-parquet) garante uma análises eficiente e de alto desempenho no Hadoop. Após a inserção de todas as tabelas, estas tornaram-se visíveis no dashboard do HUE (pode ser visualizado à esquerda, abaixo da **database** do Spotify). Para verificar se tudo estava a funcionar corretamente, foi executado o seguinte comando SQL:
+
+```
+SELECT * FROM spotify.hue__tmp_artist_details
+```
+
+Abaixo, podemos visualizar o output e concluir que está tudo pronto para começar a análise das respetivas tabelas.
+
+   <div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\SqlBase_comando1.png" alt="Texto alternativo" style="width: 550px;"/>
+   </div>
+
+<progress value="40" max="100" style="width: 100%; height: 25px; border-radius: 10px; background-color: #f0f0f0; border: none;">
+  <div style="background-color: #4caf50; height: 100%; width: 5%; border-radius: 10px;"></div>
+</progress>
+
 ## **Descrição dos conjuntos de dados a utilizar**
 ### Dataset 1: _artist_details_
-Como primeiro dataset decidimos, através da API do Spotify, extrair [informações dos artistas](https://developer.spotify.com/documentation/web-api/reference/get-an-artist). Para a seleção dos artistas que iríamos recolher, decidimos retirá-los segundo um link do Kaggle que já agrupava o nome dos artistas e o país dos mesmos. 
-- **Fonte do Kaggle**: [Link para o Dataset](https://www.kaggle.com/datasets/hedizekri/top-charts-artists-country)
 
-Após esta fase, o processo subjacente à recolha e preparação dos dados foi executado um pouco da mesma maneira que o _publisher_ deste dataset fez.
-- Inspirar num dataset existente (do próprio _publisher_);
-- Retirar os dados da API oficial do Spotify;
-- Fazer um hand-scrapping a linhas incoerentes ou com dados omissos que a API não recolheu bem.
+Para a criação deste dataset, foi necessário recolher o nome de alguns artistas e, para tal, foi realizada uma pesquisa, tendo sido descobertos os seguintes dados no **Kaggle**: [Link para o Dataset](https://www.kaggle.com/datasets/hedizekri/top-charts-artists-country). Neste link do Kaggle, encontrámos dados relativos ao nome e ao país de origem de cada um dos artistas. Para adicionar ainda mais informações, o grupo também conseguiu recolher metadados adicionais sobre os artistas no seguinte [_dataset_](https://www.kaggle.com/datasets/jackharding/spotify-artist-metadata-top-10k). No entanto, o grupo percebeu que esta base de dados ainda podia ser enriquecida com informações da [API do Spotify](https://developer.spotify.com/documentation/web-api/reference/get-an-artist).
 
-**Descrição**:
-Embaixo podemos ver um exemplo do dataset final
+Após a recolha dos dados, foi necessário realizar a sua limpeza. Todo o processo de limpeza pode ser visualizado no ficheiro [**`notebook/main.ipynb`**](notebook/main.ipynb). Abaixo, podemos visualizar todas as variáveis do primeiro dataset após a sua limpeza.
   
 | Coluna        | Type         | Description                           |
 |----------------|--------------|-------------------------------------|
@@ -154,14 +293,127 @@ Embaixo podemos ver um exemplo do dataset final
 | `genres`      | array | Lista de todos os géneros de música do artista          |
 | `image_url`      | string | Imagem do artista no Spotify (apenas para confirmar a identidade no processo de limpeza)          |
 
+Para proporcionar uma visão mais clara dos dados, abaixo apresentamos uma tabela com **algumas** das características recolhidas, incluindo o _header_ para facilitar a compreensão.
 
-**Exemplo de Dados** (com _header_):
-```csv
-artist_name,gender,age,country_born,artist_id,followers,popularity,genres,image_url
-Drake,male,37.0,Canada,3TVXtAsR1Inumwj472S9r4,94924678.0,97.0,"canadian hip hop, canadian pop, hip hop, pop rap, rap",https://i.scdn.co/image/ab6761610000e5eb4293385d324db8558179afd9
-Post Malone,male,29.0,United States,246dkjvS1zLTtiykXe5h60,46205845.0,91.0,"dfw rap, melodic rap, pop, rap",https://i.scdn.co/image/ab6761610000e5ebe17c0aa1714a03d62b5ce4e0
-Ed Sheeran,male,33.0,United Kingdom,6eUKZXaKkcviH0Ku9w2n3V,118303036.0,90.0,"pop, singer-songwriter pop, uk pop",https://i.scdn.co/image/ab6761610000e5eb784daff754ecfe0464ddbeb9
+| artist_name    | gender | age  | country_born    | (...)                        | genres                                           | image_url                                                                                         |
+|----------------|--------|------|-----------------|----------------------------------|-------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| Drake          | male   | 38.0 | Canada          | (...)                            | hip hop, pop rap, rap | <img src="https://i.scdn.co/image/ab6761610000e5eb4293385d324db8558179afd9" width="50" height="50" />                        |
+| Post Malone    | male   | 29.0 | United States   | (...)                            | dfw rap, melodic rap, pop, rap                  | <img src="https://i.scdn.co/image/ab6761610000e5ebe17c0aa1714a03d62b5ce4e0" width="50" height="50" />                  |
+| Ed Sheeran     | male   | 33.0 | United Kingdom  | (...)                            | pop, singer-songwriter pop              | <img src="https://i.scdn.co/image/ab6761610000e5eb784daff754ecfe0464ddbeb9" width="50" height="50" />                   |
+
+
+#### Análise dos dados do Dataset 1
+Para realizar esta análise, será utilizado o dashboard para a visualização dos dados. Abaixo, podemos observar alguns gráficos que ilustram as principais conclusões obtidas.
+
+##### 1. Géneros dos artistas
+
+   <div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\artistas_generoQTD2.png" alt="Texto alternativo" style="width: 550px;"/>
+   </div>
+
+Na imagem acima, é evidente que a nossa base de dados contém um número significativamente maior de artistas do sexo masculino em comparação com o sexo feminino. Contudo, é importante ressaltar que esta base de dados resulta de uma limpeza do conjunto de dados dos "top artistas" provenientes de uma fonte do Kaggle. Assim, não podemos generalizar que existem mais artistas do sexo masculino do que feminino no universo dos artistas de topo, uma vez que esta análise se baseia apenas nos dados disponíveis nesta base específica.
+
 ```
+SELECT
+    gender,
+    COUNT(*) AS ArtistCount
+FROM
+    spotify.hue__tmp_artist_details
+GROUP BY
+    gender;
+```
+
+##### 2. Followers & Popularity
+
+   <div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\followers_popularity_Filter4.png" alt="Texto alternativo" style="width: 550px;"/>
+   </div>
+
+O gráfico acima aplica 4 variáveis:
+- O número de seguidores no eixo do `X`;
+- A popularidade do artista no eixo do `Y`;
+- A cor de cada uma das bolas representa um género diferente;
+- O tamanho das bolas corresponde à idade de cada artista.
+
+> Antes de proceder a qualquer conclusão, é importante referir que a visualização acima possui uma limitação do HUE, que exibe apenas 100 linhas, não apresentando o gráfico com a base de dados completa.
+
+Relacionando a popularidade com o número de seguidores de cada um artistas, é notório que existe uma correlação entre estas 2 variáveis, isto é, quanto mais popular é um artista, mais seguidores ele tem. Somado a isso, podemos visualizar que os artistas masculinos são mais velhos que as artistas femeninas (relembrar que esta conclusão é limitada devido ás limitações do HUE). É interessante reparar que a artista mais famosa e com mais seguidores é do sexo femenino, sendo ela a [**Taylor Swift**](https://open.spotify.com/intl-pt/artist/06HL4z0CvFAxyc27GXpf02). Abaixo, podemos então visualizar os artistas mais famosos:
+
+   <div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\Tabela_followers_popularity_Filter4.png" alt="Texto alternativo" style="width: 550px;"/>
+   </div>
+
+##### 4. Género de cada um dos artistas
+
+
+Uma característica muito interessante de se analisar, mas ao mesmo tempo bastante complexa, é o gênero musical de cada um dos artistas. Na tabela de exemplo de variáveis do [dataset 1](#dataset-1-artist_details), podemos observar que os três artistas mencionados possuem múltiplos estilos musicais, o que torna difícil compará-los, pois as **strings** dos estilos variam. Para facilitar uma análise mais clara, uma abordagem seria simplificar os gêneros musicais.
+
+Por exemplo, o [**Post Malone**](https://open.spotify.com/intl-pt/artist/246dkjvS1zLTtiykXe5h60) possui como gêneros _rap_ e _melodic rap_, mas, de forma geral, podemos agrupá-lo como _rap_, já que esses estilos não se diferenciam significativamente. Tendo isso em mente, para realizar uma análise simplificada, foram considerados apenas os gêneros mais conhecidos e amplos, sendo esses os seguintes:
+
+
+   <div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\generosBarPlot.png" alt="Texto alternativo" style="width: 550px;"/>
+   </div>
+
+Analisando detalhadamente, o **pop** é, de longe, o estilo com o maior número de artistas, seguido pelo **hip-hop** e **rap**, ambos com números consideravelmente menores. Os estilos **eletrônica** e **rock** são muito menores, somando menos do que todos os outros estilos restantes juntos.
+
+
+```
+SELECT 
+    CASE
+        WHEN genres LIKE '%hip hop%' THEN 'Hip-Hop'
+        WHEN genres LIKE '%pop%' THEN 'Pop'
+        WHEN genres LIKE '%rock%' THEN 'Rock'
+        WHEN genres LIKE '%rap%' THEN 'Rap'
+        WHEN genres LIKE '%electronic%' THEN 'Electronic'
+        WHEN genres LIKE '%r&b%' THEN 'R&B'
+        ELSE 'Outro'
+    END AS estilo_principal,
+    COUNT(*) AS quantidade
+FROM spotify.hue__tmp_artist_details
+GROUP BY 
+    CASE
+        WHEN genres LIKE '%hip hop%' THEN 'Hip-Hop'
+        WHEN genres LIKE '%pop%' THEN 'Pop'
+        WHEN genres LIKE '%rock%' THEN 'Rock'
+        WHEN genres LIKE '%rap%' THEN 'Rap'
+        WHEN genres LIKE '%electronic%' THEN 'Electronic'
+        WHEN genres LIKE '%r&b%' THEN 'R&B'
+        ELSE 'Outro'
+    END;
+```
+
+##### 4. Local de nascimento dos artistas
+
+   <div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\country_born_Count3.png" alt="Texto alternativo" style="width: 550px;"/>
+   </div>
+
+Na imagem acima, podemos observar a contagem do número de artistas por país de nascimento. É evidente que este gráfico reflete um _top 5_ dos locais de nascimento, organizado de forma decrescente. De maneira notável, os **EUA** destacam-se como o país com o maior número de artistas na nossa base de dados, apresentando uma quantidade significativamente superior aos demais. Em segundo lugar, encontramos o Reino Unido, seguido do Canadá. A partir do quarto lugar, os valores tornam-se consideravelmente menores, tornando-se até difíceis de visualizar.
+
+Ao separar os dados por género, vemos que os três primeiros países possuem mais artistas do sexo masculino, como era de se esperar. Contudo, um dado interessante é que, por exemplo, a Austrália apresenta exclusivamente artistas do sexo feminino, o que revela disparidades curiosas entre os países analisados.
+
+```
+SELECT
+    country_born,
+    COUNT(*) AS total_count,
+    SUM(CASE WHEN gender = 'Male' THEN 1 ELSE 0 END) AS male_count,
+    SUM(CASE WHEN gender = 'Female' THEN 1 ELSE 0 END) AS female_count
+FROM
+    spotify.hue__tmp_artist_details
+GROUP BY
+    country_born;
+```
+
+Para termos uma noção da proporção, vamos então visualizar um gráfico circular que nos permite ter noção desta disparidade.
+
+   <div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\country_born_PiePlot3.png" alt="Texto alternativo" style="width: 550px;"/>
+   </div>
+
+Analisando o gráfico acima, é evidente que os Estados Unidos representam a maioria absoluta do nosso dataset, com uma participação superior a 60%. É interessante notar que os três primeiros países do nosso _top3_ correspondem a quase 75% da nossa base de dados.
+
+
 ### Dataset 2: _artist_tracks_
 
 |Id                    | Type        | Description
@@ -189,13 +441,6 @@ Ed Sheeran,male,33.0,United Kingdom,6eUKZXaKkcviH0Ku9w2n3V,118303036.0,90.0,"pop
 | `mode`                    |boolean              |Indica se a música está em tom maior ou menor. (0=menor, 1=maior).|
 | `is_solo`                    |boolean              |Indica se a música foi feita a solo ou com feature. (0=feature, 1=solo).|
 | `cluster_hierarchical`                    |int              |Indica o grupo de agrupamento que foi atribuído no [clustering hierárquico](https://github.com/Vullkano/BDDA/blob/main/src/model/unsupervised.py). (0=menor, 1=maior).|
-
-
-
-## **Metodologia e stack Hadoop**
-Para a realização deste projeto foi utilizado um /[dockercompose.yml](https://github.com/Vullkano/BDDA/blob/main/docker-compose.yml) que utiliza imagens do DockerHub, ou seja, a estrutura já vem pré-montada.
-
-- ...
 
 ## **Análise ao utilizar o Hue**
 
@@ -254,7 +499,6 @@ De realçar também que as músicas com menos "dançabilidade" têm um tempo de 
        <img src="docs/relatorios/relatorio_pratico_imgs/" alt="Texto alternativo" style="width: 550px;"/>
 </div>
 </details>
-
 
 ### Média de danceability por artist_name
 
