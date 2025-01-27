@@ -1101,3 +1101,92 @@ hbase(main):006:0> count 'artist_details'
 Contar o número de linhas da tabela **artist_details**
 
 ## Pig
+
+O Apache Pig é uma ferramenta de alto nível usada para processar grandes volumes de dados em ambientes Hadoop. Ele simplifica a manipulação de dados ao fornecer uma linguagem chamada Pig Latin, que é uma linguagem de scripts projetada para processar e transformar dados de maneira intuitiva, evitando a necessidade de escrever código MapReduce diretamente.
+
+Tendo isto em conta, iremos aplicar o algoritmo de [_MapReduce_](https://towardsdatascience.com/apache-pig-1dd61d2ead31) em 2 diferentes ocasiões:
+
+1. Aplica na coluna _genres_ do dataset [_artist_details_](#dataset-1-artist_details), já que esta consite em vários estilos, separados por ";", sendo interessante realizar uma análise deste;
+2. Também será aplicado numa _lyric_ de uma música.
+
+### 1. **MapReduce - Genres**
+
+A coluna **_genres_** contém um texto descritivo que lista todos os estilos musicais de cada artista, tornando difícil realizar uma análise direta. Uma maneira eficaz de visualizar e extrair conclusões sobre esses dados é aplicar um algoritmo de **MapReduce**, facilitado pelo **Pig**. Esse processo permitirá obter insights valiosos ao transformar os dados em uma forma mais estruturada e compreensível.
+
+Para aplicar o algoritmo de _MapReduce_ nos dados, começaremos por criar um [_script.pig_](pig-scripts\script.pig), estando nele escrito o seguinte:
+
+```sql
+-- Carregar o arquivo CSV com o caminho correto dentro do contêiner
+data = LOAD '/data/processed/artist_details.csv' USING PigStorage(',') AS (artist_name:chararray, gender:chararray, age:int, country_born:chararray, artist_id:int, followers:int, popularity:int, genres:chararray, image_url:chararray);
+
+-- Dividir a coluna 'genres' em uma lista de gêneros
+genres_list = FOREACH data GENERATE artist_name, gender, age, country_born, artist_id, followers, popularity, TOKENIZE(genres, ';') AS genre_array;
+
+-- Explodir a lista de gêneros para que cada gênero seja uma linha separada
+exploded_data = FOREACH genres_list GENERATE FLATTEN(genre_array) AS genre, 1 AS count;
+
+-- Agrupar os dados por gênero
+grouped_data = GROUP exploded_data BY genre;
+
+-- Contar as ocorrências de cada gênero
+counted_data = FOREACH grouped_data GENERATE group AS genre, SUM(exploded_data.count) AS genre_count;
+
+-- Armazenar o resultado no diretório correto dentro do contêiner
+STORE counted_data INTO '/data/processed/genres_count' USING PigStorage(',');
+```
+
+De forme suscinta, este script Pig carrega o [artist_details.csv](data\processed\artist_details.csv), divide a coluna de gêneros em uma lista (utilizando como separador ";"), explode a lista para ter uma linha por gênero e conta a quantidade de ocorrências de cada gênero. O resultado final, com a contagem de gêneros, é armazenado em um novo arquivo CSV no diretório especificado. Para rodar este _script_, basta ir ao container do pig e aplicar o seguinte código:
+
+```docker
+pig -x mapreduce /opt/pig/scripts/script.pig
+```
+> Nota: O comando pig ```-x mapreduce /opt/pig/scripts/script.pig``` executa o script Pig localizado em ```/opt/pig/scripts/script.pig``` usando o backend MapReduce do Hadoop. O script será processado e os resultados serão armazenados nos diretórios definidos dentro do script, com o processamento distribuído no cluster Hadoop.
+
+Após a execução do script, obtemos o seguinte output na _shell_:
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\MapReduceGenresPig.png" alt="Texto alternativo" style="width: 650px;"/>
+</div>
+
+O output pode ser visto no ficheiro [part-r-00000](data\processed\genres_count\part-r-00000). Analisando com atenção, podemos notar que 131 pop e 50 trap, algo interessante de se notar.
+
+### 2. **MapReduce - lyric**
+
+Outra abordagem interessante seria aplicar o algoritmo de **MapReduce** nas **letras de músicas**. Isso não só facilitaria o armazenamento dessas letras, mas também tornaria a análise mais eficiente, permitindo a aplicação de algoritmos de forma mais simplificada. Como exemplo, será utilizada a letra da música **"Rap God"** de Eminem que se encontra no ficheiro [lyric.txt](pig-scripts\lyric.txt). O algoritmo pode ser encontrado no ficheiro [wordcount.pig](pig-scripts\wordcount.pig), tendo a seguinte aparência:
+
+```sql
+-- Carregar o ficheiro de texto
+lines = LOAD '/opt/pig/scripts/lyric.txt' USING TextLoader() AS (line:chararray);
+
+-- Separar cada linha em palavras
+words = FOREACH lines GENERATE FLATTEN(TOKENIZE(line)) AS word;
+
+-- Agrupar as palavras e contar ocorrências
+grouped_words = GROUP words BY word;
+word_count = FOREACH grouped_words GENERATE group AS word, COUNT(words) AS count;
+
+-- Ordenar por número de ocorrências (opcional)
+sorted_word_count = ORDER word_count BY count DESC;
+
+-- Salvar o resultado num ficheiro de saída
+STORE sorted_word_count INTO '/opt/pig/scripts/output' USING PigStorage(',');
+```
+O algoritmo começa por dividir cada linha em palavras, conta a frequência de cada palavra, ordena por número de ocorrências (opcional) e armazena o resultado em ficheiro de saída.
+
+Para rodar o script, basta ir ao container do pig e aplicar o seguinte código:
+
+```docker
+pig -x mapreduce /opt/pig/scripts/wordcount.pig
+```
+
+Após a execução do script, obtemos o seguinte output na _shell_:
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\MapReduceLyricPig.png" alt="Texto alternativo" style="width: 650px;"/>
+</div>
+
+O output pode ser visto no ficheiro [part-r-00000](pig-scripts\output\part-r-00000). Visualizando as 3 palavras mais ditas na música, são as seguintes:
+
+- a -> 58
+- I -> 54
+- the -> 52
