@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Zookeeper configuration -->
+    <property>
+        <name>hbase.zookeeper.quorum</name>
+        <value>namenode</value> <!-- Nome do container do Zookeeper -->
+    </property>
+    
+    <!-- HBase master server -->
+    <property>
+        <name>hbase.master</name>
+        <value>hbase:16000</value> <!-- Nome do serviço HBase -->
+    </property>
+
+    <!-- HBase thrift server -->
+    <property>
+        <name>hbase.thrift.port</name>
+        <value>9090</value> <!-- Porta do HBase Thrift Server -->
+    </property>
+
+    <!-- Diretório de dados persistente do HBase -->
+    <property>
+        <name>hbase.rootdir</name>
+        <value>hdfs://namenode:8020/hbase</value> <!-- Usando HDFS -->
+    </property>
+
+    <!-- Configuração de timeout -->
+    <property>
+        <name>hbase.rpc.timeout</name>
+        <value>60000</value> <!-- Timeout para chamadas RPC -->
+    </property>
+</configuration>

@@ -12,3 +12,4 @@ pathlib
 datetime
 spotify
 bs4
+happybase

@@ -1,7 +1,9 @@
 # **BDDA - Bases de Dados Distribuídas Avançadas**  
 **_Relatório: Componente Prática_**
 
-> **NOTA**: A componente técnica do relatório pode ser consultado [aqui](docs/relatorios/relatorio_teorico/BDDA-MCD.pdf).
+> **NOTA**: \
+A componente técnica do relatório pode ser consultado [aqui](docs/relatorios/relatorio_teorico/BDDA-MCD.pdf). \
+Este trabalho conta com uma **Parte 2**, que está mais focada em containers e Hadoop do que nos dados propriamente ditos. Esta segunda parte pode ser consultada [aqui](#bdda---bases-de-dados-distribuídas-avançadas-parte-2).
 
 ---
 
@@ -709,3 +711,393 @@ Durante a análise dos dados, o grupo concentrou-se na exploração das **caract
 No que diz respeito às **tracks**, o grupo encontrou uma forte correlação entre as variáveis **danceability** e **energia**. Além disso, um **cluster interessante** foi o **cluster 3**, que se destacou por agrupar **remixes**, **músicas eletrónicas** e **músicas instrumentais**. Esse cluster apresentou uma maior presença de instrumentalidade e menor foco vocal, características típicas de músicas com forte ênfase na batida.
 
 Em termos de conclusões gerais, o trabalho permitiu explorar eficazmente as capacidades do **Docker** na criação de ambientes de trabalho dinâmicos e escaláveis, e contribuiu para a compreensão dos dados musicais através da análise de agrupamentos e características dos artistas e das _tracks_. Este tipo de análise não só revelou padrões valiosos para a indústria musical, como também pode ser expandido para outras áreas de pesquisa que envolvam grandes volumes de dados e a necessidade de processamento distribuído.
+
+# **BDDA - Bases de Dados Distribuídas Avançadas (Parte 2)** 
+
+Primeiramente, é necessário referir que foi atualizado o respetivo ficheiro _docker_compose.yml_, tendo ficado com o seguinte aspeto:
+
+## **Novo _docker_compose.yml_**
+
+```
+version: '3.7'
+
+services:
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop2.7.4-java8
+    container_name: namenode
+    volumes:
+      - namenode:/hadoop/dfs/name
+    environment:
+      - CLUSTER_NAME=test
+    env_file:
+      - ./hadoop-hive.env
+    ports:
+      - "50070:50070"
+
+  datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop2.7.4-java8
+    container_name: datanode
+    volumes:
+      - datanode:/hadoop/dfs/data
+    env_file:
+      - ./hadoop-hive.env
+    environment:
+      SERVICE_PRECONDITION: "namenode:50070"
+    ports:
+      - "50075:50075"
+    depends_on:
+      - namenode
+
+  resourcemanager:
+    image: bde2020/hadoop-resourcemanager:2.0.0-hadoop2.7.4-java8
+    container_name: resourcemanager
+    environment:
+      SERVICE_PRECONDITION: "namenode:50070 datanode:50075"
+    ports:
+      - "8088:8088"
+    depends_on:
+      - namenode
+      - datanode
+
+  hive-metastore:
+    image: bde2020/hive:2.3.2-postgresql-metastore
+    container_name: hive-metastore
+    env_file:
+      - ./hadoop-hive.env
+    command: /opt/hive/bin/hive --service metastore
+    environment:
+      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432 resourcemanager:8088"
+    ports:
+      - "9083:9083"
+    depends_on:
+      - hive-metastore-postgresql
+      - namenode
+      - datanode
+      - resourcemanager
+
+  hive-metastore-postgresql:
+    image: bde2020/hive-metastore-postgresql:2.3.0
+    container_name: hive-metastore-postgresql
+    ports:
+      - "5432:5432"
+
+  huedb:
+    image: postgres:12.1-alpine
+    container_name: huedb
+    volumes:
+      - pg_data:/var/lib/postgresql/data/
+    ports:
+      - "5433:5432"
+    env_file:
+      - ./hadoop-hive.env
+    environment:
+      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432 resourcemanager:8088 hive-metastore:9083"
+
+  hue:
+    image: gethue/hue:4.6.0
+    container_name: hue
+    environment:
+      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432 resourcemanager:8088 hive-metastore:9083 huedb:5432"
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./hue-overrides.ini:/usr/share/hue/desktop/conf/hue-overrides.ini
+    depends_on:
+      - huedb
+
+  zookeeper:
+    image: zookeeper:3.7
+    container_name: zookeeper
+    ports:
+      - "2182:2181"  # Alterado para a porta 2182
+
+  hbase:
+    image: harisekhon/hbase:1.3
+    container_name: hbase
+    ports:
+      - "16010:16010"
+      - "16000:16000"
+      - "16201:16201"
+      - "16020:16020"
+      - "2181:2181"
+    environment:
+      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 resourcemanager:8088 zookeeper:2181"
+    volumes:
+      - ./hbase-data:/hbase_data  # Volume persistente
+      - ./hbase-site.xml:/opt/hbase/conf/hbase-site.xml
+    depends_on:
+      - namenode
+      - datanode
+      - resourcemanager
+      - zookeeper
+
+  hbase-thrift:
+    image: harisekhon/hbase:1.3
+    container_name: hbase-thrift
+    ports:
+      - "9090:9090"
+    environment:
+      SERVICE_PRECONDITION: "hbase:16000"
+    depends_on:
+      - hbase
+
+  pig:
+    image: moander/pig
+    container_name: pig
+    environment:
+      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 resourcemanager:8088 hbase:16000"
+    depends_on:
+      - namenode
+      - datanode
+      - resourcemanager
+      - hbase
+    volumes:
+      - ./data/processed:/data/processed
+      - ./pig-config:/opt/pig/conf
+      - ./pig-scripts:/opt/pig/scripts
+    command: /bin/bash -c "pig -x mapreduce"
+    ports:
+      - "18080:18080"
+    stdin_open: true
+    tty: true
+
+volumes:
+  namenode:
+  datanode:
+  pg_data:
+  hbase_data:
+```
+Neste novo arquivo _docker-compose.yml_, foram acrescentadas duas novas componentes principais (além de uma terceira, referente ao [Thrift](https://thrift.apache.org/), que será abordada mais à [frente](#thrift)), sendo elas:
+
+### 1 - **Pig**
+- **Imagem**: moander/pig
+- **Função**: Pig é uma plataforma de análise de grandes volumes de dados (Big Data) baseada em Hadoop, geralmente usada para executar scripts em MapReduce.
+- **Conexões**:
+    - Depende do Namenode, Datanode, ResourceManager e HBase para acessar dados no HDFS e executar operações de MapReduce.
+- **Portas**:
+    - 18080 (Web UI do Pig)
+
+### 2 - **HBase**
+
+- **Imagem**: harisekhon/hbase:1.3
+- **Função**: HBase é um banco de dados NoSQL distribuído que roda em cima do Hadoop. Ele permite armazenar grandes quantidades de dados de forma distribuída e acessá-los de maneira rápida.
+- **Conexões**:
+    - Depende do Namenode, Datanode e ResourceManager para acessar dados.
+- **Portas**:
+    - 16010: Web UI do HBase.
+    - 16000: Porta do HBase Master.
+    - 16201: Porta do HBase Thrift.
+    - 16020: Porta do HBase RegionServer.
+    - 2181: Porta do Zookeeper.
+    - 9090: Porta do Thrift para comunicação remota com HBase.
+- **Volumes**:
+    - ./hbase-data: Volume persistente para armazenar os dados do HBase.
+    - ./hbase-site.xml: Arquivo de configuração do HBase mapeado para o container.
+
+#### **New File**: *hbase-site.xml*
+
+É interessante notar que, como é possível ver nos **volumes** do HBase, foi também utilizado um ficheiro *hbase-site.xml*. Abaixo, apresento a composição deste ficheiro:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Zookeeper configuration -->
+    <property>
+        <name>hbase.zookeeper.quorum</name>
+        <value>namenode</value> <!-- Nome do container do Zookeeper -->
+    </property>
+    
+    <!-- HBase master server -->
+    <property>
+        <name>hbase.master</name>
+        <value>hbase:16000</value> <!-- Nome do serviço HBase -->
+    </property>
+
+    <!-- HBase thrift server -->
+    <property>
+        <name>hbase.thrift.port</name>
+        <value>9090</value> <!-- Porta do HBase Thrift Server -->
+    </property>
+
+    <!-- Diretório de dados persistente do HBase -->
+    <property>
+        <name>hbase.rootdir</name>
+        <value>hdfs://namenode:8020/hbase</value> <!-- Usando HDFS -->
+    </property>
+
+    <!-- Configuração de timeout -->
+    <property>
+        <name>hbase.rpc.timeout</name>
+        <value>60000</value> <!-- Timeout para chamadas RPC -->
+    </property>
+</configuration>
+```
+
+Este ficheiro configura o comportamento do HBase e define como ele interage com outros serviços. Principais Configurações:
+
+1. Zookeeper (hbase.zookeeper.quorum):
+    - Define o serviço Zookeeper usado para coordenação. Aqui, é especificado como namenode.
+
+2. Servidor Master do HBase (hbase.master):
+    - Especifica o endereço e porta do HBase Master Server (hbase:16000).
+
+3. Servidor Thrift (hbase.thrift.port):
+    - Define a porta usada pelo Thrift Server (9090), permitindo que clientes externos, como Python com happybase, interajam com o HBase.
+
+4. Diretório de Dados (hbase.rootdir):
+    - Indica onde os dados do HBase serão armazenados. No teu caso, está a usar o HDFS através do Namenode (hdfs://namenode:8020/hbase).
+
+5. Timeouts (hbase.rpc.timeout):
+    - Configura o tempo máximo (em milissegundos) para operações remotas no cluster (valor: 60 segundos).
+
+Agora, serão comentados os passos realizados para a atualização do container.
+
+## HBase
+
+Para então atualizar os containers de forma correta, foram realizados os seguintes códigos no *cmd* (no diretório do respetivo projeto):
+
+```cmd
+docker-compose down
+docker-compose up
+```
+
+E o resultado obtido, foi o seguinte:
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\atualizarContainer.png" alt="Texto alternativo" style="width: 650px;"/>
+</div>
+
+Para então visualizar se as novas portas estavam a funcionar corretamente, o seguinte link deverá demonstrar um dashboard relativamente ao HBase: [localhost:16010](http://localhost:16010/master-status). Abaixo, podemos visualizar o respetivo _dashboard_:
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\HBaseBegin.png" alt="Texto alternativo" style="width: 650px;"/>
+</div>
+
+Pelo dashboard, é notório que não existe nenhum tabela inserida no HBase, mas para confirmar, podemos visualizar a _HBase Shell_, que nos irá demonstrar que não existem tabelas. Para tal, podemos entrar no _docker_, selecionar o _container_ **_hbase_**, e rodar o comando:
+
+```docker
+/ # hbase shell
+```
+Abaixo, podemos visualizar o que foi obtido:
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\DockerHbaseBegin.png" alt="Texto alternativo" style="width: 650px;"/>
+</div>
+
+Como já era esperado, não existe tabelas. Tendo isso em conta, podemos agora prosseguir para a inserção dos [dados](#introdução) no HBase. Para tal, foi utilizado o [Thrift](#thrift)
+
+### **Thrift**
+
+O Thrift no Hadoop é uma interface de comunicação que permite a interação entre diferentes linguagens de programação e o Hadoop, especialmente com o HBase. Ele oferece uma maneira eficiente de acessar o HBase remotamente, expondo uma API que pode ser usada por clientes de diversas linguagens (como Python, Java, etc.), permitindo leituras e gravações de dados no HBase de forma simplificada e compatível com múltiplas plataformas.
+
+Com essa ideia em mente, foi utilizado a biblioteca [_**happybase**_](https://happybase.readthedocs.io/en/latest/). Esta biblioteca pode apresentar problemas relativamente a dependências, sendo uma delas:
+
+```python
+error: Microsoft Visual C++ 14.0 is required.
+```
+
+Para solucionar isto, basta ir ao seguinte [link](https://visualstudio.microsoft.com/visual-cpp-build-tools/), fazer download, abrir o programa e instalar o seguinte:
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\CplusMicrosoftDownload.jpg" alt="Texto alternativo" style="width: 650px;"/>
+</div>
+
+Após a instalação, a instalção da _package_ deverá ser bem sucedida. Com a instalação bem sucedida, podemos prosseguir a inserção dos dados no HBase. O respetivo código encontra-se no ficheiro [**`insertDataHbase.py`**](src\data\insertDataHbase.py). Os pontos mais importantes em ter em conta são os seguintes:
+
+1. Conexão ao HBase:
+
+    - O script tenta estabelecer uma conexão com o HBase utilizando o localhost e a porta **9090**. 
+
+2. Carregamento de Dados CSV:
+
+    - O script carrega os arquivos CSV localizados em data/processed para dentro de dois DataFrames do pandas: 
+      - [artist_details.csv](data\processed\artist_details.csv)
+      - [artist_tracks.csv](data\processed\artist_tracks.csv)
+
+3. Criação de Tabelas:
+    - Se as tabelas **artist_details** e **artist_tracks** não existirem no HBase, elas são criadas com uma coluna chamada info.
+
+4. Inserção de Dados no HBase:
+    - Os dados dos CSVs são inseridos nas tabelas correspondentes no HBase, em batches de 1000 registros por vez.
+
+Abaixo, podemos visualizar um output que demonstra os dados a serem inseridos no HBase:
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\scriptPythonBatches.png" alt="Texto alternativo" style="width: 650px;"/>
+</div>
+
+Com a inserção dos dados, podemos agora utilizar o dasboard do [localhost:16010](http://localhost:16010/master-status) para averiguar se as tabelas foram inseridas corretamente. Abaixo, podemos visualizar o resultado:
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\HBaseEnd.png" alt="Texto alternativo" style="width: 650px;"/>
+</div>
+
+Para fazer manipulações e visualizações dos dados, podemos voltar para a interface do docker, no _container_ do **HBase**, onde iremos visualizar também os mesmos datasets:
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\HBaseDataList.png" alt="Texto alternativo" style="width: 650px;"/>
+</div>
+
+Estando na **HBase Shell**, podemos manipular e visualizar os dados que foram inseridos nela. O comando *list*, já utilizado, demonstra as tabelas existentes nela. A seguir poderemos visualizar os dados de cada uma das tabelas:
+
+---
+
+```docker
+hbase(main):002:0> describe 'artist_details'
+```
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\DescribeHBase.png" alt="Texto alternativo" style="width: 650px;"/>
+</div>
+
+Para verificar a configuração e as famílias de colunas
+
+---
+
+```docker
+hbase(main):003:0> scan 'artist_details', {LIMIT => 1}
+```
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\HBaseScan.png" alt="Texto alternativo" style="width: 650px;"/>
+</div>
+
+Para visualizar todas as colunas da primeira linha da tabela
+
+---
+
+```docker
+hbase(main):004:0> get 'artist_details', '5yG7ZAZafVaAlMTeBybKAL'
+```
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\HBaseGet.png" alt="Texto alternativo" style="width: 650px;"/>
+</div>
+
+Obter os dados da linha com a rowkey: **'5yG7ZAZafVaAlMTeBybKAL'**
+
+---
+
+```docker
+hbase(main):005:0> get 'artist_details', '5yG7ZAZafVaAlMTeBybKAL', 'info:artist_name'
+```
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\HBaseGetName.png" alt="Texto alternativo" style="width: 650px;"/>
+</div>
+
+Obter o **_artist_name_** da linha com a rowkey: **'5yG7ZAZafVaAlMTeBybKAL'**
+
+---
+
+```docker
+hbase(main):006:0> count 'artist_details'
+```
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\HBaseCount.png" alt="Texto alternativo" style="width: 650px;"/>
+</div>
+
+Contar o número de linhas da tabela **artist_details**
+
+## Pig
