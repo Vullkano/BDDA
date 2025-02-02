@@ -34,7 +34,7 @@ def carregar_csv():
     base_dir = Path(os.getcwd()).resolve().parent.parent
     processed_data = base_dir / 'data' / 'processed'
     artist_details_df = pd.read_csv(processed_data / "artist_details.csv")
-    artist_tracks_df = pd.read_csv(processed_data / "artist_tracks.csv", nrows=100)
+    artist_tracks_df = pd.read_csv(processed_data / "artist_tracks.csv") # , nrows=100
     return artist_details_df, artist_tracks_df
 
 # Função para inserir dados no HBase utilizando batches
@@ -54,8 +54,14 @@ def insert_data_to_hbase_with_batch(connection, df, table_name, batch_size=1000)
 
             info_table[f'info:{column}'] = bytes(value, 'utf-8')
 
-        # Usar 'artist_id' como rowkey, se disponível
-        rowkey = str(row['artist_id']) if 'artist_id' in row else str(index)
+        # Usar 'track_id' como rowkey na tabela 'artist_tracks'
+        if table_name == 'artist_tracks' and 'track_id' in row:
+            rowkey = str(row['track_id'])
+        elif 'artist_id' in row:  # Manter 'artist_id' na tabela artist_details
+            rowkey = str(row['artist_id'])
+        else:
+            rowkey = str(index)  # Caso não tenha ID, usa o índice como fallback
+
 
         try:
             batch.put(rowkey, info_table)  # Adiciona ao batch

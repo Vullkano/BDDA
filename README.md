@@ -733,6 +733,8 @@ services:
       - ./hadoop-hive.env
     ports:
       - "50070:50070"
+    networks:
+      - hadoop_network
 
   datanode:
     image: bde2020/hadoop-datanode:2.0.0-hadoop2.7.4-java8
@@ -747,6 +749,8 @@ services:
       - "50075:50075"
     depends_on:
       - namenode
+    networks:
+      - hadoop_network
 
   resourcemanager:
     image: bde2020/hadoop-resourcemanager:2.0.0-hadoop2.7.4-java8
@@ -758,6 +762,8 @@ services:
     depends_on:
       - namenode
       - datanode
+    networks:
+      - hadoop_network
 
   hive-metastore:
     image: bde2020/hive:2.3.2-postgresql-metastore
@@ -774,12 +780,16 @@ services:
       - namenode
       - datanode
       - resourcemanager
+    networks:
+      - hadoop_network
 
   hive-metastore-postgresql:
     image: bde2020/hive-metastore-postgresql:2.3.0
     container_name: hive-metastore-postgresql
     ports:
       - "5432:5432"
+    networks:
+      - hadoop_network
 
   huedb:
     image: postgres:12.1-alpine
@@ -792,6 +802,8 @@ services:
       - ./hadoop-hive.env
     environment:
       SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432 resourcemanager:8088 hive-metastore:9083"
+    networks:
+      - hadoop_network
 
   hue:
     image: gethue/hue:4.6.0
@@ -804,12 +816,16 @@ services:
       - ./hue-overrides.ini:/usr/share/hue/desktop/conf/hue-overrides.ini
     depends_on:
       - huedb
+    networks:
+      - hadoop_network
 
   zookeeper:
     image: zookeeper:3.7
     container_name: zookeeper
     ports:
       - "2182:2181"  # Alterado para a porta 2182
+    networks:
+      - hadoop_network
 
   hbase:
     image: harisekhon/hbase:1.3
@@ -820,6 +836,7 @@ services:
       - "16201:16201"
       - "16020:16020"
       - "2181:2181"
+      - "9090:9090" # Thrift API
     environment:
       SERVICE_PRECONDITION: "namenode:50070 datanode:50075 resourcemanager:8088 zookeeper:2181"
     volumes:
@@ -830,16 +847,8 @@ services:
       - datanode
       - resourcemanager
       - zookeeper
-
-  hbase-thrift:
-    image: harisekhon/hbase:1.3
-    container_name: hbase-thrift
-    ports:
-      - "9090:9090"
-    environment:
-      SERVICE_PRECONDITION: "hbase:16000"
-    depends_on:
-      - hbase
+    networks:
+      - hadoop_network
 
   pig:
     image: moander/pig
@@ -860,14 +869,38 @@ services:
       - "18080:18080"
     stdin_open: true
     tty: true
+    networks:
+      - hadoop_network
+
+  phoenix:
+    image: arizephoenix/phoenix:latest
+    container_name: phoenix
+    environment:
+      - PHOENIX_WORKING_DIR=/mnt/data
+    volumes:
+      - phoenix_data:/mnt/data
+    ports:
+      - "6006:6006"  # PHOENIX_PORT
+      - "4317:4317"  # PHOENIX_GRPC_PORT
+      - "9091:9090"
+    depends_on:
+      - hbase  # Certifica-te de que o Phoenix depende do HBase
+    networks:
+      - hadoop_network
 
 volumes:
   namenode:
   datanode:
   pg_data:
   hbase_data:
+  phoenix_data:
+    driver: local
+
+networks:
+  hadoop_network:
+    driver: bridge
 ```
-Neste novo arquivo _docker-compose.yml_, foram acrescentadas duas novas componentes principais (além de uma terceira, referente ao [Thrift](https://thrift.apache.org/), que será abordada mais à [frente](#thrift)), sendo elas:
+Neste novo arquivo _docker-compose.yml_, foram acrescentadas três novas componentes principais (além de uma quarta, referente ao [Thrift](https://thrift.apache.org/), que será abordada mais à [frente](#thrift)), sendo elas:
 
 ### 1 - **Pig**
 - **Imagem**: moander/pig
@@ -877,7 +910,19 @@ Neste novo arquivo _docker-compose.yml_, foram acrescentadas duas novas componen
 - **Portas**:
     - 18080 (Web UI do Pig)
 
-### 2 - **HBase**
+### 2 - **Zookeeper**
+
+- **Imagem**: zookeeper:3.7  
+- **Função**: Serviço de coordenação distribuída utilizado para gerenciar a configuração, sincronização e serviços de nome dentro do cluster Hadoop.  
+- **Conexões**:  
+    - Fornece suporte para HBase, Hadoop e outros serviços distribuídos.  
+- **Portas**:  
+    - 2181: Porta interna do Zookeeper (usada pelos serviços).  
+    - 2182: Porta externa mapeada para comunicação com o host.  
+- **Volumes**:  
+    - Não há volumes persistentes definidos para este serviço.  
+
+### 3 - **HBase**
 
 - **Imagem**: harisekhon/hbase:1.3
 - **Função**: HBase é um banco de dados NoSQL distribuído que roda em cima do Hadoop. Ele permite armazenar grandes quantidades de dados de forma distribuída e acessá-los de maneira rápida.
@@ -889,10 +934,12 @@ Neste novo arquivo _docker-compose.yml_, foram acrescentadas duas novas componen
     - 16201: Porta do HBase Thrift.
     - 16020: Porta do HBase RegionServer.
     - 2181: Porta do Zookeeper.
-    - 9090: Porta do Thrift para comunicação remota com HBase.
+    - 9090: Porta do Thrift para comunicação remota com o HBase.
 - **Volumes**:
     - ./hbase-data: Volume persistente para armazenar os dados do HBase.
     - ./hbase-site.xml: Arquivo de configuração do HBase mapeado para o container.
+
+
 
 #### **New File**: *hbase-site.xml*
 
@@ -952,7 +999,7 @@ Este ficheiro configura o comportamento do HBase e define como ele interage com 
 
 Agora, serão comentados os passos realizados para a atualização do container.
 
-## HBase
+## 1. HBase
 
 Para então atualizar os containers de forma correta, foram realizados os seguintes códigos no *cmd* (no diretório do respetivo projeto):
 
@@ -986,7 +1033,7 @@ Abaixo, podemos visualizar o que foi obtido:
 
 Como já era esperado, não existe tabelas. Tendo isso em conta, podemos agora prosseguir para a inserção dos [dados](#introdução) no HBase. Para tal, foi utilizado o [Thrift](#thrift)
 
-### **Thrift**
+### 1.1 **HBase Thrift**
 
 O Thrift no Hadoop é uma interface de comunicação que permite a interação entre diferentes linguagens de programação e o Hadoop, especialmente com o HBase. Ele oferece uma maneira eficiente de acessar o HBase remotamente, expondo uma API que pode ser usada por clientes de diversas linguagens (como Python, Java, etc.), permitindo leituras e gravações de dados no HBase de forma simplificada e compatível com múltiplas plataformas.
 
@@ -1018,7 +1065,7 @@ Após a instalação, a instalção da _package_ deverá ser bem sucedida. Com a
     - Se as tabelas **artist_details** e **artist_tracks** não existirem no HBase, elas são criadas com uma coluna chamada info.
 
 4. Inserção de Dados no HBase:
-    - Os dados dos CSVs são inseridos nas tabelas correspondentes no HBase, em batches de 1000 registros por vez.
+    - Os dados dos CSVs são inseridos nas tabelas correspondentes no HBase, em batches de 1000 registos por vez.
 
 Abaixo, podemos visualizar um output que demonstra os dados a serem inseridos no HBase:
 
@@ -1031,6 +1078,8 @@ Com a inserção dos dados, podemos agora utilizar o dasboard do [localhost:1601
 <div style="text-align: center;">
        <img src="docs\relatorios\relatorio_pratico_imgs\HBaseEnd.png" alt="Texto alternativo" style="width: 650px;"/>
 </div>
+
+### **1.2. HBase Code**
 
 Para fazer manipulações e visualizações dos dados, podemos voltar para a interface do docker, no _container_ do **HBase**, onde iremos visualizar também os mesmos datasets:
 
@@ -1100,7 +1149,21 @@ hbase(main):006:0> count 'artist_details'
 
 Contar o número de linhas da tabela **artist_details**
 
-## Pig
+---
+
+```docker
+hbase(main):007:0> disable 'artist_details'
+hbase(main):008:0> drop 'artist_details'
+```
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\apagarDBHBase.png" alt="Texto alternativo" style="width: 650px;"/>
+</div>
+
+Eliminar a tabela **'artist_details'**
+
+## 2. Phoenix (Todo)
+
+## 3. Pig
 
 O Apache Pig é uma ferramenta de alto nível usada para processar grandes volumes de dados em ambientes Hadoop. Ele simplifica a manipulação de dados ao fornecer uma linguagem chamada Pig Latin, que é uma linguagem de scripts projetada para processar e transformar dados de maneira intuitiva, evitando a necessidade de escrever código MapReduce diretamente.
 
@@ -1185,8 +1248,19 @@ Após a execução do script, obtemos o seguinte output na _shell_:
        <img src="docs\relatorios\relatorio_pratico_imgs\MapReduceLyricPig.png" alt="Texto alternativo" style="width: 650px;"/>
 </div>
 
-O output pode ser visto no ficheiro [part-r-00000](pig-scripts\output\part-r-00000). Visualizando as 3 palavras mais ditas na música, são as seguintes:
+O output pode ser visto no ficheiro [part-r-00000](pig-scripts\output\part-r-00000). As 3 palavras mais ditas na música, são as seguintes:
 
-- a -> 58
-- I -> 54
-- the -> 52
+| Palavra | Ocorrências |
+|---------|------------|
+| a       | 58         |
+| I       | 54         |
+| the     | 52         |
+
+
+---
+
+**Nota:**  
+Para reiniciar o serviço de rede, execute os seguintes comandos:  
+
+- `net stop winnat`  
+- `net start winnat`  
