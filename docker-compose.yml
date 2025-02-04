@@ -1,6 +1,7 @@
-version: '3.7'
+version: '3.8'
 
 services:
+  # Hadoop NameNode
   namenode:
     image: bde2020/hadoop-namenode:2.0.0-hadoop2.7.4-java8
     container_name: namenode
@@ -15,6 +16,7 @@ services:
     networks:
       - hadoop_network
 
+  # Hadoop DataNode
   datanode:
     image: bde2020/hadoop-datanode:2.0.0-hadoop2.7.4-java8
     container_name: datanode
@@ -31,6 +33,7 @@ services:
     networks:
       - hadoop_network
 
+  # Hadoop ResourceManager
   resourcemanager:
     image: bde2020/hadoop-resourcemanager:2.0.0-hadoop2.7.4-java8
     container_name: resourcemanager
@@ -44,6 +47,7 @@ services:
     networks:
       - hadoop_network
 
+  # Hive Metastore
   hive-metastore:
     image: bde2020/hive:2.3.2-postgresql-metastore
     container_name: hive-metastore
@@ -62,6 +66,7 @@ services:
     networks:
       - hadoop_network
 
+  # Hive Metastore PostgreSQL
   hive-metastore-postgresql:
     image: bde2020/hive-metastore-postgresql:2.3.0
     container_name: hive-metastore-postgresql
@@ -70,6 +75,7 @@ services:
     networks:
       - hadoop_network
 
+  # Hue Database
   huedb:
     image: postgres:12.1-alpine
     container_name: huedb
@@ -84,6 +90,7 @@ services:
     networks:
       - hadoop_network
 
+  # Hue Web UI
   hue:
     image: gethue/hue:4.6.0
     container_name: hue
@@ -98,14 +105,16 @@ services:
     networks:
       - hadoop_network
 
+  # Zookeeper
   zookeeper:
     image: zookeeper:3.7
     container_name: zookeeper
     ports:
-      - "2182:2181"  # Alterado para a porta 2182
+      - "2182:2181"
     networks:
       - hadoop_network
 
+  # HBase
   hbase:
     image: harisekhon/hbase:1.3
     container_name: hbase
@@ -117,9 +126,9 @@ services:
       - "2181:2181"
       - "9090:9090" # Thrift API
     environment:
-      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 resourcemanager:8088 zookeeper:2181"
+      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 resourcemanager:8088 zookeeper:2182"
     volumes:
-      - ./hbase-data:/hbase_data  # Volume persistente
+      - ./hbase-data:/hbase_data
       - ./hbase-site.xml:/opt/hbase/conf/hbase-site.xml
     depends_on:
       - namenode
@@ -129,6 +138,7 @@ services:
     networks:
       - hadoop_network
 
+  # Apache Pig
   pig:
     image: moander/pig
     container_name: pig
@@ -151,30 +161,39 @@ services:
     networks:
       - hadoop_network
 
-  phoenix:
-    image: arizephoenix/phoenix:latest
-    container_name: phoenix
-    environment:
-      - PHOENIX_WORKING_DIR=/mnt/data
-    volumes:
-      - phoenix_data:/mnt/data
+  # PrestoDB
+  presto:
+    image: trinodb/trino:latest
+    container_name: presto
     ports:
-      - "6006:6006"  # PHOENIX_PORT
-      - "4317:4317"  # PHOENIX_GRPC_PORT
-      - "9091:9090"
-    depends_on:
-      - hbase  # Certifica-te de que o Phoenix depende do HBase
+      - "8070:8070"
     networks:
       - hadoop_network
+
+  # JupyterHub
+  jupyterhub:
+    build: .
+    image: my_jupyterhub
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py
+      - jupyterhub_data:/srv/jupyterhub/data
+    ports:
+      - "8000:8000"
+    networks:
+      - jupyterhub
+      - hadoop_network
+
 
 volumes:
   namenode:
   datanode:
   pg_data:
   hbase_data:
-  phoenix_data:
-    driver: local
+  jupyterhub_data:
 
 networks:
+  jupyterhub:
+    name: jupyterhub
   hadoop_network:
     driver: bridge

@@ -13,3 +13,5 @@ datetime
 spotify
 bs4
 happybase
+arize-phoenix-otel
+jupyterhub

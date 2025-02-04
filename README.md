@@ -719,9 +719,10 @@ Primeiramente, é necessário referir que foi atualizado o respetivo ficheiro _d
 ## **Novo _docker_compose.yml_**
 
 ```
-version: '3.7'
+version: '3.8'
 
 services:
+  # Hadoop NameNode
   namenode:
     image: bde2020/hadoop-namenode:2.0.0-hadoop2.7.4-java8
     container_name: namenode
@@ -736,6 +737,7 @@ services:
     networks:
       - hadoop_network
 
+  # Hadoop DataNode
   datanode:
     image: bde2020/hadoop-datanode:2.0.0-hadoop2.7.4-java8
     container_name: datanode
@@ -752,6 +754,7 @@ services:
     networks:
       - hadoop_network
 
+  # Hadoop ResourceManager
   resourcemanager:
     image: bde2020/hadoop-resourcemanager:2.0.0-hadoop2.7.4-java8
     container_name: resourcemanager
@@ -765,6 +768,7 @@ services:
     networks:
       - hadoop_network
 
+  # Hive Metastore
   hive-metastore:
     image: bde2020/hive:2.3.2-postgresql-metastore
     container_name: hive-metastore
@@ -783,6 +787,7 @@ services:
     networks:
       - hadoop_network
 
+  # Hive Metastore PostgreSQL
   hive-metastore-postgresql:
     image: bde2020/hive-metastore-postgresql:2.3.0
     container_name: hive-metastore-postgresql
@@ -791,6 +796,7 @@ services:
     networks:
       - hadoop_network
 
+  # Hue Database
   huedb:
     image: postgres:12.1-alpine
     container_name: huedb
@@ -805,6 +811,7 @@ services:
     networks:
       - hadoop_network
 
+  # Hue Web UI
   hue:
     image: gethue/hue:4.6.0
     container_name: hue
@@ -819,14 +826,16 @@ services:
     networks:
       - hadoop_network
 
+  # Zookeeper
   zookeeper:
     image: zookeeper:3.7
     container_name: zookeeper
     ports:
-      - "2182:2181"  # Alterado para a porta 2182
+      - "2182:2181"
     networks:
       - hadoop_network
 
+  # HBase
   hbase:
     image: harisekhon/hbase:1.3
     container_name: hbase
@@ -838,9 +847,9 @@ services:
       - "2181:2181"
       - "9090:9090" # Thrift API
     environment:
-      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 resourcemanager:8088 zookeeper:2181"
+      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 resourcemanager:8088 zookeeper:2182"
     volumes:
-      - ./hbase-data:/hbase_data  # Volume persistente
+      - ./hbase-data:/hbase_data
       - ./hbase-site.xml:/opt/hbase/conf/hbase-site.xml
     depends_on:
       - namenode
@@ -850,6 +859,7 @@ services:
     networks:
       - hadoop_network
 
+  # Apache Pig
   pig:
     image: moander/pig
     container_name: pig
@@ -872,20 +882,27 @@ services:
     networks:
       - hadoop_network
 
-  phoenix:
-    image: arizephoenix/phoenix:latest
-    container_name: phoenix
-    environment:
-      - PHOENIX_WORKING_DIR=/mnt/data
-    volumes:
-      - phoenix_data:/mnt/data
+  # PrestoDB
+  presto:
+    image: trinodb/trino:latest
+    container_name: presto
     ports:
-      - "6006:6006"  # PHOENIX_PORT
-      - "4317:4317"  # PHOENIX_GRPC_PORT
-      - "9091:9090"
-    depends_on:
-      - hbase  # Certifica-te de que o Phoenix depende do HBase
+      - "8070:8070"
     networks:
+      - hadoop_network
+
+  # JupyterHub
+  jupyterhub:
+    build: .
+    image: my_jupyterhub
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py
+      - jupyterhub_data:/srv/jupyterhub/data
+    ports:
+      - "8000:8000"
+    networks:
+      - jupyterhub
       - hadoop_network
 
 volumes:
@@ -893,24 +910,17 @@ volumes:
   datanode:
   pg_data:
   hbase_data:
-  phoenix_data:
-    driver: local
+  jupyterhub_data:
 
 networks:
+  jupyterhub:
+    name: jupyterhub
   hadoop_network:
     driver: bridge
 ```
 Neste novo arquivo _docker-compose.yml_, foram acrescentadas três novas componentes principais (além de uma quarta, referente ao [Thrift](https://thrift.apache.org/), que será abordada mais à [frente](#thrift)), sendo elas:
 
-### 1 - **Pig**
-- **Imagem**: moander/pig
-- **Função**: Pig é uma plataforma de análise de grandes volumes de dados (Big Data) baseada em Hadoop, geralmente usada para executar scripts em MapReduce.
-- **Conexões**:
-    - Depende do Namenode, Datanode, ResourceManager e HBase para acessar dados no HDFS e executar operações de MapReduce.
-- **Portas**:
-    - 18080 (Web UI do Pig)
-
-### 2 - **Zookeeper**
+### 0. **Zookeeper**
 
 - **Imagem**: zookeeper:3.7  
 - **Função**: Serviço de coordenação distribuída utilizado para gerenciar a configuração, sincronização e serviços de nome dentro do cluster Hadoop.  
@@ -922,7 +932,7 @@ Neste novo arquivo _docker-compose.yml_, foram acrescentadas três novas compone
 - **Volumes**:  
     - Não há volumes persistentes definidos para este serviço.  
 
-### 3 - **HBase**
+### 1. **HBase**
 
 - **Imagem**: harisekhon/hbase:1.3
 - **Função**: HBase é um banco de dados NoSQL distribuído que roda em cima do Hadoop. Ele permite armazenar grandes quantidades de dados de forma distribuída e acessá-los de maneira rápida.
@@ -939,9 +949,7 @@ Neste novo arquivo _docker-compose.yml_, foram acrescentadas três novas compone
     - ./hbase-data: Volume persistente para armazenar os dados do HBase.
     - ./hbase-site.xml: Arquivo de configuração do HBase mapeado para o container.
 
-
-
-#### **New File**: *hbase-site.xml*
+#### 1.1. **New File**: [*hbase-site.xml*](hbase-site.xml)
 
 É interessante notar que, como é possível ver nos **volumes** do HBase, foi também utilizado um ficheiro *hbase-site.xml*. Abaixo, apresento a composição deste ficheiro:
 
@@ -996,6 +1004,36 @@ Este ficheiro configura o comportamento do HBase e define como ele interage com 
 
 5. Timeouts (hbase.rpc.timeout):
     - Configura o tempo máximo (em milissegundos) para operações remotas no cluster (valor: 60 segundos).
+
+### 2. **Pig**
+- **Imagem**: moander/pig
+- **Função**: Pig é uma plataforma de análise de grandes volumes de dados (Big Data) baseada em Hadoop, geralmente usada para executar scripts em MapReduce.
+- **Conexões**:
+    - Depende do Namenode, Datanode, ResourceManager e HBase para acessar dados no HDFS e executar operações de MapReduce.
+- **Portas**:
+    - 18080 (Web UI do Pig)
+
+### 3. **JupyterHub**
+- **Imagem**: `my_jupyterhub` (construída localmente a partir do [`Dockerfile`](Dockerfile)).
+- **Função**: O JupyterHub é uma plataforma multiutilizador baseada no Jupyter Notebook, permitindo que vários utilizadores acedam e executem código num ambiente interativo. É útil para análise de dados e desenvolvimento colaborativo.
+- **Conexões**:
+  - Está ligado à rede Hadoop para acesso aos dados armazenados no HDFS.
+  - Pode interagir com serviços como Hive, Presto e HBase para análise de dados.
+- **Portas**:
+  - `8000`: Interface web do JupyterHub.
+- **Volumes**:
+  - `/var/run/docker.sock:/var/run/docker.sock`: Permite ao JupyterHub criar e gerir notebooks em containers Docker.
+  - `./jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py`: Arquivo de configuração do JupyterHub.
+  - `jupyterhub_data:/srv/jupyterhub/data`: Volume persistente para armazenar os dados e perfis dos utilizadores.
+
+### 4. **PrestoDB (Trino)**
+- **Imagem**: `trinodb/trino:latest`
+- **Função**: PrestoDB (ou Trino) é um motor de consultas distribuído otimizado para consultas interativas em grandes volumes de dados. Ele pode consultar diversas fontes de dados, incluindo Hadoop (via Hive), bases de dados SQL, e sistemas NoSQL.
+- **Conexões**:
+  - Pode ser usado para consultar dados armazenados no HDFS através do Hive Metastore.
+  - Pode conectar-se a outras bases de dados, permitindo a análise de dados distribuídos.
+- **Portas**:
+  - `8070`: Interface web do Presto para execução de queries e monitorização.
 
 Agora, serão comentados os passos realizados para a atualização do container.
 
@@ -1161,9 +1199,7 @@ hbase(main):008:0> drop 'artist_details'
 
 Eliminar a tabela **'artist_details'**
 
-## 2. Phoenix (Todo)
-
-## 3. Pig
+## 2. Pig
 
 O Apache Pig é uma ferramenta de alto nível usada para processar grandes volumes de dados em ambientes Hadoop. Ele simplifica a manipulação de dados ao fornecer uma linguagem chamada Pig Latin, que é uma linguagem de scripts projetada para processar e transformar dados de maneira intuitiva, evitando a necessidade de escrever código MapReduce diretamente.
 
@@ -1172,7 +1208,7 @@ Tendo isto em conta, iremos aplicar o algoritmo de [_MapReduce_](https://towards
 1. Aplica na coluna _genres_ do dataset [_artist_details_](#dataset-1-artist_details), já que esta consite em vários estilos, separados por ";", sendo interessante realizar uma análise deste;
 2. Também será aplicado numa _lyric_ de uma música.
 
-### 1. **MapReduce - Genres**
+### 2.1. **MapReduce - Genres**
 
 A coluna **_genres_** contém um texto descritivo que lista todos os estilos musicais de cada artista, tornando difícil realizar uma análise direta. Uma maneira eficaz de visualizar e extrair conclusões sobre esses dados é aplicar um algoritmo de **MapReduce**, facilitado pelo **Pig**. Esse processo permitirá obter insights valiosos ao transformar os dados em uma forma mais estruturada e compreensível.
 
@@ -1213,7 +1249,7 @@ Após a execução do script, obtemos o seguinte output na _shell_:
 
 O output pode ser visto no ficheiro [part-r-00000](data\processed\genres_count\part-r-00000). Analisando com atenção, podemos notar que 131 pop e 50 trap, algo interessante de se notar.
 
-### 2. **MapReduce - lyric**
+### 2.2. **MapReduce - lyric**
 
 Outra abordagem interessante seria aplicar o algoritmo de **MapReduce** nas **letras de músicas**. Isso não só facilitaria o armazenamento dessas letras, mas também tornaria a análise mais eficiente, permitindo a aplicação de algoritmos de forma mais simplificada. Como exemplo, será utilizada a letra da música **"Rap God"** de Eminem que se encontra no ficheiro [lyric.txt](pig-scripts\lyric.txt). O algoritmo pode ser encontrado no ficheiro [wordcount.pig](pig-scripts\wordcount.pig), tendo a seguinte aparência:
 
@@ -1256,11 +1292,122 @@ O output pode ser visto no ficheiro [part-r-00000](pig-scripts\output\part-r-000
 | I       | 54         |
 | the     | 52         |
 
+## 3. **JupyterHub**
 
+O JupyterHub aqui configurado pode ser utilizado dentro de um cluster Hadoop, permitindo o processamento de grandes volumes de dados. Abaixo, podemos visualizar os passos para este conseguir ser aplicado:
+
+### 3.1. **[jupyterhub_config.py](jupyterhub_config.py) - JupyterHub**
+
+Esta configuração define um **JupyterHub** baseado em **Docker**, onde cada utilizador tem um ambiente isolado e persistente. 
+
+- **Autenticação**: Utiliza **NativeAuthenticator**, permitindo registo aberto e criação automática de utilizadores no sistema.
+- **Gestão de Utilizadores**: Apenas `"BDDA"` pode aceder, e `"myadmin"` é o administrador.
+- **Containers Docker**: Cada utilizador tem um container separado, gerido pelo **DockerSpawner**, dentro da rede `"jupyterhub"`. Os containers são removidos automaticamente ao terminar a sessão.
+- **Persistência**: Cada utilizador tem um volume dedicado para guardar os seus ficheiros.
+- **Base de Dados**: O JupyterHub utiliza um **SQLite** (`jupyterhub.sqlite`) para armazenar informações de utilizadores e sessões.
+- **Timeout e Logging**: Define um `http_timeout` de 300 segundos e ativa logs detalhados (`DEBUG`).
+
+### 3.2. **[Dockerfile](Dockerfile) - JupyterHub**
+Como já foi referido no tópico do [Docker-compose.yml](#3-jupyterhub), foi utilizado um [`Dockerfile`](Dockerfile) para criar a imagem personalizada do JupyterHub. Este apresenta o seguinte formato:
+
+```docker
+FROM jupyterhub/jupyterhub:latest
+
+RUN pip install --no-cache \
+    oauthenticator \
+    dockerspawner \
+    jupyterhub-nativeauthenticator
+
+
+COPY jupyterhub_config.py /srv/jupyterhub/jupyterhub_config.py
+```
+
+- Define a imagem base como [jupyterhub/jupyterhub:latest](https://hub.docker.com/r/jupyterhub/jupyterhub), ou seja, a versão mais recente do JupyterHub disponível no Docker Hub. A imagem oficial já inclui os pacotes básicos para correr o JupyterHub.
+
+- Pacotes instalados:
+  1. **oauthenticator**
+      - Permite a autenticação externa (Google, GitHub, Azure AD, etc.).
+      - Útil para integração com Single Sign-On (SSO).
+  2. **dockerspawner**
+      - Permite que cada utilizador tenha o seu próprio ambiente isolado dentro de um container Docker.
+      - Sempre que um utilizador faz login, um novo container é criado com um Jupyter Notebook dedicado.
+  3. **jupyterhub-nativeauthenticator**
+      - Adiciona suporte para autenticação local (nome de utilizador e password armazenados no próprio JupyterHub).
+      - Simples e útil para pequenos ambientes.
+
+- O flag --no-cache evita que ficheiros temporários fiquem armazenados no container, reduzindo o tamanho final da imagem.
+
+No final, é feita uma copia do ficheiro ```[jupyterhub_config.py](jupyterhub_config.py)``` (com todas as configurações do JupyterHub) para dentro do container, na pasta ```/srv/jupyterhub/```.
+
+### 3.3. Implementação do JupyterHub
+
+Para então verificar se está tudo a funcionar, podemos testar a porta http://localhost:8000/hub/login. Se tiver tudo a funcionar corretamente, iremos visualizar a seguinte página:
+ 
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\JupyterHubLogin.png" alt="Texto alternativo" style="width: 650px;"/>
+</div>
+
+Mesmo assim, podemos verificar no _container_ **JupyterHub** do _Docker_ se está tudo certo. Para tal, basta clicar no respetivo container, clicar na opção *exec* e executar o comando ``bash``. O resultado deverá ser o seguinte:
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\JupyterHubBash.png" alt="Texto alternativo" style="width: 650px;"/>
+</div>
+
+De seguida, podemos visualizar os ficheiros que se encontram no container com o comando ``ls``. Abaixo, podemos visualizar os respetivos ficheiros:
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\JupyterHubls.png" alt="Texto alternativo" style="width: 650px;"/>
+</div>
 ---
+
+Para visualizar se o ficheiro [```jupyterhub_config.py```](jupyterhub_config.py) foi inserido de forma correta, é necessário realizar algumas instalações/atualizações. Para tal basta rodar os seguintes comandos:
+
+```docker
+# Atualiza a lista de pacotes disponíveis no sistema.
+apt-get update
+
+# Instala o editor de texto Vim.
+apt-get install vim
+
+# Abre o ficheiro jupyterhub_config.py no editor de texto Vim
+vim jupyterhub_config.py
+```
+
+Ao abrir o ficheiro [``jupyterhub_config.py``](jupyterhub_config.py) no editor de texto **Vim**, obtemos o seguinte resultado:
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\JupyterHubVim.png" alt="Texto alternativo" style="width: 650px;"/>
+</div>
+
+É importante realçar que é necessário referir os utilizadores que têm permissão para entrar. Para tal, será criada uma conta com o utilizador **BDDA**. A password pode ser criada no próprio bash da seguinte forma:
+
+```
+useradd BDDA
+passwd BDDA
+New password: {password}
+Retype new password: {password}
+```
+
+Abaixo, podemos ver a implementação da mesma:
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\JupyterHubUser.png" alt="Texto alternativo" style="width: 650px;"/>
+</div>
+
+Após a criação do utilizador, podemos voltar ao login referido no [**Tópico 3.3.**](#33-implementação-do-jupyterhub) e entrar com o utilizador **BDDA**. Ao entrarmos com o utilizador, somos apresentados com a seguinte página:
+
+<div style="text-align: center;">
+       <img src="docs\relatorios\relatorio_pratico_imgs\JupyterHubFrontPage.png" alt="Texto alternativo" style="width: 650px;"/>
+</div>
+
+No JupyterHub, é possível utilizar Python, R e até Julia, tornando-o uma ferramenta versátil para diferentes utilizadores executarem o mesmo código. Além disso, o uso de containers simplifica a compatibilidade entre diferentes máquinas, abstraindo as diferenças de hardware. Com essa abordagem, é possível enriquecer a análise dos dados armazenados, aplicando diversas técnicas analíticas diretamente no JupyterHub.
 
 **Nota:**  
 Para reiniciar o serviço de rede, execute os seguintes comandos:  
 
 - `net stop winnat`  
-- `net start winnat`  
+- `net start winnat`
+
+2. Phoenix (Todo)
+
+> **API KEYS**: https://platform.openai.com/api-keys
