@@ -722,10 +722,8 @@ Primeiramente, é necessário referir que foi atualizado o respetivo ficheiro _d
 version: '3.8'
 
 services:
-  # Hadoop NameNode
   namenode:
     image: bde2020/hadoop-namenode:2.0.0-hadoop2.7.4-java8
-    container_name: namenode
     volumes:
       - namenode:/hadoop/dfs/name
     environment:
@@ -734,13 +732,9 @@ services:
       - ./hadoop-hive.env
     ports:
       - "50070:50070"
-    networks:
-      - hadoop_network
-
-  # Hadoop DataNode
+    
   datanode:
     image: bde2020/hadoop-datanode:2.0.0-hadoop2.7.4-java8
-    container_name: datanode
     volumes:
       - datanode:/hadoop/dfs/data
     env_file:
@@ -749,29 +743,26 @@ services:
       SERVICE_PRECONDITION: "namenode:50070"
     ports:
       - "50075:50075"
-    depends_on:
-      - namenode
-    networks:
-      - hadoop_network
 
-  # Hadoop ResourceManager
   resourcemanager:
     image: bde2020/hadoop-resourcemanager:2.0.0-hadoop2.7.4-java8
-    container_name: resourcemanager
     environment:
       SERVICE_PRECONDITION: "namenode:50070 datanode:50075"
-    ports:
-      - "8088:8088"
-    depends_on:
-      - namenode
-      - datanode
-    networks:
-      - hadoop_network
+    env_file:
+      - ./hadoop-hive.env
 
-  # Hive Metastore
+  hive-server:
+    image: bde2020/hive:2.3.2-postgresql-metastore
+    env_file:
+      - ./hadoop-hive.env
+    environment:
+      HIVE_CORE_CONF_javax_jdo_option_ConnectionURL: "jdbc:postgresql://hive-metastore/metastore"
+      SERVICE_PRECONDITION: "hive-metastore:9083"
+    ports:
+      - "10000:10000"
+
   hive-metastore:
     image: bde2020/hive:2.3.2-postgresql-metastore
-    container_name: hive-metastore
     env_file:
       - ./hadoop-hive.env
     command: /opt/hive/bin/hive --service metastore
@@ -779,52 +770,33 @@ services:
       SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432 resourcemanager:8088"
     ports:
       - "9083:9083"
-    depends_on:
-      - hive-metastore-postgresql
-      - namenode
-      - datanode
-      - resourcemanager
-    networks:
-      - hadoop_network
 
-  # Hive Metastore PostgreSQL
   hive-metastore-postgresql:
     image: bde2020/hive-metastore-postgresql:2.3.0
-    container_name: hive-metastore-postgresql
     ports:
       - "5432:5432"
-    networks:
-      - hadoop_network
 
-  # Hue Database
   huedb:
     image: postgres:12.1-alpine
-    container_name: huedb
     volumes:
-      - pg_data:/var/lib/postgresql/data/
+      - pg_data:/var/lib/postgresl/data/
     ports:
-      - "5433:5432"
+      - "5432"
     env_file:
       - ./hadoop-hive.env
     environment:
-      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432 resourcemanager:8088 hive-metastore:9083"
-    networks:
-      - hadoop_network
-
-  # Hue Web UI
+        SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432 resourcemanager:8088 hive-metastore:9083"
+  
   hue:
     image: gethue/hue:4.6.0
-    container_name: hue
     environment:
-      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432 resourcemanager:8088 hive-metastore:9083 huedb:5432"
+        SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432 resourcemanager:8088 hive-metastore:9083 huedb:5000"
     ports:
       - "8888:8888"
     volumes:
       - ./hue-overrides.ini:/usr/share/hue/desktop/conf/hue-overrides.ini
-    depends_on:
+    links:
       - huedb
-    networks:
-      - hadoop_network
 
   # Zookeeper
   zookeeper:
@@ -905,6 +877,7 @@ services:
       - jupyterhub
       - hadoop_network
 
+
 volumes:
   namenode:
   datanode:
@@ -918,7 +891,7 @@ networks:
   hadoop_network:
     driver: bridge
 ```
-Neste novo arquivo _docker-compose.yml_, foram acrescentadas três novas componentes principais (além de uma quarta, referente ao [Thrift](https://thrift.apache.org/), que será abordada mais à [frente](#thrift)), sendo elas:
+Neste novo arquivo _docker-compose.yml_, foram acrescentadas cinco novas componentes principais (além de uma quarta, referente ao [Thrift](https://thrift.apache.org/), que será abordada mais à [frente](#thrift)), sendo elas:
 
 ### 0. **Zookeeper**
 
@@ -1401,6 +1374,110 @@ Após a criação do utilizador, podemos voltar ao login referido no [**Tópico 
 </div>
 
 No JupyterHub, é possível utilizar Python, R e até Julia, tornando-o uma ferramenta versátil para diferentes utilizadores executarem o mesmo código. Além disso, o uso de containers simplifica a compatibilidade entre diferentes máquinas, abstraindo as diferenças de hardware. Com essa abordagem, é possível enriquecer a análise dos dados armazenados, aplicando diversas técnicas analíticas diretamente no JupyterHub.
+
+## 4. **PrestoDB**
+
+O PrestoDB é um motor de consultas distribuído de código aberto otimizado para análise interativa de grandes volumes de dados. A sua arquitetura permite executar queries SQL em múltiplas fontes de dados, como Hadoop, bases de dados relacionais e até serviços em cloud.
+
+Abaixo, detalha-se a implementação e configuração do PrestoDB.
+
+### 4.1. **PrestoDB - Bash**
+
+Para então criar um _hive.properties_, que nos permita interligar as bases de dados, basta fazer o seguinte:
+
+```
+# Entrar no Bash do presto
+docker exec -it presto bash
+
+# Criar e guardar o hive.properties
+echo -e "connector.name=hive\nhive.metastore.uri=thrift://hive-metastore:9083" > /etc/trino/catalog/hive.properties
+
+# Verificar o conteúdo do ficheiro hive.properties
+cat /etc/trino/catalog/hive.properties
+
+# Comando para visualizar o conteúdo do relatório
+ls
+```
+
+Com o ficheiro _hive.properties_ inserido, procedemos à visualização das tabelas do hive. Para tal, basta fazer o seguinte:
+
+```
+# Lista todos os catálogos disponíveis no Presto (ex.: hive, system, tpch, etc.)
+SHOW CATALOGS;
+
+# Mostra todos os schemas disponíveis dentro do catálogo "hive" (ex.: default, analytics, etc.)
+SHOW SCHEMAS FROM hive;
+
+# Lista todas as tabelas dentro do schema "default" do catálogo "hive"
+SHOW TABLES FROM hive.default;
+
+# Faz uma consulta na tabela "tua_tabela" dentro do schema "default" e retorna no máximo 10 linhas
+SELECT * FROM hive.default.tua_tabela LIMIT 10;
+```
+
+Também podemos visualizar os catálogos _default_ do *Presto* com os comandos seguintes:
+
+### 4.2. **PrestoDB - System**
+
+O conector **system** permite obter informações sobre o estado e configuração do Trino.
+
+```
+#  Ver todos os schemas do system
+SHOW SCHEMAS FROM system;
+
+# Ver tabelas disponíveis no system
+SHOW TABLES FROM system.runtime;
+
+# Ver todas as queries em execução no Trino
+SELECT * FROM system.runtime.queries;
+
+# Ver os nós disponíveis no cluster
+SELECT * FROM system.runtime.nodes;
+
+#  Ver propriedades configuráveis de sessão
+SHOW SESSION;
+```
+
+### 4.3. **PrestoDB - jmx**
+
+O conector **jmx** permite aceder a métricas de desempenho do Trino.
+
+```
+# Ver schemas do jmx
+SHOW SCHEMAS FROM jmx;
+
+# Ver tabelas disponíveis no jmx
+SHOW TABLES FROM jmx.current;
+
+# Ver estatísticas do cluster
+SELECT * FROM jmx.current."java.lang:type=Memory";
+```
+
+### 4.4. **PrestoDB - memory**
+
+O conector **memory** permite armazenar dados temporariamente na _RAM_, sem necessidade de um banco de dados externo.
+
+```
+# Criar uma tabela temporária e inserir dados
+CREATE TABLE memory.default.exemplo (id INTEGER, nome VARCHAR);
+INSERT INTO memory.default.exemplo VALUES (1, 'Alice'), (2, 'Bob');
+SELECT * FROM memory.default.exemplo;
+```
+
+### 4.5. **PrestoDB - tpch e tcpcds**
+
+Os conectores **tpch** e **tpcds** contêm tabelas fictícias usadas para testar desempenho.
+
+```
+# Ver schemas do TPCH
+SHOW SCHEMAS FROM tpch;
+
+# Ver tabelas disponíveis no TPCH
+SHOW TABLES FROM tpch.tiny;
+
+# Ver os primeiros 10 clientes (exemplo)
+SELECT * FROM tpch.tiny.customer LIMIT 10;
+```
 
 **Nota:**  
 Para reiniciar o serviço de rede, execute os seguintes comandos:  

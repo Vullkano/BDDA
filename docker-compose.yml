@@ -1,10 +1,8 @@
 version: '3.8'
 
 services:
-  # Hadoop NameNode
   namenode:
     image: bde2020/hadoop-namenode:2.0.0-hadoop2.7.4-java8
-    container_name: namenode
     volumes:
       - namenode:/hadoop/dfs/name
     environment:
@@ -13,13 +11,9 @@ services:
       - ./hadoop-hive.env
     ports:
       - "50070:50070"
-    networks:
-      - hadoop_network
-
-  # Hadoop DataNode
+    
   datanode:
     image: bde2020/hadoop-datanode:2.0.0-hadoop2.7.4-java8
-    container_name: datanode
     volumes:
       - datanode:/hadoop/dfs/data
     env_file:
@@ -28,29 +22,26 @@ services:
       SERVICE_PRECONDITION: "namenode:50070"
     ports:
       - "50075:50075"
-    depends_on:
-      - namenode
-    networks:
-      - hadoop_network
 
-  # Hadoop ResourceManager
   resourcemanager:
     image: bde2020/hadoop-resourcemanager:2.0.0-hadoop2.7.4-java8
-    container_name: resourcemanager
     environment:
       SERVICE_PRECONDITION: "namenode:50070 datanode:50075"
-    ports:
-      - "8088:8088"
-    depends_on:
-      - namenode
-      - datanode
-    networks:
-      - hadoop_network
+    env_file:
+      - ./hadoop-hive.env
 
-  # Hive Metastore
+  hive-server:
+    image: bde2020/hive:2.3.2-postgresql-metastore
+    env_file:
+      - ./hadoop-hive.env
+    environment:
+      HIVE_CORE_CONF_javax_jdo_option_ConnectionURL: "jdbc:postgresql://hive-metastore/metastore"
+      SERVICE_PRECONDITION: "hive-metastore:9083"
+    ports:
+      - "10000:10000"
+
   hive-metastore:
     image: bde2020/hive:2.3.2-postgresql-metastore
-    container_name: hive-metastore
     env_file:
       - ./hadoop-hive.env
     command: /opt/hive/bin/hive --service metastore
@@ -58,52 +49,33 @@ services:
       SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432 resourcemanager:8088"
     ports:
       - "9083:9083"
-    depends_on:
-      - hive-metastore-postgresql
-      - namenode
-      - datanode
-      - resourcemanager
-    networks:
-      - hadoop_network
 
-  # Hive Metastore PostgreSQL
   hive-metastore-postgresql:
     image: bde2020/hive-metastore-postgresql:2.3.0
-    container_name: hive-metastore-postgresql
     ports:
       - "5432:5432"
-    networks:
-      - hadoop_network
 
-  # Hue Database
   huedb:
     image: postgres:12.1-alpine
-    container_name: huedb
     volumes:
-      - pg_data:/var/lib/postgresql/data/
+      - pg_data:/var/lib/postgresl/data/
     ports:
-      - "5433:5432"
+      - "5432"
     env_file:
       - ./hadoop-hive.env
     environment:
-      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432 resourcemanager:8088 hive-metastore:9083"
-    networks:
-      - hadoop_network
-
-  # Hue Web UI
+        SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432 resourcemanager:8088 hive-metastore:9083"
+  
   hue:
     image: gethue/hue:4.6.0
-    container_name: hue
     environment:
-      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432 resourcemanager:8088 hive-metastore:9083 huedb:5432"
+        SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432 resourcemanager:8088 hive-metastore:9083 huedb:5000"
     ports:
       - "8888:8888"
     volumes:
       - ./hue-overrides.ini:/usr/share/hue/desktop/conf/hue-overrides.ini
-    depends_on:
+    links:
       - huedb
-    networks:
-      - hadoop_network
 
   # Zookeeper
   zookeeper:
